@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseActiivty;
 import com.moa.rxdemo.base.ui.BaseFragment;
+import com.moa.rxdemo.utils.ToastUtils;
 
 /**
  * 类或文件描述
@@ -68,8 +69,18 @@ public class MainActivity extends BaseActiivty  {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        getMenuInflater().inflate(R.menu.menu_ok, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.navigation_home){
+            ToastUtils.show("click menu");
+            return true;
+        }
+        
+        return super.onOptionsItemSelected(item);
     }
     
     private void switchFragment(String tag) {

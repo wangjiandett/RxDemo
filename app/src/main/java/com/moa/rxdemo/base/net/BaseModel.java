@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) 2018.  For more infomation visit https://github.com/wangjiandett/RxDemo
+ */
 package com.moa.rxdemo.base.net;
 
 import com.moa.rxdemo.base.net.exception.ExceptionHandle;
