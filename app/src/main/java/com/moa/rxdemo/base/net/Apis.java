@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * 类或文件描述
+ * 接口列表
  * <p>
  * Created by：wangjian on 2017/12/20 15:47
  */

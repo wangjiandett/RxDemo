@@ -38,7 +38,7 @@ public abstract class BaseModel<T> {
      *
      * @param observable
      */
-    protected void requestValue(Observable<BaseResponse<T>> observable) {
+    protected void request(Observable<BaseResponse<T>> observable) {
         observable.subscribeOn(Schedulers.io())//
             .observeOn(AndroidSchedulers.mainThread())//
             .map(new ResultFilter<T>())//

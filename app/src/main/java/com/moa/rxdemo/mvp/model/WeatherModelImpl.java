@@ -16,7 +16,7 @@ public class WeatherModelImpl extends BaseModel<Weather> implements IWeatherMode
     @Override
     public void loadWeatherList(String city, ValueCallback<Weather> callback) {
         this.mCallback = callback;
-        requestValue(apis.getWeatherInfo(city));
+        request(apis.getWeatherInfo(city));
     }
     
     @Override
