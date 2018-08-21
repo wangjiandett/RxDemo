@@ -1,7 +1,10 @@
 package com.moa.rxdemo.mvp.view;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.View;
@@ -15,8 +18,8 @@ import com.moa.rxdemo.base.ui.adapter.HolderAdapter;
 import com.moa.rxdemo.base.ui.adapter.ViewHolder;
 import com.moa.rxdemo.mvp.bean.Weather;
 import com.moa.rxdemo.mvp.contract.WeatherContract;
-import com.moa.rxdemo.mvp.model.WeatherModelImpl;
-import com.moa.rxdemo.mvp.presenter.WeatherPresenter;
+import com.moa.rxdemo.mvvm.base.LoadState;
+import com.moa.rxdemo.mvvm.viewmodel.WeatherViewModel;
 import com.moa.rxdemo.utils.LogUtils;
 import com.moa.rxdemo.utils.ToastUtils;
 
@@ -45,13 +48,59 @@ public class HomeFragment extends BaseFragment implements WeatherContract.IWeath
     
     @Override
     protected void initData() {
-        WeatherPresenter presenter = new WeatherPresenter(this, new WeatherModelImpl());
-        presenter.getWeatherList("101010100");
+       // mvp 加载方式
+       // WeatherPresenter presenter = new WeatherPresenter(this, new WeatherModelImpl());
+       // presenter.getWeatherList("101010100");
+        
+        // mvvm 加载方式
+        WeatherViewModel weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
+        
+        // 1。监听数据变化
+        weatherViewModel.getWeatherMutableLiveData().observe(this, new Observer<Weather>() {
+            @Override
+            public void onChanged(@Nullable Weather weather) {
+                // load success
+                LogUtils.d("mvvm city:" + weather.city);
+                adapter.setList(weather.forecast);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    
+        // 2。监听加载状态变化
+        weatherViewModel.getLoadStatus().observe(this, new Observer<LoadState>() {
+            @Override
+            public void onChanged(@Nullable LoadState loadState) {
+                // show error tip
+                switch (loadState.status){
+                    case LoadState.LOADED:
+                        // 隐藏载框  加载完成
+                        LogUtils.d("mvvm LOADED:");
+                        break;
+                    case LoadState.LOADING:
+                        // 显示加载框  加载中...
+                        LogUtils.d("mvvm LOADING:");
+                        break;
+                    case LoadState.LOADING_FAIL:
+                        // 加载失败
+                        ToastUtils.show(loadState.tipMsg);
+                        LogUtils.d("mvvm LOADING_FAIL:");
+                        break;
+                    case LoadState.LOADING_SUCCESS:
+                        // 加载成功
+                        // 默认不用处理
+                        LogUtils.d("mvvm LOADING_SUCCESS:");
+                        break;
+                }
+            }
+        });
+    
+        // 3。加载数据
+        weatherViewModel.loadData("101010100");
     }
     
     @Override
     public void onSuccess(Weather weather) {
-        LogUtils.d("city:" + weather.city);
+        LogUtils.d("mvp city:" + weather.city);
         adapter.setList(weather.forecast);
         adapter.notifyDataSetChanged();
     }

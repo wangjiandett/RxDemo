@@ -20,6 +20,16 @@ public class WeatherModelImpl extends BaseModel<Weather> implements IWeatherMode
     }
     
     @Override
+    protected void onShowProgress() {// optional
+        mCallback.onShowProgress();
+    }
+    
+    @Override
+    protected void onHideProgress() {// optional
+        mCallback.onHideProgress();
+    }
+    
+    @Override
     protected void onSuccess(Weather value) {
         mCallback.onSuccess(value);
     }
