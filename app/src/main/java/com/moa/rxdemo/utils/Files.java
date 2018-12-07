@@ -48,13 +48,18 @@ public class Files {
         return path;
     }
     
-    // sdcard 获取不到时，存储到手机内存中
-    public static String getExternalStorageChildDir(String type){
+    /**
+     * sdcard 获取不到时，存储到手机内存中
+     *
+     * @param dirname 要获得的文件名
+     * @return 文件路径
+     */
+    public static String getExternalStorageChildDir(String dirname){
         String dir = getExternalStorageFileDir();
         if(!TextUtils.isEmpty(dir)){
-            return FileUtil.createDir(dir, type).getAbsolutePath();
+            return FileUtil.createDir(dir, dirname).getAbsolutePath();
         }
-        return getExternalFileChildDir(type);
+        return getExternalFileChildDir(dirname);
     }
     
     //------------------内部存储--------------------
@@ -62,11 +67,11 @@ public class Files {
     /**
      * 获得程序内存中files目录或子目录
      *
-     * @param type 为null时返回根目录，否则返回对应的子目录
+     * @param dirname 为null时返回根目录，否则返回对应的子目录
      * @return 目录路径
      */
-    public static String getExternalFileChildDir(String type) {
-        File file = MyApplication.getInstance().getExternalFilesDir(type);
+    public static String getExternalFileChildDir(String dirname) {
+        File file = MyApplication.getInstance().getExternalFilesDir(dirname);
         if (file == null) {
             return null;
         }
@@ -74,8 +79,7 @@ public class Files {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String externalPath = file.getAbsolutePath();
-        return externalPath;
+        return file.getAbsolutePath();
     }
     
    

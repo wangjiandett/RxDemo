@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.moa.rxdemo.utils.ToastUtils;
+
 /**
  * 类或文件描述
  * <p>
@@ -184,5 +186,9 @@ public abstract class BaseFragment extends Fragment {
             return compatActivity.getSupportActionBar();
         }
         return null;
+    }
+    
+    protected void showToast(String text){
+        ToastUtils.showToast(getActivity(), text);
     }
 }

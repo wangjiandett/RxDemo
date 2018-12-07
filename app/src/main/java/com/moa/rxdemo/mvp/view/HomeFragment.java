@@ -82,7 +82,7 @@ public class HomeFragment extends BaseFragment implements WeatherContract.IWeath
                         break;
                     case LoadState.LOADING_FAIL:
                         // 加载失败
-                        ToastUtils.show(loadState.tipMsg);
+                        ToastUtils.showToast(getActivity(), loadState.tipMsg);
                         LogUtils.d("mvvm LOADING_FAIL:");
                         break;
                     case LoadState.LOADING_SUCCESS:
@@ -107,7 +107,7 @@ public class HomeFragment extends BaseFragment implements WeatherContract.IWeath
     
     @Override
     public void onFail(String msg) {
-        ToastUtils.show(msg);
+        ToastUtils.showToast(getActivity(), msg);
         LogUtils.e(msg);
     }
     

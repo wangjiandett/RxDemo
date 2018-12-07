@@ -76,7 +76,7 @@ public class MainActivity extends BaseActiivty  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.navigation_home){
-            ToastUtils.show("click menu");
+            ToastUtils.showToast(this, "click menu");
             return true;
         }
         

@@ -19,8 +19,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * 文件相关操作
+ */
 public class FileUtil {
     
+    /**
+     * 读取文件到字符串
+     *
+     * @param path 文件路径
+     * @return 文件内容
+     */
     public static String readFile(String path) {
         byte[] databytes = readFileBytes(path);
         if (databytes != null) {
@@ -29,6 +38,12 @@ public class FileUtil {
         return null;
     }
     
+    /**
+     * 读取文件到数组中
+     *
+     * @param path 文件路径
+     * @return 文件内容
+     */
     public static byte[] readFileBytes(String path) {
         InputStream is = getFileInputStream(path);
         if (is != null) {
@@ -49,6 +64,12 @@ public class FileUtil {
         return null;
     }
     
+    /**
+     * 读取文件到流中
+     *
+     * @param path 文件路径
+     * @return 文件流
+     */
     public static InputStream getFileInputStream(String path) {
         InputStream inputstream = null;
         if (!TextUtils.isEmpty(path)) {
@@ -89,6 +110,13 @@ public class FileUtil {
         return file;
     }
     
+    /**
+     * 创建文件夹
+     *
+     * @param path    父类路径
+     * @param dirName 文件夹名
+     * @return 创建后的文件夹
+     */
     public static File createDir(String path, String dirName) {
         File file = new File(path, dirName);
         try {
@@ -101,6 +129,13 @@ public class FileUtil {
         return file;
     }
     
+    /**
+     * copy文件
+     *
+     * @param src 输入文件源
+     * @param dst 输出文件
+     * @throws IOException
+     */
     public static void copy(File src, File dst) throws IOException {
         InputStream in = new FileInputStream(src);
         OutputStream out = new FileOutputStream(dst);
@@ -114,6 +149,14 @@ public class FileUtil {
         out.close();
     }
     
+    /**
+     * 图片保存到文件中
+     *
+     * @param mBitmap  图片
+     * @param filepath 路径
+     * @param filename 文件名
+     * @return 是否保存成功
+     */
     public static boolean saveBitmapToFile(Bitmap mBitmap, String filepath, String filename) {
         if (null == mBitmap || TextUtils.isEmpty(filepath)) {
             return false;
@@ -130,10 +173,6 @@ public class FileUtil {
             result = false;
         }
         return result;
-    }
-    
-    public static boolean deleteFileRecursively(String file) {
-        return deleteFileRecursively(new File(file));
     }
     
     /**
@@ -169,7 +208,7 @@ public class FileUtil {
     }
     
     
-    public static boolean writeFileInputStream(InputStream is, String path) {
+    public static boolean writeInputStream2File(InputStream is, String path) {
         boolean result = true;
         File file = new File(path);
         try {
@@ -187,7 +226,14 @@ public class FileUtil {
         return result;
     }
     
-    public static void saveToFile(byte[] bfile, String filePath, String filename) {
+    /**
+     * 保存字节到文件中
+     *
+     * @param bfile    字节数组
+     * @param filePath 文件路径
+     * @param filename 文件名
+     */
+    public static void saveByte2File(byte[] bfile, String filePath, String filename) {
         BufferedOutputStream bos = null;
         FileOutputStream fos = null;
         File file = null;
@@ -217,6 +263,13 @@ public class FileUtil {
         return;
     }
     
+    /**
+     * 格式化文件大小
+     *
+     * @param context
+     * @param size    文件长度
+     * @return 格式化后的文件大小
+     */
     public static String formatFileSize(Context context, long size) {
         return Formatter.formatFileSize(context, size);
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.utils.SystemBarTintManager;
+import com.moa.rxdemo.utils.ToastUtils;
 
 /**
  * 类或文件描述
@@ -203,6 +204,10 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(containerId, fragment, tag);
         transaction.commitAllowingStateLoss();
+    }
+    
+    protected void showToast(String text){
+        ToastUtils.showToast(this, text);
     }
     
 }
