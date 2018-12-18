@@ -15,7 +15,7 @@ public class ToolbarActivity extends BaseActiivty{
     
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_toobar;
+        return R.layout.tt_activity_toobar;
     }
     
     public static void go(Context context){

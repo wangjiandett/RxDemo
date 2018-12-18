@@ -25,7 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class BaseModel<T> {
     
     /**
-     * the success code
+     * the success code, need diy
      */
     private static final int SUCCESS_CODE = 1000;
     

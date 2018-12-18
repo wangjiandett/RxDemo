@@ -11,7 +11,6 @@ import android.widget.Toast;
 /**
  * ToastUtils
  */
-
 public class ToastUtils {
 
     private static Toast toast;
@@ -26,6 +25,9 @@ public class ToastUtils {
      */
     @SuppressLint("ShowToast")
     private static void getToast(Context context, CharSequence text, int res, int duration) {
+        if(context == null){
+            throw new NullPointerException("the context can not be null");
+        }
         if (toast == null) {
             if (!TextUtils.isEmpty(text)) {
                 toast = Toast.makeText(context.getApplicationContext(), text, duration);

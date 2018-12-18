@@ -13,7 +13,7 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
     private HashSet<ViewHolder<V>> holders = new HashSet<ViewHolder<V>>();
 
     private Context context;
-    protected List<V> mList = new ArrayList<>();
+    private List<V> mList = new ArrayList<>();
 
     protected HolderAdapter(Context context) {
         this.context = context;

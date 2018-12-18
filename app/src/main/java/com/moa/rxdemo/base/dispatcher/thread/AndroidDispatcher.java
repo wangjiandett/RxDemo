@@ -37,4 +37,8 @@ public class AndroidDispatcher {
     public void dispatchNow(Runnable runnable) {
         handler.post(runnable);
     }
+    
+    public void dispatchDelay(Runnable runnable, long delay){
+        handler.postDelayed(runnable, delay);
+    }
 }

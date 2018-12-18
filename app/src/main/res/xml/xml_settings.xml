@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.ListPreference
+        android:defaultValue="0"
+        android:dialogTitle="@string/multi_language"
+        android:entries="@array/language_list_key"
+        android:entryValues="@array/language_list_value"
+        android:key="language_list"
+        android:title="@string/multi_language"
+        android:icon="@android:drawable/ic_menu_compass"
+        />
+
+</PreferenceScreen>

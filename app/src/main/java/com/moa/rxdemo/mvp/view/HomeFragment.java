@@ -35,7 +35,7 @@ public class HomeFragment extends BaseFragment implements WeatherContract.IWeath
     
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.tt_fragment_home;
     }
     
     @Override
@@ -132,7 +132,7 @@ public class HomeFragment extends BaseFragment implements WeatherContract.IWeath
         
         @Override
         public View init(Weather.ForecastBean data, ViewGroup viewGroup, Context context) {
-            View view = View.inflate(context, R.layout.weather_list_item, null);
+            View view = View.inflate(context, R.layout.tt_weather_list_item, null);
             
             tvDate = view.findViewById(R.id.tv_date);
             tvType = view.findViewById(R.id.tv_type);

@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">RxDemo</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="back">Back</string>
+
+    <!--网络异常-->
+    <string name="error_net">Eet error</string>
+    <string name="error_parse">Data parse error</string>
+    <string name="error_connect">Connect fail</string>
+    <string name="error_ssl">Certification error</string>
+    <string name="error_data_error">Data error</string>
+    <string name="error_unknow">UnKnown error</string>
+
+    <string name="date_format_y_m_d_H_M_en">yyyy/MM/dd  HH:mm</string>
+    <string name="date_format_y_m_d_H_M">yyyy/MM/dd HH:mm</string>
+    <string name="date_format_m_d">MM/dd</string>
+    <string name="date_format_H_M">HH:mm</string>
+    <string name="date_format_torr">tomorrow</string>
+    <string name="date_format_yest">yesterday</string>
+
+    <!--下拉刷新使用-->
+    <string name="swipe_pull_to_refresh">Pull to refresh</string>
+    <string name="swipe_release_to_refresh">Loose to refresh</string>
+    <string name="swipe_refreshing">Refreshing…</string>
+    <string name="swipe_refresh_complete">This is the latest version</string>
+    <string name="swipe_onload_data_hint">Loading&#8230;</string>
+
+    <!--多语言-->
+    <string name="multi_language">Set Language</string>
+
+    <string-array name="language_list_key">
+        <item>Follow system</item>
+        <item>Englist</item>
+        <item>简体中文</item>
+    </string-array>
+
+    <string-array name="language_list_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

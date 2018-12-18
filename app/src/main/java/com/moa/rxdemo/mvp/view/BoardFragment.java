@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseFragment;
+import com.moa.rxdemo.mvp.view.service.MyService;
 
 import static android.content.Context.BIND_AUTO_CREATE;
 
@@ -51,7 +52,7 @@ public class BoardFragment extends BaseFragment {
     
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_board;
+        return R.layout.tt_fragment_board;
     }
     
     @Override

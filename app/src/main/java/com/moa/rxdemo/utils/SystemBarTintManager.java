@@ -37,7 +37,7 @@ import android.widget.FrameLayout.LayoutParams;
 import java.lang.reflect.Method;
 
 /**
- * Class to manage status and navigation bar tint effects when using KitKat
+ * Class to manage status and tt_navigation bar tint effects when using KitKat
  * translucent system UI modes.
  * see <a href="https://github.com/hexiaochun/SystemBarTint">https://github.com/hexiaochun/SystemBarTint</a>
  */
@@ -45,7 +45,7 @@ public class SystemBarTintManager {
     
     static {
         // Android allows a system property to override the presence of the
-        // navigation bar.
+        // tt_navigation bar.
         // Used by the emulator.
         // See
         // https://github.com/android/platform_frameworks_base/blob/master/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java#L1076
@@ -114,7 +114,7 @@ public class SystemBarTintManager {
         }
         
         mConfig = new SystemBarConfig(activity, mStatusBarAvailable, mNavBarAvailable);
-        // device might not have virtual navigation keys
+        // device might not have virtual tt_navigation keys
         if (!mConfig.hasNavigtionBar()) {
             mNavBarAvailable = false;
         }
@@ -146,9 +146,9 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Enable tinting of the system navigation bar.
+     * Enable tinting of the system tt_navigation bar.
      *
-     * If the platform does not have soft navigation keys, is running Jelly Bean
+     * If the platform does not have soft tt_navigation keys, is running Jelly Bean
      * or earlier, or translucent system UI modes have not been enabled in
      * either the theme or via window flags, then this method does nothing.
      *
@@ -257,7 +257,7 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Apply the specified color tint to the system navigation bar.
+     * Apply the specified color tint to the system tt_navigation bar.
      *
      * @param color
      *            The color of the background tint.
@@ -269,7 +269,7 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Apply the specified drawable or color resource to the system navigation
+     * Apply the specified drawable or color resource to the system tt_navigation
      * bar.
      *
      * @param res
@@ -282,7 +282,7 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Apply the specified drawable to the system navigation bar.
+     * Apply the specified drawable to the system tt_navigation bar.
      *
      * @param drawable
      *            The drawable to use as the background, or null to remove it.
@@ -295,7 +295,7 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Apply the specified alpha to the system navigation bar.
+     * Apply the specified alpha to the system tt_navigation bar.
      *
      * @param alpha
      *            The alpha to use
@@ -327,7 +327,7 @@ public class SystemBarTintManager {
     }
     
     /**
-     * Is tinting enabled for the system navigation bar?
+     * Is tinting enabled for the system tt_navigation bar?
      *
      * @return True if enabled, False otherwise.
      */
@@ -488,11 +488,11 @@ public class SystemBarTintManager {
         }
         
         /**
-         * Should a navigation bar appear at the bottom of the screen in the
-         * current device configuration? A navigation bar may appear on the
+         * Should a tt_navigation bar appear at the bottom of the screen in the
+         * current device configuration? A tt_navigation bar may appear on the
          * right side of the screen in certain configurations.
          *
-         * @return True if navigation should appear at the bottom of the screen,
+         * @return True if tt_navigation should appear at the bottom of the screen,
          *         False otherwise.
          */
         public boolean isNavigationAtBottom() {
@@ -518,9 +518,9 @@ public class SystemBarTintManager {
         }
         
         /**
-         * Does this device have a system navigation bar?
+         * Does this device have a system tt_navigation bar?
          *
-         * @return True if this device uses soft key navigation, False
+         * @return True if this device uses soft key tt_navigation, False
          *         otherwise.
          */
         public boolean hasNavigtionBar() {
@@ -528,10 +528,10 @@ public class SystemBarTintManager {
         }
         
         /**
-         * Get the height of the system navigation bar.
+         * Get the height of the system tt_navigation bar.
          *
-         * @return The height of the navigation bar (in pixels). If the device
-         *         does not have soft navigation keys, this will always return
+         * @return The height of the tt_navigation bar (in pixels). If the device
+         *         does not have soft tt_navigation keys, this will always return
          *         0.
          */
         public int getNavigationBarHeight() {
@@ -539,11 +539,11 @@ public class SystemBarTintManager {
         }
         
         /**
-         * Get the width of the system navigation bar when it is placed
+         * Get the width of the system tt_navigation bar when it is placed
          * vertically on the screen.
          *
-         * @return The width of the navigation bar (in pixels). If the device
-         *         does not have soft navigation keys, this will always return
+         * @return The width of the tt_navigation bar (in pixels). If the device
+         *         does not have soft tt_navigation keys, this will always return
          *         0.
          */
         public int getNavigationBarWidth() {

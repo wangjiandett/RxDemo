@@ -14,7 +14,7 @@ import com.moa.rxdemo.base.ui.H5Activity;
 public class NoticeFragment extends BaseFragment{
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_notice;
+        return R.layout.tt_fragment_notice;
     }
     
     @Override

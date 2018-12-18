@@ -1,5 +1,7 @@
 package com.moa.rxdemo.mvp.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,7 +12,6 @@ import android.view.MenuItem;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseActiivty;
-import com.moa.rxdemo.base.ui.BaseFragment;
 import com.moa.rxdemo.utils.ToastUtils;
 
 /**
@@ -23,14 +24,14 @@ public class MainActivity extends BaseActiivty  {
     public static final String FRAG_TAG_HOME = "fragment.home";
     public static final String FRAG_TAG_BOARD = "fragment.board";
     public static final String FRAG_TAG_NOTICE = "fragment.notice";
+    public static final String FRAG_TAG_SETTING = "fragment.setting";
     
-    BottomNavigationView bottomNavigationView;
-    
-    Fragment mCurrentFragment;
+    private BottomNavigationView bottomNavigationView;
+    private Fragment mCurrentFragment;
     
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.tt_activity_main;
     }
     
     @Override
@@ -60,6 +61,9 @@ public class MainActivity extends BaseActiivty  {
                         case R.id.navigation_notifications:
                             switchFragment(FRAG_TAG_NOTICE);
                             return true;
+                        case R.id.navigation_settings:
+                            switchFragment(FRAG_TAG_SETTING);
+                            return true;
                         default:
                             return false;
                     }
@@ -69,7 +73,7 @@ public class MainActivity extends BaseActiivty  {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_ok, menu);
+        getMenuInflater().inflate(R.menu.tt_menu_ok, menu);
         return super.onCreateOptionsMenu(menu);
     }
     
@@ -86,7 +90,7 @@ public class MainActivity extends BaseActiivty  {
     private void switchFragment(String tag) {
         FragmentManager manager = getSupportFragmentManager();
         
-        BaseFragment fragment = (BaseFragment) manager.findFragmentByTag(tag);
+        Fragment fragment = manager.findFragmentByTag(tag);
         if (fragment == null) {
             if (FRAG_TAG_HOME.equals(tag)) {
                 fragment = new HomeFragment();
@@ -97,6 +101,9 @@ public class MainActivity extends BaseActiivty  {
             else if (FRAG_TAG_NOTICE.equals(tag)) {
                 fragment = new NoticeFragment();
             }
+            else if(FRAG_TAG_SETTING.equals(tag)){
+                fragment = new SettingFragment();
+            }
         }
         FragmentTransaction ft = manager.beginTransaction();
         if (fragment != null && fragment.isAdded()) {
@@ -106,5 +113,9 @@ public class MainActivity extends BaseActiivty  {
             ft.hide(mCurrentFragment).add(R.id.fragment_container, fragment, tag).commitAllowingStateLoss();
         }
         mCurrentFragment = fragment;
+    }
+    
+    public static Intent getIntent(Context context){
+        return new Intent(context, MainActivity.class);
     }
 }

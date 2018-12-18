@@ -1,5 +1,6 @@
 package com.moa.rxdemo.base.ui;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.moa.rxdemo.MyApplication;
 import com.moa.rxdemo.R;
+import com.moa.rxdemo.utils.AppUtils;
 import com.moa.rxdemo.utils.SystemBarTintManager;
 import com.moa.rxdemo.utils.ToastUtils;
 
@@ -32,8 +35,16 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
     protected View vDivider;
     
     @Override
+    protected void attachBaseContext(Context newBase) {
+        // 更新多语言
+        Context context = AppUtils.updateConfiguration(newBase);
+        super.attachBaseContext(context);
+    }
+    
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
         
         // init status bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -58,6 +69,12 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         // init data
         initData();
         
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyApplication.removeActivity(this);
     }
     
     /**
@@ -85,7 +102,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
             setSupportActionBar(mToolbar);
             
             // the default layout
-            customView = View.inflate(this, R.layout.action_bar_custom_view, null);
+            customView = View.inflate(this, R.layout.tt_action_bar_custom_view, null);
             tvTitle = customView.findViewById(R.id.tv_title);
             ivBack = customView.findViewById(R.id.iv_back);
             vDivider = customView.findViewById(R.id.v_divider);

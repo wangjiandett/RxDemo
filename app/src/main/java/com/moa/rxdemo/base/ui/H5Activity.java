@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 更新说明:
  *
- * @author wangjian@xiaokebang.com
+ * @author wangjian
  * @version 1.0.0
  * @create 2016/10/31
  */
@@ -71,7 +71,7 @@ public class H5Activity extends BaseActiivty implements View.OnClickListener {
     
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_h5;
+        return R.layout.tt_activity_h5;
     }
     
     
