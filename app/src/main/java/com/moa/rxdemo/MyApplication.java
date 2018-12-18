@@ -9,6 +9,7 @@ import com.moa.rxdemo.base.ExceptionHandler;
 import java.util.ArrayList;
 
 /**
+ * 项目地址 <a href="https://github.com/wangjiandett/RxDemo">https://github.com/wangjiandett/RxDemo</a>
  * 程序入口
  * <p>
  * Created by：wangjian on 2017/12/20 15:45

@@ -1,7 +1,8 @@
 
-#项目地址：https://github.com/wangjiandett/RxDemo
+# 项目地址：https://github.com/wangjiandett/RxDemo
 
-#项目功能和结构介绍：
+# 项目功能和结构介绍：
+
 1.base目录下为dispatcher，负责事件分发：如在post到单独线程中，post到主线程中
 
 2.net目录为网络请求功能，负责执行网络请求和网络异常等相关操作
