@@ -94,6 +94,21 @@ public class FileUtil {
     }
     
     /**
+     * 遍历删除文件夹中的所有文件
+     *
+     * @param logFiles
+     */
+    public static void deleteFiles(File[] logFiles) {
+        if (logFiles != null) {
+            for (File file : logFiles) {
+                if (file != null && file.exists()) {
+                    file.delete();
+                }
+            }
+        }
+    }
+    
+    /**
      * 创建文件
      *
      * @param path 文件名 以“/”开头表示绝对路径

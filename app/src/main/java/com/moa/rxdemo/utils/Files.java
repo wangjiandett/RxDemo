@@ -16,19 +16,19 @@ public class Files {
     
     public static final String APP_NAME = MyApplication.getInstance().getString(R.string.app_name);
     
+    //crash日志保存的根目录
     public static final String DIR_CRASH = "crash";
     
     //------------------外部存储--------------------
     
     /**
-     * 获得crash目录
+     * 获得crash日志保存的根目录
      *
      * @return
      */
     public static String getCrashDir(){
-        return getExternalStorageChildDir(DIR_CRASH);
+        return getExternalFileChildDir(DIR_CRASH);
     }
-    
     
     /**
      * 获取sdcard项目文件夹根目录
@@ -81,6 +81,4 @@ public class Files {
         }
         return file.getAbsolutePath();
     }
-    
-   
 }

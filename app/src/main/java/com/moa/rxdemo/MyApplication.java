@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.moa.rxdemo.base.ExceptionHandler;
+import com.moa.rxdemo.base.db.AppDatabase;
+import com.moa.rxdemo.base.db.DataRepository;
 
 import java.util.ArrayList;
 
@@ -51,5 +53,13 @@ public class MyApplication extends Application {
                 activity.finish();
             }
         }
+    }
+    
+    public static DataRepository getDataRepository() {
+        return DataRepository.getInstance(getAppDatabase());
+    }
+    
+    public static AppDatabase getAppDatabase() {
+        return AppDatabase.getInstance(getContext());
     }
 }
