@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_sync_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handler异步执行"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_sync_delay_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="handler异步延迟执行"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_pool_sync_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="executor异步延迟执行"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_main_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="主线程执行"
+        android:textAllCaps="false"
+        />
+
+</LinearLayout>

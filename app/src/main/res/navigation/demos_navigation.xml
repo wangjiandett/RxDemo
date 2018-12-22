@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    android:id="@+id/demos_navigation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/samples_framgnet">
+
+    <fragment
+        android:id="@+id/samples_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.SamplesFragment"
+        tools:layout="@layout/tt_fragment_samples">
+
+        <action
+            android:id="@+id/action_2_room"
+            app:destination="@+id/room_framgnet"
+            />
+
+        <action
+            android:id="@+id/action_2_dispathcer"
+            app:destination="@+id/dispathcer_framgnet"
+            />
+
+        <action
+            android:id="@+id/action_2_badgeview"
+            app:destination="@+id/badgeview_framgnet"
+            />
+
+        <action
+            android:id="@+id/action_2_swipe"
+            app:destination="@+id/swipe_framgnet"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/room_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.RoomFragment"
+        tools:layout="@layout/tt_fragment_room"/>
+
+    <fragment
+        android:id="@+id/dispathcer_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.DispatcherFragment"
+        tools:layout="@layout/tt_fragment_dispatcher"/>
+
+    <fragment
+        android:id="@+id/badgeview_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.BadgeViewFragment"
+        tools:layout="@layout/tt_fragment_badgeview"/>
+
+    <fragment
+        android:id="@+id/swipe_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.SwipeRefreshFragment"
+        tools:layout="@layout/tt_fragment_swipe_refresh"/>
+
+
+</navigation>

@@ -27,7 +27,7 @@ public abstract class BaseModel<T> {
     /**
      * the success code, need diy
      */
-    private static final int SUCCESS_CODE = 1000;
+    private static final int SUCCESS_CODE = 200;
     
     protected Apis apis;
     protected ValueCallback<T> mCallback;
@@ -80,11 +80,11 @@ public abstract class BaseModel<T> {
         @Override
         public T apply(BaseResponse<T> baseResponse) throws Exception {
             // when status equals success code
-            if (baseResponse.status == SUCCESS_CODE) {
+            if (baseResponse.code == SUCCESS_CODE) {
                 return baseResponse.data;
             }
             // throw data error exception
-            throw new ServerException(baseResponse.status, baseResponse.desc);
+            throw new ServerException(baseResponse.code, baseResponse.msg);
         }
     }
     

@@ -3,22 +3,23 @@ package com.moa.rxdemo.mvp.model;
 
 import com.moa.rxdemo.base.net.BaseModel;
 import com.moa.rxdemo.base.net.ValueCallback;
-import com.moa.rxdemo.mvp.bean.Weather;
+import com.moa.rxdemo.mvp.bean.SwipeItem;
+
+import java.util.List;
 
 /**
- * load weather
+ * load swipe list
  * <p>
  * <p>
  * Created by：wangjian on 2017/12/21 11:00
  */
-public class WeatherModelImpl extends BaseModel<Weather> implements IWeatherModel {
+public class SwipeModelImpl extends BaseModel<List<SwipeItem>> implements ISwipeModel {
     
     @Override
-    public void loadWeatherList(String city, ValueCallback<Weather> callback) {
+    public void loadSwipeList(int page, ValueCallback<List<SwipeItem>> callback) {
         this.mCallback = callback;
-        request(apis.getWeatherInfo(city));
+        request(apis.getSwipeList(page));
     }
-    
     @Override
     protected void onShowProgress() {// optional
         mCallback.onShowProgress();
@@ -30,7 +31,7 @@ public class WeatherModelImpl extends BaseModel<Weather> implements IWeatherMode
     }
     
     @Override
-    protected void onSuccess(Weather value) {
+    protected void onSuccess(List<SwipeItem> value) {
         mCallback.onSuccess(value);
     }
     
@@ -38,4 +39,6 @@ public class WeatherModelImpl extends BaseModel<Weather> implements IWeatherMode
     protected void onFail(String msg) {
         mCallback.onFail(msg);
     }
+    
+    
 }

@@ -8,7 +8,7 @@ package com.moa.rxdemo.base.net;
 public class BaseResponse<T> {
     
     public T data;
-    public int status;
-    public String desc;
+    public int code;
+    public String msg;
     
 }

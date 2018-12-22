@@ -9,6 +9,7 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.moa.rxdemo.base.db.entity.Book;
+import com.moa.rxdemo.base.db.entity.Student;
 import com.moa.rxdemo.base.db.entity.User;
 import com.moa.rxdemo.base.db.entity.UserAndBook;
 
@@ -21,7 +22,16 @@ import java.util.List;
  */
 @Dao
 public interface UserAndBookDao {
-
+    
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertStudent(Student user);
+    
+    @Delete
+    void deleteStudent(Student user);
+    
+    @Query("SELECT * FROM student")
+    LiveData<List<Student>> loadStudents();
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insetUser(User user);
     

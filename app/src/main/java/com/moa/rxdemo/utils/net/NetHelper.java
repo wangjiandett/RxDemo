@@ -11,7 +11,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import com.moa.rxdemo.MyApplication;
-import com.moa.rxdemo.base.dispatcher.TRuntime;
+import com.moa.rxdemo.base.dispatcher.Runtimes;
 import com.moa.rxdemo.utils.LogUtils;
 
 /**
@@ -53,7 +53,7 @@ public class NetHelper {
                     super.onAvailable(network);
                     LogUtils.d("network onAvailable");
                     if (netCallback != null) {
-                        TRuntime.postToMainThread(new Runnable() {
+                        Runtimes.postToMainThread(new Runnable() {
                             @Override
                             public void run() {
                                 netCallback.isNetAvaliable(true);
@@ -67,7 +67,7 @@ public class NetHelper {
                     super.onLost(network);
                     LogUtils.d("network onLost");
                     if (netCallback != null) {
-                        TRuntime.postToMainThread(new Runnable() {
+                        Runtimes.postToMainThread(new Runnable() {
                             @Override
                             public void run() {
                                 netCallback.isNetAvaliable(false);

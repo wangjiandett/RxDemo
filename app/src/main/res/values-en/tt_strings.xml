@@ -3,7 +3,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_demos">Demos</string>
 
     <string name="back">Back</string>
 

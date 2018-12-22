@@ -29,10 +29,11 @@ import android.support.annotation.VisibleForTesting;
 
 import com.moa.rxdemo.base.db.dao.UserAndBookDao;
 import com.moa.rxdemo.base.db.entity.Book;
+import com.moa.rxdemo.base.db.entity.Student;
 import com.moa.rxdemo.base.db.entity.User;
 
 
-@Database(entities = {User.class, Book.class}, version = 2)
+@Database(entities = {User.class, Book.class, Student.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
     
     private static AppDatabase sInstance;
@@ -68,7 +69,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 super.onCreate(db);
                 AppDatabase.getInstance(appContext).setDatabaseCreated();
             }
-        }).addMigrations(MIGRATION_1_2).build();
+        }).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build();
     }
     
     /**
@@ -96,6 +97,20 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
         
+        }
+    };
+    
+    /**
+     * 2-3的时候添加了一张新表student数据库升级使用
+     * 在gradle配置导出schema后，编译后会自动乘车shenma对应的版本，之后可以copy schema中的创建语句
+     */
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE IF NOT EXISTS student "
+                + "(`bookid` TEXT NOT NULL, `uid` TEXT, `bookname` TEXT, "
+                + "`date` TEXT, `author` TEXT, `desc` TEXT, PRIMARY KEY(`bookid`))");
         }
     };
 }

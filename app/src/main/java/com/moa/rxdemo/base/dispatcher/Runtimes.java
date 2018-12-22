@@ -10,7 +10,7 @@ import com.moa.rxdemo.base.dispatcher.thread.pool.ThreadPriority;
  * <p>
  * Created by：wangjian on 2018/1/12 16:25
  */
-public class TRuntime {
+public class Runtimes {
     private static final String DISPATCHER_NAME = "android_dispatcher";
     
     private static final AndroidDispatcher ANDROID_DISPATCHER = new AndroidDispatcher(DISPATCHER_NAME,

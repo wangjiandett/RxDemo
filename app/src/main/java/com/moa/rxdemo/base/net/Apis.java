@@ -1,7 +1,9 @@
 package com.moa.rxdemo.base.net;
 
 
-import com.moa.rxdemo.mvp.bean.Weather;
+import com.moa.rxdemo.mvp.bean.SwipeItem;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -14,17 +16,16 @@ import retrofit2.http.Query;
  */
 public interface Apis {
     
-    String API_SERVER_URL = "http://wthrcdn.etouch.cn/";
+    // 博客地址很多接口
+    // https://www.jianshu.com/p/e6f072839282
     
-    
-    // 接口列表
-    String api = "https://www.bejson.com/knownjson/webInterface/";
+    String API_SERVER_URL = "https://www.apiopen.top/";//"http://wthrcdn.etouch.cn/";
     
     //String API_SERVER_URL = "http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=jsonp9";
     
     
-    @GET("weather_mini")
-    Observable<BaseResponse<Weather>> getWeatherInfo(@Query("citykey") String citykey);
+    @GET("meituApi")
+    Observable<BaseResponse<List<SwipeItem>>> getSwipeList(@Query("page") int page);
     
     
 }

@@ -28,7 +28,8 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}"/>
 
-        <activity android:name=".mvp.view.SplashActivity">
+        <activity android:name=".mvp.view.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

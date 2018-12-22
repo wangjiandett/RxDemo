@@ -1,7 +1,6 @@
 package com.moa.rxdemo.base.db.entity;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,12 +9,8 @@ import android.support.annotation.NonNull;
  * <p>
  * Created by：wangjian on 2018/12/19 14:05
  */
-@Entity(tableName = "books", foreignKeys = {
-    @ForeignKey(entity = User.class,
-        parentColumns = "id",
-        childColumns ="uid",
-        onDelete = ForeignKey.CASCADE)})
-public class Book {
+@Entity(tableName = "student")
+public class Student {
     @PrimaryKey
     @NonNull
     public String bookid;
@@ -27,11 +22,11 @@ public class Book {
     
     @Override
     public String toString() {
-        return "bookid:"+bookid+
-            "uid:"+uid+
-            "bookname:"+bookname+
-            "date:"+date+
-            "author:"+author+
-            "desc:"+desc;
+        return "bookid: "+bookid+
+            "\nuid: "+uid+
+            "\nbookname: "+bookname+
+            "\ndate: "+date+
+            "\nauthor: "+author+
+            "\ndesc: "+desc;
     }
 }

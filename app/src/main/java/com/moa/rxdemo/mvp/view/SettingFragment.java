@@ -9,7 +9,7 @@ import com.moa.rxdemo.MyApplication;
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.Config;
 import com.moa.rxdemo.base.Constants;
-import com.moa.rxdemo.base.dispatcher.TRuntime;
+import com.moa.rxdemo.base.dispatcher.Runtimes;
 import com.moa.rxdemo.utils.LogUtils;
 
 /**
@@ -60,11 +60,11 @@ public class SettingFragment extends PreferenceFragmentCompat {
         Config.getDefault().setCurrentLocale(getContext(), tag);
         // 此处由于使用Preference，需要等待下面的return true执行完
         // 才能执行杀掉进程，否则Preference状态无法保存完成
-        TRuntime.dispatchDelay(new Runnable() {
+        Runtimes.dispatchDelay(new Runnable() {
             @Override
             public void run() {
                 // 杀掉进程
-                startActivity(SplashActivity.Companion.getIntent(getActivity()));
+                startActivity(SplashActivity.getIntent(getActivity()));
                 MyApplication.finishAllActivity();
             }
         }, 50);

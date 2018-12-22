@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">RxDemo</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">主页</string>
+    <string name="title_dashboard">空白</string>
+    <string name="title_setting">设置</string>
+    <string name="title_demos">栗子</string>
 
     <string name="back">返回</string>
 

@@ -21,7 +21,14 @@
     <!--toobar样式-->
     <style name="AppTheme.AppBar" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textSize">@dimen/title_bar_size</item>
+    </style>
 
+    <!--欢迎页面样式，防止图片拉伸-->
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/tt_splash</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
     <!--toobar 弹出框样式-->
@@ -47,6 +54,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <!--dialog样式-->
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -55,7 +63,7 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
-
+    <!--底部显示隐藏动画-->
     <style name="AnimBottom" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/tt_action_push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/tt_action_push_bottom_out</item>
@@ -66,5 +74,16 @@
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
+
+    <style name="bottom_normal_text">
+        <item name="android:textColor">@color/font_hint</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="bottom_selected_text">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 
 </resources>

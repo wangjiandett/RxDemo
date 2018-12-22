@@ -5,25 +5,27 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/tt_ic_home_black_24dp"
-        app:showAsAction="always"
-        android:title="@string/title_home"/>
+        android:title="@string/title_home"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/tt_ic_dashboard_black_24dp"
-        app:showAsAction="always"
-        android:title="@string/title_dashboard"/>
+        android:title="@string/title_dashboard"
+        app:showAsAction="always"/>
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/tt_ic_notifications_black_24dp"
-        app:showAsAction="always"
-        android:title="@string/title_notifications"/>
+        android:id="@+id/navigation_demos"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:icon="@drawable/tt_ic_demo_black_24dp"
+        android:title="@string/title_demos"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/tt_ic_setting_24dp"
-        app:showAsAction="always"
-        android:title="@string/title_notifications"/>
+        android:title="@string/title_setting"
+        app:showAsAction="always"/>
 
 </menu>

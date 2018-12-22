@@ -75,6 +75,11 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
             holder.unbind(true);
         }
     }
+    
+    public void setListAndNotify(List<V> list){
+        setList(list);
+        notifyDataSetChanged();
+    }
 
     protected void onBindViewHolder(ViewHolder<V> holder, V obj, int position, Context context) {
         holder.bind(obj, position, context);

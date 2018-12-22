@@ -3,8 +3,10 @@ package com.moa.rxdemo.base.db;
 import android.arch.lifecycle.LiveData;
 
 import com.moa.rxdemo.base.db.entity.Book;
+import com.moa.rxdemo.base.db.entity.Student;
 import com.moa.rxdemo.base.db.entity.User;
 import com.moa.rxdemo.base.db.entity.UserAndBook;
+import com.moa.rxdemo.base.dispatcher.Runtimes;
 
 import java.util.List;
 
@@ -32,37 +34,84 @@ public class DataRepository {
         }
         return sInstance;
     }
-
-    LiveData<List<UserAndBook>> loadUsers() {
+    
+    public LiveData<List<UserAndBook>> loadUsers() {
         return mDatabase.userAndBookDao().loadUsers();
     }
-
-    LiveData<List<Book>> loadBooks() {
+    
+    public LiveData<List<Book>> loadBooks() {
         return mDatabase.userAndBookDao().loadBooks();
     }
     
-    void insertUser(User user){
-        mDatabase.userAndBookDao().insetUser(user);
+    public void insertUser(final User user){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().insetUser(user);
+            }
+        });
     }
     
-    void insertBooks(List<Book> books){
-        mDatabase.userAndBookDao().insetBooks(books);
+    public void insertBooks(final List<Book> books){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().insetBooks(books);
+            }
+        });
     }
     
-    void deleteUser(User user){
-        mDatabase.userAndBookDao().deleteUser(user);
+    public void deleteUser(final User user){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().deleteUser(user);
+            }
+        });
     }
     
-    void deleteBook(Book book){
-        mDatabase.userAndBookDao().deleteBook(book);
+    public void deleteBook(final Book book){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().deleteBook(book);
+            }
+        });
     }
     
-    int updateUser(User user){
+    public int updateUser(User user){
        return mDatabase.userAndBookDao().updateUser(user);
     }
     
-    void updateBook(Book book){
-        mDatabase.userAndBookDao().updateBook(book);
+    public void updateBook(final Book book){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().updateBook(book);
+            }
+        });
     }
     
+    
+    public LiveData<List<Student>> loadStudents() {
+        return mDatabase.userAndBookDao().loadStudents();
+    }
+    
+    public void insertStudent(final Student user){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().insertStudent(user);
+            }
+        });
+    }
+    
+    public void deleteStudent(final Student book){
+        Runtimes.execute(new Runnable() {
+            @Override
+            public void run() {
+                mDatabase.userAndBookDao().deleteStudent(book);
+            }
+        });
+    }
 }
