@@ -1,6 +1,7 @@
 package com.moa.rxdemo.utils;
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 
 public class ColorUtils {
     private static final int ENABLE_ATTR = android.R.attr.state_enabled;
@@ -47,5 +48,32 @@ public class ColorUtils {
                 0x20000000
         };
         return new ColorStateList(states, colors);
+    }
+    
+    /**
+     * 获取当前颜色的较暗值
+     * <a href="http://www.cnblogs.com/klitech/p/5953059.html">HSV参看
+     *
+     * @param color
+     * @return
+     */
+    public static int getDarkerColor(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv); // convert to hsv
+        // make darker
+        // hsv[1] = hsv[1] + 0.03f; // more saturation
+        hsv[2] = hsv[2] - 0.1f; // less brightness
+        int darkerColor = Color.HSVToColor(hsv);
+        return darkerColor;
+    }
+    
+    public static int getBrighterColor(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv); // convert to hsv
+        
+        // hsv[1] = hsv[1] - 0.1f; // less saturation
+        hsv[2] = hsv[2] + 0.1f; // more brightness
+        int darkerColor = Color.HSVToColor(hsv);
+        return darkerColor;
     }
 }

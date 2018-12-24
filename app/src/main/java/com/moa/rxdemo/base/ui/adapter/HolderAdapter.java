@@ -4,11 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * HodlderAdapter 实现ViewHolder复用
+ *
+ * @param <V>
+ */
 public abstract class HolderAdapter<V> extends BaseAdapter {
     private HashSet<ViewHolder<V>> holders = new HashSet<ViewHolder<V>>();
 
@@ -21,6 +27,11 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
     
     public void setList(List<V> list) {
         this.mList = list;
+    }
+    
+    public void setListAndNotify(List<V> list){
+        setList(list);
+        notifyDataSetChanged();
     }
     
     public List<V> getList() {
@@ -40,6 +51,19 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+    
+    /**
+     * ListView 或 GridView 调用<br/>
+     * setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE)<br/>
+     * setChoiceMode(AbsListView.CHOICE_MODE_SINGLE)<br/>
+     * 时使用,({@link ListAdapter#hasStableIds()} == {@code true})<br/>
+     * 重写此方法使getCheckedItemIds()有效
+     * @return
+     */
+    @Override
+    public boolean hasStableIds() {
+        return true;
     }
     
     @Override
@@ -76,11 +100,6 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
         }
     }
     
-    public void setListAndNotify(List<V> list){
-        setList(list);
-        notifyDataSetChanged();
-    }
-
     protected void onBindViewHolder(ViewHolder<V> holder, V obj, int position, Context context) {
         holder.bind(obj, position, context);
     }

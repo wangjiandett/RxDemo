@@ -4,8 +4,8 @@ import android.view.View;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseFragment;
-
-import androidx.navigation.Navigation;
+import com.moa.rxdemo.base.ui.H5Activity;
+import com.moa.rxdemo.mvp.view.demons.SampleActivity;
 
 /**
  * 类或文件描述
@@ -23,15 +23,18 @@ public class DemosFragment extends BaseFragment{
     protected void initView(View view) {
         super.initView(view);
         
-//        findViewById(R.id.notice).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                H5Activity.go(getActivity(), new H5Activity.H5Request("快递查询","https://m.kuaidi100.com/index_all.html"));
-//            }
-//        });
-    }
+        findViewById(R.id.btn_demos).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(SampleActivity.Companion.getIntent(getActivity()));
+            }
+        });
     
-    public boolean backUp(){
-        return Navigation.findNavController(getActivity(), R.id.demos_navigation).navigateUp();
+        findViewById(R.id.btn_h5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                H5Activity.go(getActivity(), new H5Activity.H5Request("快递查询","https://m.kuaidi100.com/index_all.html"));
+            }
+        });
     }
 }

@@ -7,8 +7,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.base.ui.adapter.HolderAdapter
+import com.moa.rxdemo.base.ui.BaseListFragment
 import com.moa.rxdemo.base.ui.adapter.ViewHolder
 
 /**
@@ -16,9 +15,8 @@ import com.moa.rxdemo.base.ui.adapter.ViewHolder
  *
  * Created by：wangjian on 2018/12/20 14:42
  */
-class SamplesFragment : BaseFragment() {
+class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
 
-    private lateinit var samplesAdapter: SamplesAdapter;
     private lateinit var listView: ListView;
 
 
@@ -29,8 +27,7 @@ class SamplesFragment : BaseFragment() {
     override fun initView(view: View?) {
         super.initView(view)
         listView = view?.findViewById(R.id.lv_list)!!;
-        samplesAdapter = SamplesAdapter(activity);
-        listView.adapter = samplesAdapter;
+        bindAdapter(listView)
 
         listView.setOnItemClickListener({ parent, view, position, id ->
             val item = parent.adapter.getItem(position) as SampleItem;
@@ -45,18 +42,16 @@ class SamplesFragment : BaseFragment() {
                 SampleItem(RoomFragment::class.java.simpleName, R.id.action_2_room),
                 SampleItem(DispatcherFragment::class.java.simpleName, R.id.action_2_dispathcer),
                 SampleItem(BadgeViewFragment::class.java.simpleName, R.id.action_2_badgeview),
-                SampleItem(SwipeRefreshFragment::class.java.simpleName, R.id.action_2_swipe)
+                SampleItem(SwipeRefreshFragment::class.java.simpleName, R.id.action_2_swipe),
+                SampleItem(CheckAbleFragment::class.java.simpleName, R.id.action_2_checkable)
+
         )
 
-        samplesAdapter.list = list;
-        samplesAdapter.notifyDataSetChanged();
+        mHolderAdapter.setListAndNotify(list)
     }
 
-    class SamplesAdapter(context: Context?) : HolderAdapter<SampleItem>(context) {
-
-        override fun createHolder(position: Int, obj: SampleItem?): ViewHolder<SampleItem> {
-            return SamplesHolder();
-        }
+    override fun getViewHolder(): ViewHolder<SampleItem> {
+        return SamplesHolder();
     }
 
     class SamplesHolder : ViewHolder<SampleItem>() {

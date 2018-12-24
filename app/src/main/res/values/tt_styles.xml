@@ -85,5 +85,14 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <!-- 自定义圆角button -->
+    <declare-styleable name="RoundButton">
+        <attr name="android:radius"/>
+        <attr name="bordersWidth" format="reference|dimension"/>
+        <attr name="bordersColor" format="reference|color"/>
+        <!--<attr name="pressedBgColor" format="reference|color"/>-->
+        <!--<attr name="checkedBgColor" format="reference|color"/>-->
+        <!--<attr name="selectedBgColor" format="reference|color"/>-->
+    </declare-styleable>
 
 </resources>

@@ -128,16 +128,22 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         }
     }
     
-    public void setCustomTitle(String title) {
+    public void setCustomTitle(CharSequence title) {
         if (tvTitle != null) {
             tvTitle.setText(title);
         }
     }
     
     @Override
+    protected void onTitleChanged(CharSequence title, int color) {
+        super.onTitleChanged(title, color);
+        this.setCustomTitle(title);
+    }
+    
+    @Override
     public void onClick(View view) {
         if(ivBack != null && view == ivBack){
-            finish();
+            onBackPressed();
         }
     }
     

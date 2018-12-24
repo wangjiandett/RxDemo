@@ -7,16 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_demos"
+    <ListView
+        android:id="@+id/lv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_demos"/>
-
-    <Button
-        android:id="@+id/btn_h5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="h5"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

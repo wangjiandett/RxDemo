@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation
-    android:id="@+id/demos_navigation"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,6 +29,11 @@
             android:id="@+id/action_2_swipe"
             app:destination="@+id/swipe_framgnet"
             />
+
+        <action
+            android:id="@+id/action_2_checkable"
+            app:destination="@+id/checkable_framgnet"
+            />
     </fragment>
 
     <fragment
@@ -51,6 +55,11 @@
         android:id="@+id/swipe_framgnet"
         android:name="com.moa.rxdemo.mvp.view.demons.SwipeRefreshFragment"
         tools:layout="@layout/tt_fragment_swipe_refresh"/>
+
+    <fragment
+        android:id="@+id/checkable_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.CheckAbleFragment"
+        tools:layout="@layout/tt_fragment_checkable"/>
 
 
 </navigation>

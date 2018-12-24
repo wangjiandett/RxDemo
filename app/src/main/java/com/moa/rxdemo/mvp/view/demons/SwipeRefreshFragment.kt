@@ -85,10 +85,10 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         itemList?.let {
             if (currentPage == 1) {
                 swipeLoadLayout.isRefreshing = false;
-                mDataListAdapter.list = itemList;
+                mHolderAdapter.list = itemList;
             } else {
                 swipeLoadLayout.isLoadingMore = false;
-                mDataListAdapter.list.addAll(itemList);
+                mHolderAdapter.list.addAll(itemList);
             }
 
             // 加载条数等于pageSize时，说明还有数据
@@ -102,7 +102,7 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
                 isDataLoadFinish = true;
             }
 
-            mDataListAdapter.notifyDataSetChanged()
+            mHolderAdapter.notifyDataSetChanged()
         }
 
         finishRefresh();
@@ -126,7 +126,7 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         finishRefresh();
     }
 
-    override fun getItemHolder(): ViewHolder<SwipeItem> {
+    override fun getViewHolder(): ViewHolder<SwipeItem> {
         return SamplesHolder();
     }
 

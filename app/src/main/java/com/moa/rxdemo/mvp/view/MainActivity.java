@@ -8,13 +8,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseActiivty;
-import com.moa.rxdemo.utils.ToastUtils;
 
 import java.util.HashMap;
 
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActiivty {
     
     @Override
     protected void initView() {
-        
+        int g = Gravity.TOP | Gravity.START;
         mCurrentFragment = new HomeFragment();
         replaceFragment(mCurrentFragment, R.id.fragment_container, FRAG_TAG_HOME, false);
         
@@ -61,7 +61,6 @@ public class MainActivity extends BaseActiivty {
         // 这是相同的字体大小可清除缩放动画
         bottomNavigationView.setItemTextAppearanceActive(R.style.bottom_selected_text);
         bottomNavigationView.setItemTextAppearanceInactive(R.style.bottom_normal_text);
-        
         // 控制当tab大于3个时不完全显示lable
         // 早期版本需要自行设置参考https://blog.csdn.net/qq_19973845/article/details/82151204
         // app:labelVisibilityMode="labeled"
@@ -100,26 +99,16 @@ public class MainActivity extends BaseActiivty {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.navigation_home) {
-            ToastUtils.showToast(this, "click menu");
+            showBadge = !showBadge;
+            showBadgeView(0, showBadge ? 22:0);
             return true;
         }
         
         return super.onOptionsItemSelected(item);
     }
     
-    @Override
-    public void onBackPressed() {
-        // 此处由于DemosFragment中使用了navigation
-        // 特殊处理了DemosFragment中的返回键
-        if (mCurrentFragment instanceof DemosFragment) {
-            boolean back = ((DemosFragment) mCurrentFragment).backUp();
-            if (back) {
-                return;
-            }
-        }
-        super.onBackPressed();
-    }
     
+    boolean showBadge;
     
     /**
      * 用作缓存每一个tab上的badge方式重复创建，导致重复添加

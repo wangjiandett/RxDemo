@@ -53,7 +53,7 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
             @Override
             public void onChanged(@Nullable List<SwipeItem> swipeItems) {
                 // load success
-                mDataListAdapter.setListAndNotify(swipeItems);
+                mHolderAdapter.setListAndNotify(swipeItems);
             }
         });
     
@@ -91,7 +91,7 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
     
     @Override
     public void onSuccess(List<SwipeItem> itemList) {
-        mDataListAdapter.setListAndNotify(itemList);
+        mHolderAdapter.setListAndNotify(itemList);
     }
     
     @Override
@@ -101,7 +101,7 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
     }
     
     @Override
-    protected ViewHolder<SwipeItem> getItemHolder() {
+    protected ViewHolder<SwipeItem> getViewHolder() {
         return new MyHolder();
     }
     

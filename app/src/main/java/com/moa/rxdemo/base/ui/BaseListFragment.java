@@ -15,30 +15,36 @@ import com.moa.rxdemo.base.ui.adapter.ViewHolder;
  */
 public abstract class BaseListFragment<T> extends BaseFragment {
     
-    protected DataListAdapter mDataListAdapter;
+    protected HolderAdapter<T> mHolderAdapter;
     
     @Override
     protected void initView(View view) {
         super.initView(view);
-        mDataListAdapter = new DataListAdapter(getActivity());
     }
     
     protected void bindAdapter(AbsListView listView) {
-        listView.setAdapter(mDataListAdapter);
+        mHolderAdapter = getAdapter();
+        listView.setAdapter(mHolderAdapter);
     }
     
-    protected class DataListAdapter extends HolderAdapter<T> {
-        
-        DataListAdapter(Context context) {
+    private final class DataListAdapter extends HolderAdapter<T> {
+    
+        private DataListAdapter(Context context) {
             super(context);
         }
         
         @Override
         protected ViewHolder<T> createHolder(int position, T obj) {
-            return getItemHolder();
+            return getViewHolder();
         }
     }
     
-    protected abstract ViewHolder<T> getItemHolder();
+    protected HolderAdapter getAdapter(){
+        return new DataListAdapter(getActivity());
+    }
+    
+    protected ViewHolder<T> getViewHolder(){
+        return null;
+    }
     
 }
