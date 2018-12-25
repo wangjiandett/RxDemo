@@ -70,7 +70,7 @@ public abstract class BaseModel<T> {
                 @Override
                 public void onComplete() {
                     LogUtils.d("onComplete");
-                    onHideProgress();
+                    // onHideProgress();
                 }
             });
     }

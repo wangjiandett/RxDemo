@@ -66,7 +66,7 @@ public class SharePreUtils {
     /**
      * 针对复杂类型存储<对象>
      */
-    public static void setObject(Context context, String key, Object object) {
+    public static void saveObject(Context context, String key, Object object) {
         getSharedPreferences(context);
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

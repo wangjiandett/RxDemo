@@ -36,48 +36,15 @@ import javax.crypto.spec.SecretKeySpec;
  * @author wangjian
  */
 public class AESHelper {
-    public static final String ENDECRYPT_KEY = "ACTOR_FILES_KEYS";
     public static final String VIPARA = "0102030405060708";
-    private static final String TAG = AESHelper.class.getSimpleName();
-    
-    /**
-     * 初始化 AES Cipher
-     *
-     * @param sKey
-     * @param cipherMode
-     * @return
-     */
-    private static Cipher initAESCipher(String sKey, int cipherMode) {
-        //创建Key gen
-        KeyGenerator keyGenerator = null;
-        Cipher cipher = null;
-        try {
-            IvParameterSpec zeroIv = new IvParameterSpec(VIPARA.getBytes());
-            SecretKeySpec key = new SecretKeySpec(sKey.getBytes(), "AES");
-            // 算法/工作模式/填充模式
-            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(cipherMode, key, zeroIv);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InvalidAlgorithmParameterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return cipher;
-    }
-    
     
     /**
      * 对文件进行AES加密
      *
-     * @param key
-     * @param sourceFilePath
-     * @param destFilePath
-     * @return
+     * @param key 秘钥
+     * @param sourceFilePath 原文件
+     * @param destFilePath 加密后文件
+     * @return 加密后文件
      */
     public static File encryptFile(String key, String sourceFilePath, String destFilePath) {
         System.out.printf(sourceFilePath);
@@ -131,9 +98,9 @@ public class AESHelper {
     /**
      * AES方式解密文件
      *
-     * @param key
-     * @param sourceFilePath
-     * @param destFilePath
+     * @param key 秘钥
+     * @param sourceFilePath 需要解密的文件
+     * @param destFilePath 解密后的文件
      * @return
      */
     public static File decryptFile(String key, String sourceFilePath, String destFilePath) {
@@ -176,4 +143,35 @@ public class AESHelper {
         }
         return destFile;
     }
+    
+    /**
+     * 初始化 AES Cipher
+     *
+     * @param sKey
+     * @param cipherMode
+     * @return
+     */
+    private static Cipher initAESCipher(String sKey, int cipherMode) {
+        //创建Key gen
+        KeyGenerator keyGenerator = null;
+        Cipher cipher = null;
+        try {
+            IvParameterSpec zeroIv = new IvParameterSpec(VIPARA.getBytes());
+            SecretKeySpec key = new SecretKeySpec(sKey.getBytes(), "AES");
+            // 算法/工作模式/填充模式
+            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            cipher.init(cipherMode, key, zeroIv);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (InvalidAlgorithmParameterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return cipher;
+    }
+    
 }

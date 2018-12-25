@@ -20,19 +20,19 @@ public class LoadState {
         this.tipMsg = tipMsg;
     }
     
-    public static LoadState STATE_LOADED(){
+    static LoadState STATE_LOADED(){
         return new LoadState(LOADED, "");
     }
     
-    public static LoadState STATE_LOADING(){
+    static LoadState STATE_LOADING(){
         return new LoadState(LOADING, "");
     }
     
-    public static LoadState STATE_LOADING_SUCCESS(){
+    static LoadState STATE_SUCCESS(){
         return new LoadState(LOADING_SUCCESS, "");
     }
     
-    public static LoadState STATE_LOADING_FAIL(String tipMsg){
+    static LoadState STATE_FAIL(String tipMsg){
         return new LoadState(LOADING_FAIL, tipMsg);
     }
     

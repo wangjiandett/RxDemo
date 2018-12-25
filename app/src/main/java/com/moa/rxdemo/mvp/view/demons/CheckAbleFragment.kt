@@ -8,9 +8,11 @@ import android.widget.TextView
 import com.moa.rxdemo.R
 import com.moa.rxdemo.base.ui.BaseListFragment
 import com.moa.rxdemo.base.ui.adapter.ViewHolder
+import java.util.*
 
 /**
- * 类或文件描述
+ * CheckableLinearLayout 使用demo
+ * 其他CheckableLinearRelativeLayout,CheckableFrameLayout使用方法类似
  *
  * Created by：wangjian on 2018/12/20 14:42
  */
@@ -28,7 +30,8 @@ class CheckAbleFragment : BaseListFragment<String>() {
         listView = view?.findViewById(R.id.lv_list) as ListView;
         bindAdapter(listView)
 
-        listView.choiceMode = ListView.CHOICE_MODE_SINGLE
+        // ListView.CHOICE_MODE_SINGLE 此处使用多选或单选模式都可以
+        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
         listView.setOnItemClickListener({ parent, view, position, id ->
             getCheckItems();
@@ -49,9 +52,17 @@ class CheckAbleFragment : BaseListFragment<String>() {
         mHolderAdapter.setListAndNotify(list)
     }
 
-    fun getCheckItems(){
+    private fun getCheckItems(){
+        // 获取到选择的item position
         val checkIds = listView.checkedItemIds
-        showToast("选择position:${checkIds.get(0)}")
+
+        // 获取到选中的item
+//        for (postion in checkIds){
+//            val it = adapter.getItem(postion.toInt());
+//        }
+
+        val ids = Arrays.toString(checkIds)
+        showToast("选择position:${ids}")
     }
 
     override fun getViewHolder(): ViewHolder<String> {

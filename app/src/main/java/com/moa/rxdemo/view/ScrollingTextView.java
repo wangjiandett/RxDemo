@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 
 
 /**
- * 超过宽度自动滚动的textview，在xml布局文件中如下使用
+ * 超过宽度自动滚动的textview，在xml布局文件中如下使用，需要view获取焦点才可实现滚动
  *
  *      <com.moa.rxdemo.view.ScrollingTextView
  *         android:id="@+id/item_name"
@@ -16,6 +16,7 @@ import android.util.AttributeSet;
  *         android:layout_gravity="center_horizontal"
  *         android:singleLine="true"
  *         android:ellipsize="marquee"
+ *         android:focusable="true"
  *         android:marqueeRepeatLimit="marquee_forever"/>
  *
  * @author wangjian

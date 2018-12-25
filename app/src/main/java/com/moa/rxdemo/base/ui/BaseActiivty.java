@@ -115,19 +115,34 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         }
     }
     
-    public void showBack(boolean canback) {
+    /**
+     * 显示返回按钮
+     *
+     * @param canback
+     */
+    public void showBackButton(boolean canback) {
         if(ivBack != null){
             ivBack.setVisibility(canback ? View.VISIBLE : View.GONE);
             vDivider.setVisibility(canback ? View.VISIBLE : View.GONE);
         }
     }
     
+    /**
+     * 设置标题
+     *
+     * @param resId
+     */
     public void setCustomTitle(int resId) {
         if (tvTitle != null) {
             tvTitle.setText(resId);
         }
     }
     
+    /**
+     * 设置标题
+     *
+     * @param title
+     */
     public void setCustomTitle(CharSequence title) {
         if (tvTitle != null) {
             tvTitle.setText(title);

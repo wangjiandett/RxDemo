@@ -27,7 +27,7 @@
         android:id="@+id/btn_pool_sync_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="executor异步延迟执行"
+        android:text="executor异步执行"
         android:textAllCaps="false"
         />
 

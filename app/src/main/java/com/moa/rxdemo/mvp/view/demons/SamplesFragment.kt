@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.moa.rxdemo.R
 import com.moa.rxdemo.base.ui.BaseListFragment
 import com.moa.rxdemo.base.ui.adapter.ViewHolder
+import com.moa.rxdemo.mvvm.view.ViewModeFragment
 
 /**
  * 类或文件描述
@@ -41,9 +42,10 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
         val list = arrayListOf(
                 SampleItem(RoomFragment::class.java.simpleName, R.id.action_2_room),
                 SampleItem(DispatcherFragment::class.java.simpleName, R.id.action_2_dispathcer),
-                SampleItem(BadgeViewFragment::class.java.simpleName, R.id.action_2_badgeview),
+                SampleItem(ViewsFragment::class.java.simpleName, R.id.action_2_views),
                 SampleItem(SwipeRefreshFragment::class.java.simpleName, R.id.action_2_swipe),
-                SampleItem(CheckAbleFragment::class.java.simpleName, R.id.action_2_checkable)
+                SampleItem(CheckAbleFragment::class.java.simpleName, R.id.action_2_checkable),
+                SampleItem(ViewModeFragment::class.java.simpleName, R.id.action_2_view_model)
 
         )
 

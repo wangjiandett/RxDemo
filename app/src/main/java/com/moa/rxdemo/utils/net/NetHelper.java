@@ -56,7 +56,7 @@ public class NetHelper {
                         Runtimes.postToMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                netCallback.isNetAvaliable(true);
+                                netCallback.isNetAvailable(true);
                             }
                         });
                     }
@@ -70,7 +70,7 @@ public class NetHelper {
                         Runtimes.postToMainThread(new Runnable() {
                             @Override
                             public void run() {
-                                netCallback.isNetAvaliable(false);
+                                netCallback.isNetAvailable(false);
                             }
                         });
                     }
@@ -93,7 +93,7 @@ public class NetHelper {
                             boolean isConnected = isNetConnected();
                             LogUtils.d("Network isConnected:" + isConnected);
                             if (netCallback != null) {
-                                netCallback.isNetAvaliable(isConnected);
+                                netCallback.isNetAvailable(isConnected);
                             }
                         }
                     }
@@ -119,6 +119,6 @@ public class NetHelper {
     }
     
     public interface NetCallback {
-        void isNetAvaliable(boolean avaliable);
+        void isNetAvailable(boolean available);
     }
 }

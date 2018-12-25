@@ -13,7 +13,6 @@ import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseListFragment;
 import com.moa.rxdemo.base.ui.adapter.ViewHolder;
 import com.moa.rxdemo.mvp.bean.SwipeItem;
-import com.moa.rxdemo.mvp.contract.SwipeContract;
 import com.moa.rxdemo.mvvm.base.LoadState;
 import com.moa.rxdemo.mvvm.viewmodel.SwipeViewModel;
 import com.moa.rxdemo.utils.LogUtils;
@@ -22,17 +21,17 @@ import com.moa.rxdemo.utils.ToastUtils;
 import java.util.List;
 
 /**
- * mvvm方式调用接口
+ * mvvm方式调用接口,实现数据回调
  * <p>
  * Created by：wangjian on 2017/12/22 14:40
  */
-public class ViewModeFragment extends BaseListFragment<SwipeItem> implements SwipeContract.ISwipeView {
+public class ViewModeFragment extends BaseListFragment<SwipeItem> {
     
     private ListView listView;
     
     @Override
     protected int getLayoutId() {
-        return R.layout.tt_fragment_home;
+        return R.layout.tt_fragment_view_model;
     }
     
     @Override
@@ -44,12 +43,11 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
     
     @Override
     protected void initData() {
-       // mvp 加载方式
         // mvvm 加载方式
         SwipeViewModel swipeViewModel = ViewModelProviders.of(this).get(SwipeViewModel.class);
         
         // 1。监听数据变化
-        swipeViewModel.getMutableLiveData().observe(this, new Observer<List<SwipeItem>>() {
+        swipeViewModel.getLiveData().observe(this, new Observer<List<SwipeItem>>() {
             @Override
             public void onChanged(@Nullable List<SwipeItem> swipeItems) {
                 // load success
@@ -61,7 +59,8 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
         swipeViewModel.getLoadStatus().observe(this, new Observer<LoadState>() {
             @Override
             public void onChanged(@Nullable LoadState loadState) {
-                // show error tip
+                // 加载状态回调
+                // 可在此处控制加载框的显示隐藏
                 switch (loadState.status){
                     case LoadState.LOADED:
                         // 隐藏载框  加载完成
@@ -78,7 +77,6 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
                         break;
                     case LoadState.LOADING_SUCCESS:
                         // 加载成功
-                        // 默认不用处理
                         LogUtils.d("mvvm LOADING_SUCCESS:");
                         break;
                 }
@@ -87,17 +85,6 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> implements Swi
     
         // 3。加载数据
         swipeViewModel.loadData(1);
-    }
-    
-    @Override
-    public void onSuccess(List<SwipeItem> itemList) {
-        mHolderAdapter.setListAndNotify(itemList);
-    }
-    
-    @Override
-    public void onFail(String msg) {
-        ToastUtils.showToast(getActivity(), msg);
-        LogUtils.e(msg);
     }
     
     @Override

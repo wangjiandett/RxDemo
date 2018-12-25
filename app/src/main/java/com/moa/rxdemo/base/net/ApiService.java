@@ -74,7 +74,11 @@ public class ApiService {
     
     public static Apis getApis() {
         if (apiService == null) {
-            apiService = new ApiService();
+            synchronized (ApiService.class){
+                if (apiService == null) {
+                    apiService = new ApiService();
+                }
+            }
         }
         
         return apiService.apis;

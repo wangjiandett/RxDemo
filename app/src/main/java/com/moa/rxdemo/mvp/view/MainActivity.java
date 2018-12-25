@@ -8,7 +8,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,12 +44,11 @@ public class MainActivity extends BaseActiivty {
     protected void initHeader() {
         super.initHeader();
         
-        showBack(false);
+        showBackButton(false);
     }
     
     @Override
     protected void initView() {
-        int g = Gravity.TOP | Gravity.START;
         mCurrentFragment = new HomeFragment();
         replaceFragment(mCurrentFragment, R.id.fragment_container, FRAG_TAG_HOME, false);
         

@@ -1,7 +1,7 @@
 package com.moa.rxdemo.base.net;
 
 /**
- * simple value callback implemention
+ * simple value callback implementation
  *
  * <p>
  * Created by：wangjian on 2017/12/21 16:41

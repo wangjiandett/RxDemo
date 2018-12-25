@@ -21,8 +21,8 @@
             />
 
         <action
-            android:id="@+id/action_2_badgeview"
-            app:destination="@+id/badgeview_framgnet"
+            android:id="@+id/action_2_views"
+            app:destination="@+id/views_framgnet"
             />
 
         <action
@@ -33,6 +33,11 @@
         <action
             android:id="@+id/action_2_checkable"
             app:destination="@+id/checkable_framgnet"
+            />
+
+        <action
+            android:id="@+id/action_2_view_model"
+            app:destination="@+id/view_model_framgnet"
             />
     </fragment>
 
@@ -47,9 +52,9 @@
         tools:layout="@layout/tt_fragment_dispatcher"/>
 
     <fragment
-        android:id="@+id/badgeview_framgnet"
-        android:name="com.moa.rxdemo.mvp.view.demons.BadgeViewFragment"
-        tools:layout="@layout/tt_fragment_badgeview"/>
+        android:id="@+id/views_framgnet"
+        android:name="com.moa.rxdemo.mvp.view.demons.ViewsFragment"
+        tools:layout="@layout/tt_fragment_views"/>
 
     <fragment
         android:id="@+id/swipe_framgnet"
@@ -60,6 +65,12 @@
         android:id="@+id/checkable_framgnet"
         android:name="com.moa.rxdemo.mvp.view.demons.CheckAbleFragment"
         tools:layout="@layout/tt_fragment_checkable"/>
+
+    <!--此处测试mvvm中的加载方式-->
+    <fragment
+        android:id="@+id/view_model_framgnet"
+        android:name="com.moa.rxdemo.mvvm.view.ViewModeFragment"
+        tools:layout="@layout/tt_fragment_view_model"/>
 
 
 </navigation>

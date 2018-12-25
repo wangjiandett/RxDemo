@@ -12,6 +12,34 @@ import com.moa.rxdemo.base.net.ValueCallback;
  */
 public class BaseViewModel<T> extends ViewModel implements ValueCallback<T> {
     
+    protected MutableLiveData<LoadState> loadStatus;
+    protected MutableLiveData<T> mDataLiveData;
+    
+    public BaseViewModel() {
+        this.loadStatus = new MutableLiveData<>();
+        this.mDataLiveData = new MutableLiveData<>();
+    }
+    
+    /**
+     * 获得加载状态的live data
+     *
+     * @return
+     */
+    public MutableLiveData<LoadState> getLoadStatus() {
+        return loadStatus;
+    }
+    
+    /**
+     * 获取保存数据的live date
+     *
+     * @return
+     */
+    public MutableLiveData<T> getLiveData() {
+        return mDataLiveData;
+    }
+    
+    
+    
     @Override
     public void onShowProgress() {
         loadStatus.setValue(LoadState.STATE_LOADING());
@@ -24,25 +52,11 @@ public class BaseViewModel<T> extends ViewModel implements ValueCallback<T> {
     
     @Override
     public void onSuccess(T value) {
-        loadStatus.setValue(LoadState.STATE_LOADING_SUCCESS());
+        loadStatus.setValue(LoadState.STATE_SUCCESS());
     }
     
     @Override
     public void onFail(String msg) {
-        loadStatus.setValue(LoadState.STATE_LOADING_FAIL(msg));
-    }
-    
-    private MutableLiveData<LoadState> loadStatus;
-    
-    public BaseViewModel() {
-        this.loadStatus = getLiveData();
-    }
-    
-    public MutableLiveData<LoadState> getLoadStatus() {
-        return loadStatus;
-    }
-    
-    protected <D> MutableLiveData<D> getLiveData() {
-        return new MutableLiveData<D>();
+        loadStatus.setValue(LoadState.STATE_FAIL(msg));
     }
 }

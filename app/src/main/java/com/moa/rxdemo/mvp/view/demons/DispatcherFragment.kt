@@ -20,37 +20,37 @@ class DispatcherFragment : BaseFragment() {
         super.initView(view)
         view?.let {
             // handler异步执行
-            it.findViewById<View>(R.id.btn_sync_event).setOnClickListener({
-                Runtimes.dispatchNow({
+            it.findViewById<View>(R.id.btn_sync_event).setOnClickListener {
+                Runtimes.dispatchNow {
                     postToMain("dispatchNow event")
-                })
-            })
+                }
+            }
 
             // handler异步delay执行
-            it.findViewById<View>(R.id.btn_sync_delay_event).setOnClickListener({
+            it.findViewById<View>(R.id.btn_sync_delay_event).setOnClickListener {
                 Runtimes.dispatchDelay({
                     postToMain("dispatchDelay 500ms event")
                 },500)
-            })
+            }
 
             // 线程池执行
-            it.findViewById<View>(R.id.btn_pool_sync_event).setOnClickListener({
-                Runtimes.execute({
+            it.findViewById<View>(R.id.btn_pool_sync_event).setOnClickListener {
+                Runtimes.execute {
                     postToMain("execute event")
-                })
-            })
+                }
+            }
 
             // 主线程执行
-            it.findViewById<View>(R.id.btn_main_event).setOnClickListener({
+            it.findViewById<View>(R.id.btn_main_event).setOnClickListener {
                 postToMain("main event");
-            })
+            }
         }
     }
 
-    fun postToMain(text: String){
-        Runtimes.postToMainThread({
+    private fun postToMain(text: String){
+        Runtimes.postToMainThread {
             showToast(text)
-        })
+        }
     }
 
 }
