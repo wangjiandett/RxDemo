@@ -19,13 +19,16 @@ public interface Apis {
     // 博客地址很多接口
     // https://www.jianshu.com/p/e6f072839282
     
-    String API_SERVER_URL = "https://www.apiopen.top/";//"http://wthrcdn.etouch.cn/";
+    String API_SERVER_URL = "https://www.apiopen.top/";
     
     //String API_SERVER_URL = "http://cache.video.iqiyi.com/jp/avlist/202861101/1/?callback=jsonp9";
     
     
     @GET("meituApi")
     Observable<BaseResponse<List<SwipeItem>>> getSwipeList(@Query("page") int page);
+    
+    @GET("meituApi?page=1")
+    Observable<BaseResponse<List<SwipeItem>>> getMeituList();
     
     
 }

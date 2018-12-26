@@ -1,9 +1,7 @@
 package com.moa.rxdemo.mvvm.view;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -17,8 +15,6 @@ import com.moa.rxdemo.mvvm.base.LoadState;
 import com.moa.rxdemo.mvvm.viewmodel.SwipeViewModel;
 import com.moa.rxdemo.utils.LogUtils;
 import com.moa.rxdemo.utils.ToastUtils;
-
-import java.util.List;
 
 /**
  * mvvm方式调用接口,实现数据回调
@@ -39,6 +35,7 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
         super.initView(view);
         listView = findViewById(R.id.lv_list);
         bindAdapter(listView);
+        
     }
     
     @Override
@@ -47,21 +44,14 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
         SwipeViewModel swipeViewModel = ViewModelProviders.of(this).get(SwipeViewModel.class);
         
         // 1。监听数据变化
-        swipeViewModel.getLiveData().observe(this, new Observer<List<SwipeItem>>() {
-            @Override
-            public void onChanged(@Nullable List<SwipeItem> swipeItems) {
-                // load success
-                mHolderAdapter.setListAndNotify(swipeItems);
-            }
-        });
-    
-        // 2。监听加载状态变化
-        swipeViewModel.getLoadStatus().observe(this, new Observer<LoadState>() {
-            @Override
-            public void onChanged(@Nullable LoadState loadState) {
+        swipeViewModel.getResponse().observe(this, swipeItems -> {
+            
+            LogUtils.d("request:" + swipeItems.request);
+            
+            if (swipeItems != null) {
                 // 加载状态回调
                 // 可在此处控制加载框的显示隐藏
-                switch (loadState.status){
+                switch (swipeItems.loadStatus.status) {
                     case LoadState.LOADED:
                         // 隐藏载框  加载完成
                         LogUtils.d("mvvm LOADED:");
@@ -72,19 +62,24 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
                         break;
                     case LoadState.LOADING_FAIL:
                         // 加载失败
-                        ToastUtils.showToast(getActivity(), loadState.tipMsg);
+                        ToastUtils.showToast(getActivity(), swipeItems.loadStatus.tipMsg);
                         LogUtils.d("mvvm LOADING_FAIL:");
                         break;
                     case LoadState.LOADING_SUCCESS:
                         // 加载成功
                         LogUtils.d("mvvm LOADING_SUCCESS:");
+                        mHolderAdapter.setListAndNotify(swipeItems.response);
                         break;
                 }
             }
         });
-    
-        // 3。加载数据
-        swipeViewModel.loadData(1);
+        
+        // 2。加载数据
+        swipeViewModel.sendRequest(null);
+        
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            swipeViewModel.sendRequest(position + 1);
+        });
     }
     
     @Override

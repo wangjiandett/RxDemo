@@ -54,7 +54,7 @@ public class ExceptionHandle {
         else if (e instanceof ServerException) {
             ServerException resultException = (ServerException) e;
             ex = new ResponeException(resultException, resultException.code);
-            ex.message = resultException.message;
+            ex.message = resultException.getMessage();
             return ex;
         }
         else if (e instanceof JsonParseException || e instanceof JSONException || e instanceof ParseException) {
@@ -63,7 +63,7 @@ public class ExceptionHandle {
             return ex;
         }
         else if (e instanceof ConnectException || e instanceof SocketTimeoutException || e instanceof UnknownHostException) {
-            ex = new ResponeException(e, Error.NETWORD_ERROR);
+            ex = new ResponeException(e, Error.NETWORK_ERROR);
             ex.message = context.getString(R.string.error_connect);
             return ex;
         }
@@ -100,7 +100,7 @@ public class ExceptionHandle {
         /**
          * 网络错误
          */
-        public static final int NETWORD_ERROR = 1002;
+        public static final int NETWORK_ERROR = 1002;
         /**
          * 协议出错
          */

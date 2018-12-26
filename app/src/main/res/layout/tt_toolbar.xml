@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/title_bar_height"
     android:background="@color/toolbar_bg_normal"
-    app:popupTheme="@style/AppTheme.PopupOverlay"
-    app:theme="@style/AppTheme.AppBar">
+    android:theme="@style/AppTheme.AppBar"
+    app:popupTheme="@style/AppTheme.PopupOverlay">
 </android.support.v7.widget.Toolbar>

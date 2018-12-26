@@ -39,26 +39,26 @@ class RoomFragment: BaseFragment(){
 
         val etInfo = view.findViewById<TextView>(R.id.etInfo)
 
-        view.findViewById<View>(R.id.btnInsert).setOnClickListener({
+        view.findViewById<View>(R.id.btnInsert).setOnClickListener {
 
             etInfo.text?.toString()?.let {
                 val book = TestData.getStudent(it);
                 // 插入数据
                 MyApplication.getDataRepository().insertStudent(book);
-                etInfo.setText("")
+                etInfo.text = ""
             }
-        })
+        }
 
-        listView.setOnItemClickListener({ parent, view, position, id ->
+        listView.setOnItemClickListener { parent, view, position, id ->
             val item = parent.adapter.getItem(position) as Student;
             AlertDialog.Builder(activity)
                     .setMessage("是否删除item?")
-                    .setPositiveButton("确定",{dialog, which ->
+                    .setPositiveButton("确定") { dialog, which ->
                         // 删除数据
                         MyApplication.getDataRepository().deleteStudent(item)
-                    })
+                    }
                     .create().show()
-        })
+        }
     }
 
     override fun initData() {
@@ -89,7 +89,7 @@ class RoomFragment: BaseFragment(){
         }
 
         override fun bind(data: Student?, position: Int, context: Context?) {
-            tvText.setText(data!!.toString())
+            tvText.text = data!!.toString()
         }
     }
 }
