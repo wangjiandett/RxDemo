@@ -109,6 +109,27 @@ public class FileUtil {
     }
     
     /**
+     * 递归删除
+     */
+    public static void recursionDeleteFile(File file){
+        if(file.isFile()){
+            file.delete();
+            return;
+        }
+        if(file.isDirectory()){
+            File[] childFile = file.listFiles();
+            if(childFile == null || childFile.length == 0){
+                file.delete();
+                return;
+            }
+            for(File f : childFile){
+                recursionDeleteFile(f);
+            }
+            file.delete();
+        }
+    }
+    
+    /**
      * 创建文件
      *
      * @param path 文件名 以“/”开头表示绝对路径

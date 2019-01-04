@@ -19,7 +19,19 @@ public class Files {
     //crash日志保存的根目录
     public static final String DIR_CRASH = "crash";
     
-    //------------------外部存储--------------------
+    //crash日志保存的根目录
+    public static final String DIR_CROP = "crop";
+    
+    
+    /**
+     * 获取裁剪图片
+     *
+     * @param cropFileName 文件名称
+     * @return 图片文件
+     */
+    public static File getCropFile(String cropFileName){
+        return FileUtil.createFile(getExternalCacheDir(DIR_CROP), cropFileName);
+    }
     
     /**
      * 获得crash日志保存的根目录
@@ -30,6 +42,7 @@ public class Files {
         return getExternalFileChildDir(DIR_CRASH);
     }
     
+    //------------------外部存储--------------------
     /**
      * 获取sdcard项目文件夹根目录
      *
@@ -80,5 +93,24 @@ public class Files {
             file.mkdirs();
         }
         return file.getAbsolutePath();
+    }
+    
+    /**
+     * 获得程序内存中Cache目录或子目录
+     *
+     * @param dirname 为null时返回根目录，否则返回对应的子目录
+     * @return 目录路径
+     */
+    public static String getExternalCacheDir(String dirname) {
+        File cacheDir = MyApplication.getInstance().getExternalCacheDir();
+        if(!TextUtils.isEmpty(dirname)){
+            cacheDir = new File(cacheDir, dirname);
+    
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs();
+            }
+        }
+        
+        return cacheDir.getAbsolutePath();
     }
 }

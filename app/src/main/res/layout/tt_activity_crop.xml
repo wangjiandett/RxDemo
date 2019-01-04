@@ -2,15 +2,25 @@
 <LinearLayout
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/tt_toolbar"/>
+
+
     <Button
-        android:id="@+id/btn_demos"
+        android:id="@+id/btn_crop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_demos"/>
+        android:text="选择图片并裁剪"/>
+
+    <ImageView
+        android:id="@+id/iv_crop"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"/>
+
 
 </LinearLayout>

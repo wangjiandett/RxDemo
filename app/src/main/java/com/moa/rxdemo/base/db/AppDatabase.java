@@ -27,6 +27,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
+import com.moa.rxdemo.base.db.dao.StudentDao;
 import com.moa.rxdemo.base.db.dao.UserAndBookDao;
 import com.moa.rxdemo.base.db.entity.Book;
 import com.moa.rxdemo.base.db.entity.Student;
@@ -42,6 +43,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "basic-sample.db";
     
     public abstract UserAndBookDao userAndBookDao();
+    
+    public abstract StudentDao studentDao();
     
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
     

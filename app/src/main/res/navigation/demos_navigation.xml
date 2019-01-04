@@ -3,74 +3,103 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/samples_framgnet">
+    app:startDestination="@+id/samples_fragment">
 
     <fragment
-        android:id="@+id/samples_framgnet"
+        android:id="@+id/samples_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.SamplesFragment"
         tools:layout="@layout/tt_fragment_samples">
 
         <action
             android:id="@+id/action_2_room"
-            app:destination="@+id/room_framgnet"
+            app:destination="@+id/room_fragment"
             />
 
         <action
             android:id="@+id/action_2_dispathcer"
-            app:destination="@+id/dispathcer_framgnet"
+            app:destination="@+id/dispathcer_fragment"
             />
 
         <action
             android:id="@+id/action_2_views"
-            app:destination="@+id/views_framgnet"
+            app:destination="@+id/views_fragment"
             />
 
         <action
             android:id="@+id/action_2_swipe"
-            app:destination="@+id/swipe_framgnet"
+            app:destination="@+id/swipe_fragment"
             />
 
         <action
             android:id="@+id/action_2_checkable"
-            app:destination="@+id/checkable_framgnet"
+            app:destination="@+id/checkable_fragment"
             />
 
         <action
             android:id="@+id/action_2_view_model"
-            app:destination="@+id/view_model_framgnet"
+            app:destination="@+id/view_model_fragment"
+            />
+
+        <action
+            android:id="@+id/action_2_crop"
+            app:destination="@+id/crop_activity"
+            />
+
+        <action
+            android:id="@+id/action_2_scan"
+            app:destination="@+id/scan_activity"
+            />
+
+        <action
+            android:id="@+id/action_2_h5"
+            app:destination="@+id/h5_activity"
             />
     </fragment>
 
     <fragment
-        android:id="@+id/room_framgnet"
+        android:id="@+id/room_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.RoomFragment"
         tools:layout="@layout/tt_fragment_room"/>
 
     <fragment
-        android:id="@+id/dispathcer_framgnet"
+        android:id="@+id/dispathcer_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.DispatcherFragment"
         tools:layout="@layout/tt_fragment_dispatcher"/>
 
     <fragment
-        android:id="@+id/views_framgnet"
+        android:id="@+id/views_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.ViewsFragment"
         tools:layout="@layout/tt_fragment_views"/>
 
     <fragment
-        android:id="@+id/swipe_framgnet"
+        android:id="@+id/swipe_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.SwipeRefreshFragment"
         tools:layout="@layout/tt_fragment_swipe_refresh"/>
 
     <fragment
-        android:id="@+id/checkable_framgnet"
+        android:id="@+id/checkable_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.CheckAbleFragment"
         tools:layout="@layout/tt_fragment_checkable"/>
 
     <!--此处测试mvvm中的加载方式-->
     <fragment
-        android:id="@+id/view_model_framgnet"
+        android:id="@+id/view_model_fragment"
         android:name="com.moa.rxdemo.mvvm.view.ViewModeFragment"
         tools:layout="@layout/tt_fragment_view_model"/>
 
+    <activity
+        android:id="@+id/crop_activity"
+        android:name="com.moa.rxdemo.mvp.view.demons.CropImageActivity"
+        />
+
+    <activity
+        android:id="@+id/scan_activity"
+        android:name="com.moa.rxdemo.mvp.view.demons.ScanActivity"
+        />
+
+    <activity
+        android:id="@+id/h5_activity"
+        android:name="com.moa.rxdemo.base.ui.H5Activity"
+        />
 
 </navigation>

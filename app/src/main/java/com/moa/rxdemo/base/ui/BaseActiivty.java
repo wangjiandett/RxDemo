@@ -25,7 +25,7 @@ import com.moa.rxdemo.utils.ToastUtils;
  * <p>
  * Created by：wangjian on 2017/12/22 11:32
  */
-public abstract class BaseActiivty extends AppCompatActivity implements View.OnClickListener{
+public abstract class BaseActiivty extends AppCompatActivity implements View.OnClickListener {
     
     protected SystemBarTintManager mTintManager;
     protected Toolbar mToolbar;
@@ -60,7 +60,9 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
             getSavedData(bundle);
         }
         
-        setContentView(getLayoutId());
+        if (getLayoutId() > 0) {
+            setContentView(getLayoutId());
+        }
         
         // init header
         initHeader();
@@ -68,7 +70,6 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         initView();
         // init data
         initData();
-        
     }
     
     @Override
@@ -106,7 +107,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
             tvTitle = customView.findViewById(R.id.tv_title);
             ivBack = customView.findViewById(R.id.iv_back);
             vDivider = customView.findViewById(R.id.v_divider);
-    
+            
             ivBack.setOnClickListener(this);
             
             setToolbar(customView,
@@ -121,7 +122,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
      * @param canback
      */
     public void showBackButton(boolean canback) {
-        if(ivBack != null){
+        if (ivBack != null) {
             ivBack.setVisibility(canback ? View.VISIBLE : View.GONE);
             vDivider.setVisibility(canback ? View.VISIBLE : View.GONE);
         }
@@ -157,7 +158,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
     
     @Override
     public void onClick(View view) {
-        if(ivBack != null && view == ivBack){
+        if (ivBack != null && view == ivBack) {
             onBackPressed();
         }
     }
@@ -244,7 +245,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
         transaction.commitAllowingStateLoss();
     }
     
-    protected void showToast(String text){
+    protected void showToast(String text) {
         ToastUtils.showToast(this, text);
     }
     

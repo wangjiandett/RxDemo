@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- sdcard -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="com.moa.rxdemo.permission.MY_SERVICE"/>
@@ -49,6 +50,8 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity android:name=".mvp.view.demons.SampleActivity"/>
+        <activity android:name=".mvp.view.demons.CropImageActivity"/>
+        <activity android:name=".mvp.view.demons.ScanActivity"/>
 
         <service
             android:name=".mvp.view.service.MyService"
@@ -60,6 +63,22 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </service>
+
+        <provider
+            android:authorities="con.moa.rxdemo.DataContentProvider"
+            android:name=".base.db.DataContentProvicer"
+            android:exported="false"/>
+
+        <!--用作文件分享使用，兼容7.0-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.android7.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

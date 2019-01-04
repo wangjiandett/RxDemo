@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--外置SD卡  /-->
+    <root-path
+        name="root"
+        path=""/>
+
+    <!--物理路径相当于Context.getFilesDir()，如果path有值的话 如： Context.getFilesDir()+ /xxxx/-->
+    <files-path
+        name="files"
+        path="./"/>
+
+    <!--物理路径相当于Context.getCacheDir(),path 有值同上描述-->
+    <cache-path
+        name="cache"
+        path="./"/>
+
+    <!--物理路径相当于Environment.getExternalStorageDirectory()-->
+    <external-path
+        name="external"
+        path="./"/>
+
+    <!--物理路径相当于Context.getExternalFilesDir(String)-->
+    <external-files-path
+        name="external_file_path"
+        path="./"/>
+
+    <external-cache-path
+        name="external_cache_path"
+        path="./"/>
+
+</paths>

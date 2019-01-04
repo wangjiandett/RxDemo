@@ -1,6 +1,7 @@
 package com.moa.rxdemo.base.db;
 
 import android.arch.lifecycle.LiveData;
+import android.database.Cursor;
 
 import com.moa.rxdemo.base.db.entity.Book;
 import com.moa.rxdemo.base.db.entity.Student;
@@ -34,6 +35,8 @@ public class DataRepository {
         }
         return sInstance;
     }
+    
+   //==========================以下封装数据库具体操作=======================
     
     public LiveData<List<UserAndBook>> loadUsers() {
         return mDatabase.userAndBookDao().loadUsers();
@@ -94,14 +97,14 @@ public class DataRepository {
     
     
     public LiveData<List<Student>> loadStudents() {
-        return mDatabase.userAndBookDao().loadStudents();
+        return mDatabase.studentDao().loadStudents();
     }
     
     public void insertStudent(final Student user){
         Runtimes.execute(new Runnable() {
             @Override
             public void run() {
-                mDatabase.userAndBookDao().insertStudent(user);
+                mDatabase.studentDao().insertStudent(user);
             }
         });
     }
@@ -110,8 +113,38 @@ public class DataRepository {
         Runtimes.execute(new Runnable() {
             @Override
             public void run() {
-                mDatabase.userAndBookDao().deleteStudent(book);
+                mDatabase.studentDao().deleteStudent(book);
             }
         });
     }
+    
+    //======================以下测试provider的使用=======================
+    
+    public Cursor loadStudentsCursor(){
+        return mDatabase.studentDao().loadStudentsCursor();
+    }
+    
+    public Cursor getStudentById(String bookid){
+        return mDatabase.studentDao().getStudentById(bookid);
+    }
+    
+    public long insertStudent2(final Student user){
+        return mDatabase.studentDao().insertStudent2(user);
+    }
+    
+    public long[] insertAllStudent(final Student[] students){
+        return mDatabase.studentDao().insertAllStudent(students);
+    }
+    
+    public int deleteStudent2(final String bookid){
+        return mDatabase.studentDao().deleteStudent2(bookid);
+    }
+    
+    public int updateStudent2(final Student user){
+        return mDatabase.studentDao().updateStudent2(user);
+    }
+    
+    
+    
+    
 }

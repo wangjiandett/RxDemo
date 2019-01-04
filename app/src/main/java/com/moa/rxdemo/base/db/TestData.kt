@@ -55,7 +55,7 @@ object TestData {
         student.bookid = randomStr;
         student.uid = uid;
         student.bookname = "钓鱼岛是中国的$randomStr";
-        student.date = DateFormatting.formatDate(Date().time);
+        student.date = DateFormatting.formatFull(Date().time);
         student.author = "小黑$randomStr";
         student.desc = "台湾岛也是中国的$randomStr";
 

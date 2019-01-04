@@ -2,7 +2,6 @@ package com.moa.rxdemo.mvp.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.view.View;
 
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.ui.BaseActiivty;
+import com.moa.rxdemo.utils.PermissionHelper;
 
 import java.util.HashMap;
 
@@ -63,29 +63,32 @@ public class MainActivity extends BaseActiivty {
         // 早期版本需要自行设置参考https://blog.csdn.net/qq_19973845/article/details/82151204
         // app:labelVisibilityMode="labeled"
         // bottomNavigationView.setLabelVisibilityMode(1);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.navigation_home:
-                            switchFragment(FRAG_TAG_HOME);
-                            return true;
-                        case R.id.navigation_dashboard:
-                            switchFragment(FRAG_TAG_BOARD);
-                            return true;
-                        case R.id.navigation_demos:
-                            switchFragment(FRAG_TAG_NOTICE);
-                            return true;
-                        case R.id.navigation_settings:
-                            switchFragment(FRAG_TAG_SETTING);
-                            return true;
-                        default:
-                            return false;
-                    }
-                }
-            });
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    switchFragment(FRAG_TAG_HOME);
+                    return true;
+                case R.id.navigation_dashboard:
+                    switchFragment(FRAG_TAG_BOARD);
+                    return true;
+                case R.id.navigation_demos:
+                    switchFragment(FRAG_TAG_NOTICE);
+                    return true;
+                case R.id.navigation_settings:
+                    switchFragment(FRAG_TAG_SETTING);
+                    return true;
+                default:
+                    return false;
+            }
+        });
         
+    }
+    
+    @Override
+    protected void initData() {
+        super.initData();
+        // 检测是否有sdcard访问权限
+        boolean hasPer = PermissionHelper.checkSDcardPermission(null, this, 0);
     }
     
     @Override
