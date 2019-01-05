@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.utils.AppUtils;
 import com.moa.rxdemo.utils.SystemBarTintManager;
@@ -44,7 +44,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MyApplication.addActivity(this);
+        App.addActivity(this);
         
         // init status bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -75,7 +75,7 @@ public abstract class BaseActiivty extends AppCompatActivity implements View.OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MyApplication.removeActivity(this);
+        App.removeActivity(this);
     }
     
     /**

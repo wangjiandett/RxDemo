@@ -11,7 +11,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 
 import static java.lang.System.currentTimeMillis;
@@ -24,7 +24,7 @@ import static java.lang.System.currentTimeMillis;
 public class NotificationHelper {
     
     public static NotificationCompat.Builder getNotificationBuilder(Intent intent, int notifId) {
-        Context context = MyApplication.getContext();
+        Context context = App.getContext();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,
             String.valueOf(notifId));
         
@@ -58,12 +58,12 @@ public class NotificationHelper {
     }
     
     public static void notifyNotice(Notification notification, int notifId, String channelName) {
-        NotificationManager notificationManager = (NotificationManager) MyApplication.getContext().getSystemService(
+        NotificationManager notificationManager = (NotificationManager) App.getContext().getSystemService(
             Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
             // 8.0添加channel，否则通知不显示
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                NotificationChannel channel = new NotificationChannel(MyApplication.getContext().getPackageName(),
+                NotificationChannel channel = new NotificationChannel(App.getContext().getPackageName(),
                     channelName, NotificationManager.IMPORTANCE_DEFAULT);
                 channel.setSound(null, null);
                 notificationManager.createNotificationChannel(channel);
@@ -73,7 +73,7 @@ public class NotificationHelper {
     }
     
     public static void cancelNotification(int notifId) {
-        NotificationManager notificationManager = (NotificationManager) MyApplication.getContext().getSystemService(
+        NotificationManager notificationManager = (NotificationManager) App.getContext().getSystemService(
             Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
             notificationManager.cancel(notifId);
@@ -81,7 +81,7 @@ public class NotificationHelper {
     }
     
     public static void cancelAllNotification() {
-        NotificationManager notificationManager = (NotificationManager) MyApplication.getContext().getSystemService(
+        NotificationManager notificationManager = (NotificationManager) App.getContext().getSystemService(
             Context.NOTIFICATION_SERVICE);
         if (notificationManager != null) {
             notificationManager.cancelAll();

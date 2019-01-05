@@ -3,7 +3,7 @@ package com.moa.rxdemo.utils;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 
 import java.io.File;
@@ -14,14 +14,24 @@ import java.io.File;
 public class Files {
     
     
-    public static final String APP_NAME = MyApplication.getInstance().getString(R.string.app_name);
+    public static final String APP_NAME = App.getContext().getString(R.string.app_name);
     
-    //crash日志保存的根目录
-    public static final String DIR_CRASH = "crash";
-    
-    //crash日志保存的根目录
+    //裁剪图片的根目录
     public static final String DIR_CROP = "crop";
     
+    //日志文件保存的根目录
+    public static final String DIR_LOGS = "logs";
+    
+    
+    /**
+     * 获取日志文件
+     *
+     * @param logFileName 文件名称
+     * @return 图片文件
+     */
+    public static File getLogFile(String logFileName){
+        return FileUtil.createFile(getExternalCacheDir(DIR_LOGS), logFileName);
+    }
     
     /**
      * 获取裁剪图片
@@ -31,15 +41,6 @@ public class Files {
      */
     public static File getCropFile(String cropFileName){
         return FileUtil.createFile(getExternalCacheDir(DIR_CROP), cropFileName);
-    }
-    
-    /**
-     * 获得crash日志保存的根目录
-     *
-     * @return
-     */
-    public static String getCrashDir(){
-        return getExternalFileChildDir(DIR_CRASH);
     }
     
     //------------------外部存储--------------------
@@ -84,7 +85,7 @@ public class Files {
      * @return 目录路径
      */
     public static String getExternalFileChildDir(String dirname) {
-        File file = MyApplication.getInstance().getExternalFilesDir(dirname);
+        File file = App.getContext().getExternalFilesDir(dirname);
         if (file == null) {
             return null;
         }
@@ -102,7 +103,7 @@ public class Files {
      * @return 目录路径
      */
     public static String getExternalCacheDir(String dirname) {
-        File cacheDir = MyApplication.getInstance().getExternalCacheDir();
+        File cacheDir = App.getContext().getExternalCacheDir();
         if(!TextUtils.isEmpty(dirname)){
             cacheDir = new File(cacheDir, dirname);
     

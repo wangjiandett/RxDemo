@@ -13,7 +13,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.base.db.entity.Student;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class DataContentProvicer extends ContentProvider {
             if (context == null) {
                 return null;
             }
-            DataRepository repository = MyApplication.getDataRepository();
+            DataRepository repository = App.getDataRepository();
             
             final Cursor cursor;
             if (code == CODE_DIR) {
@@ -99,7 +99,7 @@ public class DataContentProvicer extends ContentProvider {
                 if (context == null) {
                     return 0;
                 }
-                final int count = MyApplication.getDataRepository().deleteStudent2(
+                final int count = App.getDataRepository().deleteStudent2(
                     String.valueOf(ContentUris.parseId(uri)));
                 context.getContentResolver().notifyChange(uri, null);
                 return count;
@@ -119,7 +119,7 @@ public class DataContentProvicer extends ContentProvider {
                     return 0;
                 }
                 final Student student = Student.fromContentValues(values);
-                final int count = MyApplication.getDataRepository().updateStudent2(student);
+                final int count = App.getDataRepository().updateStudent2(student);
                 context.getContentResolver().notifyChange(uri, null);
                 return count;
             default:
@@ -137,7 +137,7 @@ public class DataContentProvicer extends ContentProvider {
                     return null;
                 }
                 
-                DataRepository repository = MyApplication.getDataRepository();
+                DataRepository repository = App.getDataRepository();
                 Student student = Student.fromContentValues(values);
                 
                 repository.insertStudent2(student);
@@ -160,7 +160,7 @@ public class DataContentProvicer extends ContentProvider {
                     return 0;
                 }
                 
-                DataRepository repository = MyApplication.getDataRepository();
+                DataRepository repository = App.getDataRepository();
                 Student[] students = new Student[values.length];
                 for (int i = 0; i < values.length; i++) {
                     students[i] = Student.fromContentValues(values[i]);
@@ -179,13 +179,13 @@ public class DataContentProvicer extends ContentProvider {
     public ContentProviderResult[] applyBatch(
         ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
         // 封装事物回滚操作
-        MyApplication.getAppDatabase().beginTransaction();
+        App.getAppDatabase().beginTransaction();
         try {
             final ContentProviderResult[] result = super.applyBatch(operations);
-            MyApplication.getAppDatabase().setTransactionSuccessful();
+            App.getAppDatabase().setTransactionSuccessful();
             return result;
         } finally {
-            MyApplication.getAppDatabase().endTransaction();
+            App.getAppDatabase().endTransaction();
         }
     }
 }

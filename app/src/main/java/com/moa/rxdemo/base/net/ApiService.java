@@ -48,7 +48,7 @@ public class ApiService {
         
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         // 2 catch data
-        //File cacheFile = new File(MyApplication.getInstance().getCacheDir(), "cache");
+        //File cacheFile = new File(App.getInstance().getCacheDir(), "cache");
         //Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
         
         // 3 okhttp client

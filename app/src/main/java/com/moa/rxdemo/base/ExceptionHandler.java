@@ -2,8 +2,8 @@ package com.moa.rxdemo.base;
 
 import android.content.Context;
 
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.utils.DateFormatting;
-import com.moa.rxdemo.utils.FileUtil;
 import com.moa.rxdemo.utils.Files;
 
 import java.io.File;
@@ -29,21 +29,21 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
         ex.printStackTrace();
         
         // 保存crash日志到文件中
-        String dir = Files.getCrashDir();
-        if (dir != null) {
-            String time = DateFormatting.formatFull(System.currentTimeMillis());
-            try {
-                File crashFile = FileUtil.createFile(dir, time + ".log");
-                FileOutputStream e = new FileOutputStream(crashFile);
-                PrintStream printStream = new PrintStream(e);
-                ex.printStackTrace(printStream);
-                printStream.close();
-                
-            } catch (FileNotFoundException var7) {
-                var7.printStackTrace();
-            } catch (SecurityException var9) {
-                var9.printStackTrace();
-            }
+        String time = DateFormatting.formatFull(System.currentTimeMillis());
+        try {
+            File crashFile = Files.getLogFile("crash-" + time + ".txt");
+            FileOutputStream e = new FileOutputStream(crashFile);
+            PrintStream printStream = new PrintStream(e);
+            ex.printStackTrace(printStream);
+            printStream.close();
+            
+        } catch (FileNotFoundException var7) {
+            var7.printStackTrace();
+        } catch (SecurityException var9) {
+            var9.printStackTrace();
+        } finally {
+            // 异常退出时，清空所有activity
+            App.finishAllActivity();
         }
     }
 }

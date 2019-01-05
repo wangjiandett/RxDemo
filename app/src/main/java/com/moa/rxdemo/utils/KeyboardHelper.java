@@ -8,6 +8,9 @@ import android.view.inputmethod.InputMethodManager;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * 控制输入法显示隐藏
+ */
 public class KeyboardHelper {
 
     private Context context;

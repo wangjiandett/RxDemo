@@ -17,7 +17,7 @@
 //import android.os.Looper;
 //import android.util.Log;
 //
-//import com.moa.rxdemo.MyApplication;
+//import com.moa.rxdemo.App;
 //
 //import java.io.File;
 //import java.io.FileOutputStream;
@@ -81,10 +81,10 @@
 //    private DownLoadHelper() {
 //        OkHttpClient.Builder builder = new OkHttpClient.Builder();
 //
-//        Resources resources = MyApplication.getContext().getResources();
+//        Resources resources = App.getContext().getResources();
 //        try {
 //            String cert = resources.getString(
-//                resources.getIdentifier("trusted_pem", "string", MyApplication.getContext().getPackageName()));
+//                resources.getIdentifier("trusted_pem", "string", App.getContext().getPackageName()));
 //            SSLContext sslContext = sslContextForTrustedCertificates(new Buffer().writeUtf8(cert).inputStream());
 //            builder.sslSocketFactory(sslContext.getSocketFactory());
 //        } catch (Resources.NotFoundException e) {
@@ -93,7 +93,7 @@
 //
 //        try {
 //            final String trustHostname = resources.getString(
-//                resources.getIdentifier("trusted_hostname", "string", MyApplication.getContext().getPackageName()));
+//                resources.getIdentifier("trusted_hostname", "string", App.getContext().getPackageName()));
 //            builder.hostnameVerifier(new HostnameVerifier() {
 //                @Override
 //                public boolean verify(String hostname, SSLSession session) {

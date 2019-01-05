@@ -1,167 +1,264 @@
-/*
- * Copyright (C) 2016 venshine.cn@gmail.com
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.moa.rxdemo.utils;
 
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.moa.rxdemo.App;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
-
 /**
- * Log日志打印操作
- *
- * @author Weiss
+ * 日志管理文件
  */
 public class LogUtils {
-
-    private static final boolean DEBUG = true;
-
+    
+    private static final String TAG = "LogUtils";
+    private static Locale mLogLocale = Locale.CHINA;
+    
+    private static final String WRITE_LOG_ENABLE = "write_log_enable";
+    
     /**
-     * 获取当前类名
+     * 日志文件生成日期
+     */
+    private static SimpleDateFormat LOGFILE = new SimpleDateFormat("yyyyMMdd", mLogLocale);//HHmmss
+    /**
+     * 日志文件写入时间
+     */
+    private static SimpleDateFormat LOGTIME = new SimpleDateFormat("HH:mm:ss ", mLogLocale);
+    
+    /**
+     * 默认可打印日志，后期根据是否release版本控制是否打印日志
+     *
      * @return
      */
-    private static String getClassName() {
+    public static boolean isLoggable() {
+        return true;
+    }
     
-        String result = "LogUtils";
-        
-        // 这里的数组的index，即2，是根据你工具类的层级取的值，可根据需求改变
-        StackTraceElement thisMethodStack = (new Exception()).getStackTrace()[2];
-        if(thisMethodStack != null){
-            result = thisMethodStack.getClassName();
-            if(!TextUtils.isEmpty(result)){
-                int lastIndex = result.lastIndexOf(".");
-                result = result.substring(lastIndex + 1, result.length());
+    /**
+     * 是否可将日志写入文件
+     *
+     * @return
+     */
+    public static boolean isWriteLogsEnable() {
+        return SharePreUtils.getBoolean(App.getContext(), WRITE_LOG_ENABLE, false);
+    }
+    
+    /**
+     * 日志写入文件开关
+     *
+     * @param writeLogsEnable 是否写入文件
+     */
+    public static void setWriteLogsEnable(boolean writeLogsEnable) {
+        SharePreUtils.saveBoolean(App.getContext(), WRITE_LOG_ENABLE, writeLogsEnable);
+    }
+    
+    
+    /**
+     * 拼接日志内容
+     *
+     * @param msg 日志内容
+     * @return
+     */
+    private static String getLog(String msg) {
+        return TAG + " [" + getFileLineMethod() + "] " + msg;
+    }
+    
+    public static void v(String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.v(getFileName(), log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
             }
         }
-    
-        return result;
     }
     
-    /**
-     * 该参数需要根据实际情况来设置才能准确获取期望的调用信息，比如：
-     * 在Java中，该参数应该为3
-     * 在一般Android中，该参数为4
-     * 你需要自己打印的看看，调用showAllElementsInfo()就可以了。
-     */
-    private static final int INDEX = 6;
-    
-    private static String getPrefix() {
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[INDEX];
-        String className = stackTraceElement.getClassName();
-        int classNameStartIndex = className.lastIndexOf(".") + 1;
-        className = className.substring(classNameStartIndex);
-        String methodName = stackTraceElement.getMethodName();
-        int methodLine = stackTraceElement.getLineNumber();
-        String format = "%s-%s(L:%d)";
-        return String.format(Locale.CHINESE, format, className, methodName, methodLine);
-    }
-    
-    public static String showAllElementsInfo() {
-        String print = "";
-        int count = 0;
-        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
-        for (StackTraceElement stackTraceElement : stackTraceElements) {
-            count++;
-            print += String.format("ClassName:%s " +
-                    "\nMethodName:%s " +
-                    "\nMethodLine:%d " +
-                    "\n当前是第%d个 " +
-                    "\n---------------------------- " +
-                    "\n ",
-                stackTraceElement.getClassName(),
-                stackTraceElement.getMethodName(),
-                stackTraceElement.getLineNumber(),
-                count);
-        }
-        return print;
-    }
-    
-    
-    
-    public static void w(String logString) {
-        if (DEBUG) {
-            Log.w(getClassName(), logString);
+    public static void v(String tag, String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.v(tag, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
         }
     }
-
-    /**
-     * debug log
-     *
-     * @param msg
-     */
+    
     public static void d(String tag, String msg) {
-        if (DEBUG) {
-            Log.d(tag, msg);
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.d(tag, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
         }
+        
     }
-
-    /**
-     * error log
-     *
-     * @param msg
-     */
-    public static void e(String tag, String msg) {
-        if (DEBUG) {
-            Log.e(tag, msg);
-        }
-    }
-
-    /**
-     * debug log
-     *
-     * @param msg
-     */
+    
     public static void d(String msg) {
-        if (DEBUG) {
-            Log.d(getClassName(), msg);
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.d(getFileName(), log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
         }
     }
-
-    /**
-     * debug log
-     *
-     * @param msg
-     */
+    
     public static void i(String msg) {
-        if (DEBUG) {
-            Log.i(getClassName(), msg);
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.i(getFileName(), log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
         }
     }
-    /**
-     * error log
-     *
-     * @param msg
-     */
+    
+    public static void i(String tag, String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.i(tag, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
+        }
+    }
+    
+    public static void w(String tag, String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.w(tag, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
+        }
+    }
+    
+    public static void w(String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.w(getFileName(), log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(log, log);
+            }
+        }
+    }
+    
+    
     public static void e(String msg) {
-        if (DEBUG) {
-            Log.e(getClassName(), msg);
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.e(TAG, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(TAG, log);
+            }
         }
     }
-
-    public static void i(String tag, String logString) {
-        if (DEBUG) {
-            Log.i(tag, logString);
+    
+    public static void e(String tag, String msg) {
+        if (isLoggable()) {
+            String log = getLog(msg);
+            Log.e(tag, log);
+            
+            if (isWriteLogsEnable()) {
+                writeLogMessage(tag, log);
+            }
         }
     }
-
-    public static void w(String tag, String logString) {
-        if (DEBUG) {
-            Log.w(tag, logString);
-        }
+    
+    private static String getFileLineMethod() {
+        StackTraceElement traceElement = ((new Exception()).getStackTrace())[2];
+        StringBuffer toStringBuffer = new StringBuffer("[")//
+            .append(traceElement.getFileName())//
+            .append(" | ")//
+            .append(traceElement.getLineNumber())//
+            .append(" | ")//
+            .append(traceElement.getMethodName())//
+            .append("]");
+        
+        return toStringBuffer.toString();
     }
-
+    
+    private static String getFileName() {
+        StackTraceElement traceElement = ((new Exception()).getStackTrace())[2];
+        String fileName = traceElement.getFileName();
+        int start = fileName.indexOf(".java");
+        if (start >= 0) {
+            fileName = fileName.substring(0, start);
+        }
+        return fileName;
+    }
+    
+    public static void writeLogMessage(String tag, String msg) {
+        writeLogMessage(null, tag, msg);
+    }
+    
+    /**
+     * 打开日志文件并写入日志，此方法会绕过日志开关直接写文件
+     *
+     * @param fileName 日志文件名
+     * @param tag      tag
+     * @param msg      日志信息
+     */
+    public static void writeLogMessage(String fileName, String tag, String msg) {
+        Date date = new Date();
+        String logDate = LOGFILE.format(date);
+        String logMsg = //
+            logDate + " "//
+                + LOGTIME.format(date)//
+                + "[" + AppUtils.getVersion(App.getContext())//
+                + "] "//
+                + tag//
+                + " msg:\n\n"//
+                + msg;
+        
+        // 拼接文件名
+        fileName = TextUtils.isEmpty(fileName) ? "log" : fileName + "-" + logDate + ".txt";
+        
+        // 写入文件
+        FileUtil.writeMsg2File(logMsg, fileName, true);
+    }
+    
+    /**
+     * 保存手机信息到日志中
+     * 此方法在app打开的时候写入一次即可
+     */
+    public static void writePhoneInfo2File() {
+        
+        String phoneInfo = "\n==============System Info==============\n" + "\n Product: " + Build.PRODUCT;
+        phoneInfo += "\n CPU_ABI: " + Build.CPU_ABI;
+        phoneInfo += "\n TAGS: " + Build.TAGS;
+        phoneInfo += "\n VERSION_CODES.BASE: " + Build.VERSION_CODES.BASE;
+        phoneInfo += "\n 手机型号: " + Build.MODEL;
+        phoneInfo += "\n SDK版本: " + Build.VERSION.SDK;
+        phoneInfo += "\n Android系统版本号: " + Build.VERSION.RELEASE;
+        phoneInfo += "\n DEVICE: " + Build.DEVICE;
+        phoneInfo += "\n DISPLAY: " + Build.DISPLAY;
+        phoneInfo += "\n 手机厂商: " + Build.BRAND;
+        phoneInfo += "\n BOARD: " + Build.BOARD;
+        phoneInfo += "\n FINGERPRINT: " + Build.FINGERPRINT;
+        phoneInfo += "\n ID: " + Build.ID;
+        phoneInfo += "\n MANUFACTURER: " + Build.MANUFACTURER;
+        phoneInfo += "\n USER: " + Build.USER;
+        phoneInfo += "\n 手机当前系统语言: " + Locale.getDefault().getLanguage();
+        
+        
+        FileUtil.writeMsg2File(phoneInfo, "system_info.txt", false);
+        Log.d(TAG, phoneInfo);
+    }
+    
+    
 }

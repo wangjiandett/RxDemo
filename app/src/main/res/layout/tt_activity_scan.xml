@@ -9,7 +9,7 @@
 
     <include layout="@layout/tt_toolbar"/>
 
-    <cn.bingoogolapple.qrcode.zxing.ZXingView
+    <com.moa.rxdemo.utils.zxing.ZXingView
         android:id="@+id/mZXingView"
         android:layout_width="match_parent"
         android:layout_height="0dp"

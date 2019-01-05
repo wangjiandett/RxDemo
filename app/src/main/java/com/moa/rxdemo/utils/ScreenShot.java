@@ -24,7 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * 类或文件描述
+ * 截屏操作类
  * <p>
  * Created by：wangjian on 2017/7/27 11:00
  */

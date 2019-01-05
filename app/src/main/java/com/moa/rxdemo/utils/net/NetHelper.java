@@ -10,7 +10,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.base.dispatcher.Runtimes;
 import com.moa.rxdemo.utils.LogUtils;
 
@@ -27,7 +27,7 @@ public class NetHelper {
     private BroadcastReceiver netBroadcastReceiver;
     
     public static ConnectivityManager getConnectivityManager() {
-        return (ConnectivityManager) MyApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        return (ConnectivityManager) App.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
     }
     
     public static boolean isNetConnected() {

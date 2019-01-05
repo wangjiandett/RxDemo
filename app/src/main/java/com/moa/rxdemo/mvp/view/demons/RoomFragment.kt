@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
-import com.moa.rxdemo.MyApplication
+import com.moa.rxdemo.App
 import com.moa.rxdemo.R
 import com.moa.rxdemo.base.db.TestData
 import com.moa.rxdemo.base.db.entity.Student
@@ -44,7 +44,7 @@ class RoomFragment: BaseFragment(){
             etInfo.text?.toString()?.let {
                 val book = TestData.getStudent(it);
                 // 插入数据
-                MyApplication.getDataRepository().insertStudent(book);
+                App.getDataRepository().insertStudent(book);
                 etInfo.text = ""
             }
         }
@@ -55,7 +55,7 @@ class RoomFragment: BaseFragment(){
                     .setMessage("是否删除item?")
                     .setPositiveButton("确定") { dialog, which ->
                         // 删除数据
-                        MyApplication.getDataRepository().deleteStudent(item)
+                        App.getDataRepository().deleteStudent(item)
                     }
                     .create().show()
         }
@@ -65,7 +65,7 @@ class RoomFragment: BaseFragment(){
         super.initData()
 
         // 查询数据，监听数据库中students列表的变化，更新显示列表
-        MyApplication.getDataRepository().loadStudents().observe(this, Observer {
+        App.getDataRepository().loadStudents().observe(this, Observer {
             samplesAdapter.list = it;
             samplesAdapter.notifyDataSetChanged()
         })

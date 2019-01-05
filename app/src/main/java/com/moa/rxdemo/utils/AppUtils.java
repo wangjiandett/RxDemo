@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -46,6 +48,17 @@ public class AppUtils {
             context.getResources().updateConfiguration(config, dm);
         }
         return context;
+    }
+    
+    public static String getVersion(Context context) {
+        try {
+            PackageInfo pkinfo = context.getPackageManager().getPackageInfo(context.getPackageName(),
+                PackageManager.GET_CONFIGURATIONS);
+            return pkinfo.versionName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
     
     /**

@@ -2,7 +2,7 @@ package com.moa.rxdemo.utils;
 
 import android.content.Context;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 
 import java.text.DateFormat;
@@ -121,7 +121,7 @@ public class DateFormatting {
     private static DateFormat getTimeFormatter() {
         DateFormat dateFormat = TIME_FORMATTER.get();
         if (dateFormat == null) {
-            dateFormat = android.text.format.DateFormat.getTimeFormat(MyApplication.getContext());
+            dateFormat = android.text.format.DateFormat.getTimeFormat(App.getContext());
             TIME_FORMATTER.set(dateFormat);
         }
         return dateFormat;

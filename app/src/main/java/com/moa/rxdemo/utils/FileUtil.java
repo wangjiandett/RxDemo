@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -354,6 +355,34 @@ public class FileUtil {
         }
         
         return saveFile;
+    }
+    
+    /**
+     * 写入msg到文件中
+     *
+     * @param msg 消息内容
+     * @param fileName 文件名
+     * @param append 是否追加
+     */
+    public static void writeMsg2File(String msg, String fileName, boolean append) {
+        File file = Files.getLogFile(fileName);
+        
+        if (null != file && file.exists() && file.canWrite()) {
+            try {
+                FileOutputStream os = new FileOutputStream(file, append);
+                os.write(System.getProperty("line.separator").getBytes());
+                try {
+                    os.write(msg.getBytes("UTF-8"));
+                } catch (UnsupportedEncodingException ex) {
+                    ex.printStackTrace();
+                    os.write(msg.getBytes());
+                }
+                os.write(System.getProperty("line.separator").getBytes());
+                os.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     /**

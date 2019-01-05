@@ -1,7 +1,7 @@
 package com.moa.rxdemo.base.db;
 
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.base.db.entity.Book;
 import com.moa.rxdemo.base.db.entity.User;
 import com.moa.rxdemo.base.db.entity.UserAndBook;
@@ -26,7 +26,7 @@ public class DataRepositoryTest {
     
     @Before
     public void setUp() throws InterruptedException {
-        repository = MyApplication.getDataRepository();
+        repository = App.getDataRepository();
         userAndBooks = LiveDataTestUtil.getValue(repository.loadUsers());
         books = LiveDataTestUtil.getValue(repository.loadBooks());
     }

@@ -1,4 +1,4 @@
-package cn.bingoogolapple.qrcode.zxing;
+package com.moa.rxdemo.utils.zxing;
 
 import android.content.Context;
 import android.graphics.Bitmap;

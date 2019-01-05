@@ -5,7 +5,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.text.TextUtils;
 
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.base.Config;
 import com.moa.rxdemo.base.Constants;
@@ -65,7 +65,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
             public void run() {
                 // 杀掉进程
                 startActivity(SplashActivity.getIntent(getActivity()));
-                MyApplication.finishAllActivity();
+                App.finishAllActivity();
             }
         }, 50);
     }

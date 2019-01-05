@@ -9,13 +9,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- sdcard -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 手机震动权限 -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
+    <!--自定义访问service权限-->
     <uses-permission android:name="com.moa.rxdemo.permission.MY_SERVICE"/>
 
     <application
-        android:name=".MyApplication"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

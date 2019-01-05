@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.JsonParseException;
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
-import com.moa.rxdemo.MyApplication;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.R;
 
 import org.json.JSONException;
@@ -32,7 +32,7 @@ public class ExceptionHandle {
     
     public static ResponeException handleException(Throwable e) {
         ResponeException ex;
-        Context context = MyApplication.getInstance();
+        Context context = App.getContext();
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             ex = new ResponeException(e, Error.HTTP_ERROR);

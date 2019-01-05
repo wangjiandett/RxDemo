@@ -12,7 +12,7 @@ import com.moa.rxdemo.R;
 
 
 /**
- * 类或文件描述
+ * 自定义dialog显示
  * <p>
  * Created by：wangjian on 2017/12/27 11:24
  */
