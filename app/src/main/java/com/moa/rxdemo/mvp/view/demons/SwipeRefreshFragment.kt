@@ -17,23 +17,23 @@ import com.moa.rxdemo.view.swipetoloadlayou.OnRefreshListener
 import com.moa.rxdemo.view.swipetoloadlayou.SwipeToLoadLayout
 
 /**
- * 类或文件描述
+ * SwipeRefresh view 使用demo
  *
  * Created by：wangjian on 2018/12/22 13:14
  */
 class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipeView, OnRefreshListener, OnLoadMoreListener {
 
-    lateinit var swipeLoadLayout: SwipeToLoadLayout;
-    lateinit var gridView: GridView;
+    private lateinit var swipeLoadLayout: SwipeToLoadLayout
+    private lateinit var gridView: GridView
 
-    lateinit var presenter: SwipePresenter;
+    private lateinit var presenter: SwipePresenter
 
     // 分页数据条数
-    val pageSize = 20;
+    private val pageSize = 20
     // 当前第几页
-    var currentPage: Int = 1;
+    private var currentPage: Int = 1
     // 数据是否加载完成
-    var isDataLoadFinish: Boolean = false;
+    private var isDataLoadFinish: Boolean = false
 
     override fun getLayoutId(): Int {
         return R.layout.tt_fragment_swipe_refresh
@@ -44,12 +44,12 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         presenter = SwipePresenter(this, SwipeModelImpl())
 
         view?.let {
-            swipeLoadLayout = it.findViewById(R.id.swipe_layout);
+            swipeLoadLayout = it.findViewById(R.id.swipe_layout)
             // 设置上拉下拉监听器
             swipeLoadLayout.setOnRefreshListener(this)
             swipeLoadLayout.setOnLoadMoreListener(this)
 
-            gridView = it.findViewById(R.id.swipe_target);
+            gridView = it.findViewById(R.id.swipe_target)
             bindAdapter(gridView)
         }
     }
@@ -59,16 +59,16 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         loadSwipeList()
     }
 
-    fun loadSwipeList() {
-        presenter.getSwipeList(currentPage);
+    private fun loadSwipeList() {
+        presenter.getSwipeList(currentPage)
     }
 
     /**
      * 刷新操作
      */
     override fun onRefresh() {
-        currentPage = 1;
-        loadSwipeList();
+        currentPage = 1
+        loadSwipeList()
     }
 
     /**
@@ -76,72 +76,72 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
      */
     override fun onLoadMore() {
         if (isDataLoadFinish) {
-            swipeLoadLayout.isLoadMoreEnabled = false;
+            swipeLoadLayout.isLoadMoreEnabled = false
         }
-        loadSwipeList();
+        loadSwipeList()
     }
 
     override fun onSuccess(itemList: MutableList<SwipeItem>?) {
         itemList?.let {
             if (currentPage == 1) {
-                swipeLoadLayout.isRefreshing = false;
-                mHolderAdapter.list = itemList;
+                swipeLoadLayout.isRefreshing = false
+                mHolderAdapter.list = itemList
             } else {
-                swipeLoadLayout.isLoadingMore = false;
-                mHolderAdapter.list.addAll(itemList);
+                swipeLoadLayout.isLoadingMore = false
+                mHolderAdapter.list.addAll(itemList)
             }
 
             // 加载条数等于pageSize时，说明还有数据
             // 此时pageSize+1
             if (itemList.size == pageSize) {
-                currentPage = currentPage + 1;
+                currentPage += 1
 
             }
             // 加载的条数小于pageSize说明数据加载完了，就不要上拉加载了
             else if (itemList.size < pageSize) {
-                isDataLoadFinish = true;
+                isDataLoadFinish = true
             }
 
             mHolderAdapter.notifyDataSetChanged()
         }
 
-        finishRefresh();
+        finishRefresh()
     }
 
     /**
      * 结束刷新或加载
      */
-    fun finishRefresh() {
+    private fun finishRefresh() {
         if (swipeLoadLayout.isRefreshing) {
-            swipeLoadLayout.isRefreshing = false;
+            swipeLoadLayout.isRefreshing = false
         }
 
         if (swipeLoadLayout.isLoadingMore) {
-            swipeLoadLayout.isLoadingMore = false;
+            swipeLoadLayout.isLoadingMore = false
         }
     }
 
     override fun onFail(msg: String?) {
         showToast(msg)
-        finishRefresh();
+        finishRefresh()
     }
 
     override fun getViewHolder(): ViewHolder<SwipeItem> {
-        return SamplesHolder();
+        return SamplesHolder()
     }
 
-    class SamplesHolder : ViewHolder<SwipeItem>() {
+    private class SamplesHolder : ViewHolder<SwipeItem>() {
 
-        lateinit var tvText: TextView;
+        lateinit var tvText: TextView
 
         override fun init(data: SwipeItem?, viewGroup: ViewGroup?, context: Context?): View {
             val view = View.inflate(context, android.R.layout.simple_list_item_1, null)
-            tvText = view as TextView;
-            return view;
+            tvText = view as TextView
+            return view
         }
 
         override fun bind(data: SwipeItem?, position: Int, context: Context?) {
-            tvText.setText(data!!.createdAt)
+            tvText.text = data!!.createdAt
         }
     }
 }

@@ -34,7 +34,7 @@ import com.moa.rxdemo.base.db.entity.Student;
 import com.moa.rxdemo.base.db.entity.User;
 
 
-@Database(entities = {User.class, Book.class, Student.class}, version = 3)
+@Database(entities = {User.class, Book.class, Student.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase {
     
     private static AppDatabase sInstance;
@@ -72,7 +72,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 super.onCreate(db);
                 AppDatabase.getInstance(appContext).setDatabaseCreated();
             }
-        }).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build();
+        }).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build();
     }
     
     /**
@@ -105,7 +105,7 @@ public abstract class AppDatabase extends RoomDatabase {
     
     /**
      * 2-3的时候添加了一张新表student数据库升级使用
-     * 在gradle配置导出schema后，编译后会自动乘车shenma对应的版本，之后可以copy schema中的创建语句
+     * 在gradle配置导出schema后，编译后会自动生成shenma对应的版本（gradle中做了相应的配置），之后可以copy schema中的创建语句
      */
     private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         
@@ -114,6 +114,16 @@ public abstract class AppDatabase extends RoomDatabase {
             database.execSQL("CREATE TABLE IF NOT EXISTS student "
                 + "(`bookid` TEXT NOT NULL, `uid` TEXT, `bookname` TEXT, "
                 + "`date` TEXT, `author` TEXT, `desc` TEXT, PRIMARY KEY(`bookid`))");
+        }
+    };
+
+    private static final Migration MIGRATION_3_4 = new Migration(3, 4) {
+
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            // CREATE INDEX index_name ON table_name (column_list)
+            // DROP INDEX index_name ON talbe_name
+            database.execSQL("CREATE INDEX 'index_books_uid' ON books(`uid`)");
         }
     };
 }

@@ -12,6 +12,7 @@ import com.moa.rxdemo.R
 import com.moa.rxdemo.base.ui.BaseListFragment
 import com.moa.rxdemo.base.ui.H5Activity
 import com.moa.rxdemo.base.ui.adapter.ViewHolder
+import com.moa.rxdemo.mvp.view.demons.recycler.RecyclerViewFragment
 import com.moa.rxdemo.mvvm.view.ViewModeFragment
 import com.moa.rxdemo.utils.PermissionHelper
 
@@ -70,6 +71,7 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
                 SampleItem(SwipeRefreshFragment::class.java.simpleName, R.id.action_2_swipe),
                 SampleItem(CheckAbleFragment::class.java.simpleName, R.id.action_2_checkable),
                 SampleItem(ViewModeFragment::class.java.simpleName, R.id.action_2_view_model),
+                SampleItem(RecyclerViewFragment::class.java.simpleName, R.id.action_2_recycler),
                 // activity
                 SampleItem(CropImageActivity::class.java.simpleName, R.id.action_2_crop),
                 SampleItem(ScanActivity::class.java.simpleName, R.id.action_2_scan),

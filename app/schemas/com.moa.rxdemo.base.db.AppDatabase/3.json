@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "fc4e047b8f4fddb83493e4432a75d058",
+    "identityHash": "fc08c4d082596249e4327f1d1f8d2572",
     "entities": [
       {
         "tableName": "users",
@@ -89,7 +89,16 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_books_uid",
+            "unique": false,
+            "columnNames": [
+              "uid"
+            ],
+            "createSql": "CREATE  INDEX `index_books_uid` ON `${TABLE_NAME}` (`uid`)"
+          }
+        ],
         "foreignKeys": [
           {
             "table": "users",
@@ -157,7 +166,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fc4e047b8f4fddb83493e4432a75d058\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fc08c4d082596249e4327f1d1f8d2572\")"
     ]
   }
 }

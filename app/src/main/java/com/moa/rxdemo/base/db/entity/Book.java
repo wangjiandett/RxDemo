@@ -1,7 +1,9 @@
 package com.moa.rxdemo.base.db.entity;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -14,11 +16,14 @@ import android.support.annotation.NonNull;
     @ForeignKey(entity = User.class,
         parentColumns = "id",
         childColumns ="uid",
-        onDelete = ForeignKey.CASCADE)})
+        onDelete = ForeignKey.CASCADE)},
+        indices = {@Index(value = "uid")}
+        )
 public class Book {
     @PrimaryKey
     @NonNull
     public String bookid;
+    @ColumnInfo(name = "uid")
     public String uid;
     public String bookname;
     public String date;

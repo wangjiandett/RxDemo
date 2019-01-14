@@ -17,6 +17,11 @@ buildscript {
 
 allprojects {
     repositories {
+
+        //maven仓库组地址  nexus /run 启动本地maven私服
+//        maven{
+//            url "http://192.168.0.107:8082/repository/rxdemos_group/"
+//        }
         google()
         jcenter()
     }

@@ -54,6 +54,11 @@
             android:id="@+id/action_2_h5"
             app:destination="@+id/h5_activity"
             />
+
+        <action
+            android:id="@+id/action_2_recycler"
+            app:destination="@+id/recycler_fragment"
+            />
     </fragment>
 
     <fragment
@@ -80,6 +85,11 @@
         android:id="@+id/checkable_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.CheckAbleFragment"
         tools:layout="@layout/tt_fragment_checkable"/>
+
+    <fragment
+        android:id="@+id/recycler_fragment"
+        android:name="com.moa.rxdemo.mvp.view.demons.recycler.RecyclerViewFragment"
+        tools:layout="@layout/tt_fragment_recycler"/>
 
     <!--此处测试mvvm中的加载方式-->
     <fragment

@@ -8,10 +8,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 
 import com.moa.rxdemo.base.Config;
@@ -151,5 +153,9 @@ public class AppUtils {
             activity.startActivityForResult(intent, CROP_REQUEST_CODE);
         }
     }
-    
+
+
+    public static Drawable getDrawable(Context context, int resid){
+        return ContextCompat.getDrawable(context, resid);
+    }
 }

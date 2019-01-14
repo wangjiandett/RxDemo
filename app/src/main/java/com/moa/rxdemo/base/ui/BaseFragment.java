@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.moa.rxdemo.utils.ToastUtils;
 
 /**
- * 类或文件描述
+ * BaseFragment基类
  * <p>
  * Created by：wangjian on 2017/12/22 13:55
  */
