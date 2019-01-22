@@ -1,6 +1,8 @@
 
 # 项目地址：https://github.com/wangjiandett/RxDemo
 
+android app快速开发，只需在此基础上做相应功能修改即可：
+
 # 项目功能和结构介绍：
 
 base目录：
