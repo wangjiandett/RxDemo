@@ -21,7 +21,8 @@ public class App extends Application {
     
     // 用于缓存当前所有的activity
     private static final ArrayList<WeakReference<Activity>> activityList = new ArrayList<>();
-    
+    // 是否正在结束所有activity
+    private static boolean isFinishingAll;
     private static App instance;
     
     @Override
@@ -45,18 +46,22 @@ public class App extends Application {
     }
     
     public static void removeActivity(Activity activity) {
-        for (WeakReference<Activity> reference : activityList) {
-            if (reference != null) {
-                if (reference.get() == activity) {
-                    activityList.remove(reference);
-                    // 此处必须跳出，不然报错
-                    break;
+        // 防止调用finishAllActivity时调用此处，导致activityList数据不一致异常
+        if(!isFinishingAll){
+            for (WeakReference<Activity> reference : activityList) {
+                if (reference != null) {
+                    if (reference.get() == activity) {
+                        activityList.remove(reference);
+                        // 此处必须跳出，不然报错
+                        break;
+                    }
                 }
             }
         }
     }
     
     public static void finishAllActivity() {
+        isFinishingAll = true;
         for (WeakReference<Activity> reference : activityList) {
             if (reference != null) {
                 Activity activity = reference.get();
@@ -67,6 +72,7 @@ public class App extends Application {
         }
     
         activityList.clear();
+        isFinishingAll = false;
     }
     
     // 以下2个方法获得对room数据库管理是实例

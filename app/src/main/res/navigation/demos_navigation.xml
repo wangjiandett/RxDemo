@@ -59,6 +59,11 @@
             android:id="@+id/action_2_recycler"
             app:destination="@+id/recycler_fragment"
             />
+
+        <action
+            android:id="@+id/action_2_recycler_refresh"
+            app:destination="@+id/recycler_refresh_fragment"
+            />
     </fragment>
 
     <fragment
@@ -88,7 +93,12 @@
 
     <fragment
         android:id="@+id/recycler_fragment"
-        android:name="com.moa.rxdemo.mvp.view.demons.recycler.RecyclerViewFragment"
+        android:name="com.moa.rxdemo.mvp.view.demons.recycler.RecyclerViewManagerFragment"
+        tools:layout="@layout/tt_fragment_recycler"/>
+
+    <fragment
+        android:id="@+id/recycler_refresh_fragment"
+        android:name="com.moa.rxdemo.mvp.view.demons.recycler.RefreshRecyclerFragment"
         tools:layout="@layout/tt_fragment_recycler"/>
 
     <!--此处测试mvvm中的加载方式-->

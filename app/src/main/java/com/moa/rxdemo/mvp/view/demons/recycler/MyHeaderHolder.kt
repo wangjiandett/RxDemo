@@ -1,9 +1,11 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.moa.rxdemo.R
 import com.moa.rxdemo.view.recycler.RecyclerHolder
+import com.moa.rxdemo.view.recycler.Status
 
 /**
  * 类或文件描述
@@ -11,17 +13,17 @@ import com.moa.rxdemo.view.recycler.RecyclerHolder
  * Created by：wangjian on 2019/1/9 11:33
  */
 
-open class MyRecyclerHolder(view: View): RecyclerHolder<Data>(view){
+class MyHeaderHolder(view: View) : RecyclerHolder<String>(view) {
 
 
     private lateinit var textView: TextView
+    lateinit var progressBar: ProgressBar
 
     override fun initView() {
-        textView = getView(R.id.tv_text)
+        textView = this.getView(R.id.tv_text)
     }
 
-    override fun bind(data: Data) {
-        textView.text = data.data
+    override fun bind(data: String?) {
+        textView.text = "header:$data"
     }
-
 }

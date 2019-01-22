@@ -1,4 +1,4 @@
-package com.moa.rxdemo.view;
+package com.moa.rxdemo.view.recycler;
 
 
 import android.content.Context;
@@ -134,11 +134,15 @@ public class LinearDividerItemDecoration extends RecyclerView.ItemDecoration {
             // -and-last-view-on-itemdecoration
             int lastPosition = state.getItemCount() - 1;
             int position = parent.getChildAdapterPosition(view);
-            if (showLastDivider || position < lastPosition) {
-                // item view 距离下面的view间距是divider的高度
-                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+            if (position == lastPosition) {
+                if (showLastDivider) {
+                    // item view 距离下面的view间距是divider的高度
+                    outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+                } else {
+                    outRect.set(0, 0, 0, 0);
+                }
             } else {
-                outRect.set(0, 0, 0, 0);
+                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
             }
         } else {
             int lastPosition = state.getItemCount() - 1;

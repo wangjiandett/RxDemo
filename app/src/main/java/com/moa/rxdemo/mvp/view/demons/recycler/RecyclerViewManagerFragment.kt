@@ -1,15 +1,13 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
-import android.graphics.drawable.GradientDrawable
 import android.support.v7.widget.*
 import android.view.View
-import android.widget.TextView
 import com.moa.rxdemo.R
 import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.view.GridDividerItemDecoration
+import com.moa.rxdemo.view.recycler.GridDividerItemDecoration
 import com.moa.rxdemo.utils.AppUtils
 import com.moa.rxdemo.utils.Randoms
-import com.moa.rxdemo.view.LinearDividerItemDecoration
+import com.moa.rxdemo.view.recycler.LinearDividerItemDecoration
 
 /**
  * 类或文件描述
@@ -17,10 +15,10 @@ import com.moa.rxdemo.view.LinearDividerItemDecoration
  * Created by：wangjian on 2019/1/9 14:14
  */
 
-class RecyclerViewFragment : BaseFragment() {
+open class RecyclerViewManagerFragment : BaseFragment() {
 
     private lateinit var recyclerView: RecyclerView
-    lateinit var adapter: MyRecyclerAdapter
+    lateinit var adapter: ManagerAdapter
 
     override fun getLayoutId(): Int {
         return R.layout.tt_fragment_recycler
@@ -54,28 +52,21 @@ class RecyclerViewFragment : BaseFragment() {
         view.findViewById<View>(R.id.btn_staggered_vertical).setOnClickListener {
             setStaggeredManager(StaggeredGridLayoutManager.VERTICAL)
         }
-
-//        var text = TextView(activity)
-//        text.text = "headerview"
-//        adapter.headerView = text
-//
-//        text = TextView(activity)
-//        text.text = "footerview"
-//        adapter.footerView = text
     }
 
-    val list = arrayListOf<String>()
+    val list = arrayListOf<Data>()
 
     override fun initData() {
 
-        adapter = MyRecyclerAdapter()
+        adapter = ManagerAdapter()
+        adapter.isEnableEmptyView = true
 
         for (index in 1..20) {
             val random = Randoms.randomInt()
-            list.add("这是第$index $random")
+            list.add(Data("这是第$index $random"))
         }
 
-        adapter.dataList = list
+        adapter.data = list
 
         adapter.setOnItemClickListener { view, position, data ->
             showToast("item click $data, position:$position")
@@ -88,7 +79,7 @@ class RecyclerViewFragment : BaseFragment() {
         setGridManager(LinearLayoutManager.HORIZONTAL)
     }
 
-    private fun setLinearManager(orientation: Int) {
+    public fun setLinearManager(orientation: Int) {
 
         val layoutManager = LinearLayoutManager(context, orientation, false)
         // 系统默认分割线样式,不支持网状
@@ -101,29 +92,32 @@ class RecyclerViewFragment : BaseFragment() {
         updateDataView(divider, layoutManager)
     }
 
-    private fun setGridManager(orientation: Int) {
+    public fun setGridManager(orientation: Int) {
 
         val layoutManager = GridLayoutManager(context, 3, orientation, false)
         // 网状分割线
         val divider = GridDividerItemDecoration(activity)
+        divider.setEnableEmptyView(true)
         // 自定义分割线样式
         divider.setDrawable(AppUtils.getDrawable(context, R.drawable.tt_recycler_divider))
 
         updateDataView(divider, layoutManager)
     }
 
-    private fun setStaggeredManager(orientation: Int) {
+    public fun setStaggeredManager(orientation: Int) {
 
         // 瀑布流由于item有时不是按照顺序排列，导致分割线绘制会有问题
         val layoutManager = StaggeredGridLayoutManager(3, orientation)
         // 网状分割线
         val divider = GridDividerItemDecoration(activity)
+        divider.setEnableEmptyView(true)
         // 自定义分割线样式
         divider.setDrawable(AppUtils.getDrawable(context, R.drawable.tt_recycler_divider))
         updateDataView(divider, layoutManager)
     }
 
     private fun updateDataView(divider: RecyclerView.ItemDecoration, layoutManager: RecyclerView.LayoutManager) {
+        // 移除已有的divider防止重复添加
         if (recyclerView.itemDecorationCount > 0) {
             recyclerView.removeItemDecorationAt(0)
         }

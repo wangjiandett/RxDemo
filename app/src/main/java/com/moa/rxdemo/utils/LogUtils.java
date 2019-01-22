@@ -64,7 +64,7 @@ public class LogUtils {
      * @return
      */
     private static String getLog(String msg) {
-        return TAG + " [" + getFileLineMethod() + "] " + msg;
+        return " [" + getFileLineMethod() + "] " + msg;
     }
     
     public static void v(String msg) {

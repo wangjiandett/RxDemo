@@ -15,6 +15,10 @@
     <color name="toolbar_bg_press">#3F519a</color>
     <color name="toolbar_bg_normal">#3F51B5</color>
 
+    <!--tt_toolbar-->
+    <color name="list_item_bg_press">#d8d8d8</color>
+    <color name="list_item_bg_normal">@color/white</color>
+
 
     <color name="font_hint">#989898</color>
 
