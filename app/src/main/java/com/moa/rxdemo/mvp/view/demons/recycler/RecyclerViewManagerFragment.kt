@@ -107,7 +107,7 @@ open class RecyclerViewManagerFragment : BaseFragment() {
     public fun setStaggeredManager(orientation: Int) {
 
         // 瀑布流由于item有时不是按照顺序排列，导致分割线绘制会有问题
-        val layoutManager = StaggeredGridLayoutManager(3, orientation)
+        val layoutManager = StaggeredGridLayoutManager(2, orientation)
         // 网状分割线
         val divider = GridDividerItemDecoration(activity)
         divider.setEnableEmptyView(true)

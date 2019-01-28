@@ -16,7 +16,7 @@ class DispatcherFragment : BaseFragment() {
         return R.layout.tt_fragment_dispatcher;
     }
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
         view?.let {
             // handler异步执行

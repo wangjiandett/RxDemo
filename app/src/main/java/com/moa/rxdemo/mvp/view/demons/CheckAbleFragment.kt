@@ -25,7 +25,7 @@ class CheckAbleFragment : BaseListFragment<String>() {
         return R.layout.tt_fragment_samples;
     }
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
         listView = view?.findViewById(R.id.lv_list) as ListView;
         bindAdapter(listView)

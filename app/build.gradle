@@ -53,14 +53,14 @@ android {
         }
     }
 
+    // 以下多维度支持
+    // https://developer.android.google.cn/studio/build/build-variants#flavor-dimensions
+    flavorDimensions("default")
     // 以下多渠道支持
-    flavorDimensions "default"
-
     productFlavors {
 
         // 正式渠道包
         Online {
-
         }
     }
 

@@ -31,7 +31,7 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
         return R.layout.tt_fragment_samples;
     }
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
         listView = view?.findViewById<ListView>(R.id.lv_list) as ListView;
         bindAdapter(listView)
@@ -74,6 +74,8 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
                 SampleItem(ViewModeFragment::class.java.simpleName, R.id.action_2_view_model),
                 SampleItem(RecyclerViewManagerFragment::class.java.simpleName, R.id.action_2_recycler),
                 SampleItem(RefreshRecyclerFragment::class.java.simpleName, R.id.action_2_recycler_refresh),
+                SampleItem(ViewPagerFragment::class.java.simpleName, R.id.action_2_view_pager),
+                SampleItem(ViewFlipperFragment::class.java.simpleName, R.id.action_2_view_flipper),
 
                 // activity
                 SampleItem(CropImageActivity::class.java.simpleName, R.id.action_2_crop),

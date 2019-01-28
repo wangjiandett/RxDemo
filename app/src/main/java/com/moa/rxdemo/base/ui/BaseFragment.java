@@ -2,6 +2,7 @@ package com.moa.rxdemo.base.ui;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -64,7 +65,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * init layout view
      */
-    protected void initView(View view) {
+    protected void initView(@NonNull View view) {
     }
     
     /**

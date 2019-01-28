@@ -39,7 +39,7 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         return R.layout.tt_fragment_swipe_refresh
     }
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
         presenter = SwipePresenter(this, SwipeModelImpl())
 

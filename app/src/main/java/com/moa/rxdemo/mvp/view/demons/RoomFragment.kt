@@ -30,7 +30,7 @@ class RoomFragment: BaseFragment(){
     }
 
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
 
         listView = view!!.findViewById<ListView>(R.id.lv_list);

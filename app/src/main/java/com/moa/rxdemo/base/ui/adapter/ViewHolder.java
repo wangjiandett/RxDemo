@@ -23,4 +23,8 @@ public abstract class ViewHolder<T> {
     public void unbind(boolean full) {
 
     }
+
+    public View getLayout(Context context, int layoutId){
+        return View.inflate(context, layoutId, null);
+    }
 }

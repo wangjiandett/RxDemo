@@ -17,7 +17,7 @@ class ViewsFragment : BaseFragment() {
         return R.layout.tt_fragment_views;
     }
 
-    override fun initView(view: View?) {
+    override fun initView(view: View) {
         super.initView(view)
         view?.let {
 

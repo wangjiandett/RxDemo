@@ -234,7 +234,8 @@ public class GridDividerItemDecoration extends RecyclerView.ItemDecoration {
 
         // 处理显示empty的情况
         if(enableEmptyView){
-            if(hasHeader && itemAdapterPosition == 1 || !hasHeader && itemAdapterPosition == 0){
+            if((hasHeader && childCount == 2 && itemAdapterPosition == 1)// header 和 empty 同时显示
+               || !hasHeader && childCount == 1 && itemAdapterPosition == 0){// 只显示empty
                 outRect.set(0, 0, 0, 0);
             }
         }
