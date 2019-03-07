@@ -1,12 +1,9 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.moa.baselib.view.recycler.RecyclerAdapter
+import com.moa.baselib.view.recycler.RecyclerHolder
 import com.moa.rxdemo.R
-import com.moa.rxdemo.view.recycler.IData
-import com.moa.rxdemo.view.recycler.RecyclerAdapter
-import com.moa.rxdemo.view.recycler.RecyclerHolder
 
 /**
  * 类或文件描述

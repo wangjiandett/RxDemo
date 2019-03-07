@@ -9,13 +9,13 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import cn.bingoogolapple.qrcode.core.QRCodeView
+import com.moa.baselib.base.ui.BaseActivity
+import com.moa.baselib.base.ui.H5Activity
+import com.moa.baselib.utils.LogUtils
+import com.moa.baselib.utils.ScreenUtils
+import com.moa.baselib.utils.matisse.GifSizeFilter
+import com.moa.baselib.utils.matisse.Glide4Engine
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseActiivty
-import com.moa.rxdemo.base.ui.H5Activity
-import com.moa.rxdemo.utils.LogUtils
-import com.moa.rxdemo.utils.ScreenUtils
-import com.moa.rxdemo.utils.matisse.GifSizeFilter
-import com.moa.rxdemo.utils.matisse.Glide4Engine
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.filter.Filter
@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.tt_activity_scan.*
  * Created by：wangjian on 2019/1/4 10:14
  */
 
-class ScanActivity : BaseActiivty(), QRCodeView.Delegate {
+class ScanActivity : BaseActivity(), QRCodeView.Delegate {
 
     private val REQUEST_CODE_CHOOSE = 23
 

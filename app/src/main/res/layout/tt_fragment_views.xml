@@ -9,16 +9,16 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <com.moa.rxdemo.view.RoundButton
+    <com.moa.baselib.view.RoundButton
         android:id="@+id/btn_round_corner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_61beff"
+        android:background="@color/tt_color_61beff"
         android:focusable="false"
         android:radius="20dp"
         android:text="椭圆按钮"
         android:textAllCaps="false"
-        app:bordersColor="@color/black"
+        app:bordersColor="@color/tt_black"
         app:bordersWidth="5dp"
         />
 
@@ -29,7 +29,7 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <com.moa.rxdemo.view.SwitchButton
+        <com.moa.baselib.view.SwitchButton
             android:id="@+id/btn_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -43,5 +43,13 @@
             android:textAllCaps="false"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_show_dialog"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show dialog"
+        android:textAllCaps="false"/>
 
 </LinearLayout>

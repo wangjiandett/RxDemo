@@ -1,10 +1,11 @@
 package com.moa.rxdemo.mvp.view.demons
 
 import android.view.View
+import com.moa.baselib.base.ui.BaseFragment
+import com.moa.baselib.utils.DialogUtils
+import com.moa.baselib.utils.LogUtils
+import com.moa.baselib.view.SwitchButton
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.utils.LogUtils
-import com.moa.rxdemo.view.SwitchButton
 
 /**
  * dispatcher 使用demo
@@ -19,7 +20,7 @@ class ViewsFragment : BaseFragment() {
 
     override fun initView(view: View) {
         super.initView(view)
-        view?.let {
+        view.let {
 
 
             // 测试没有回调的 switchButton
@@ -31,6 +32,10 @@ class ViewsFragment : BaseFragment() {
 
             view.findViewById<View>(R.id.btn_toogle).setOnClickListener{
                 switchButton.toggleNoEvent()
+            }
+
+            view.findViewById<View>(R.id.btn_show_dialog).setOnClickListener{
+               DialogUtils.showCenterDialog(context, R.layout.tt_dialog_view)
             }
         }
     }

@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
 import android.widget.TextView
+import com.moa.baselib.base.ui.BaseListFragment
+import com.moa.baselib.base.ui.adapter.ViewHolder
+import com.moa.baselib.view.swipetoloadlayou.OnLoadMoreListener
+import com.moa.baselib.view.swipetoloadlayou.OnRefreshListener
+import com.moa.baselib.view.swipetoloadlayou.SwipeToLoadLayout
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseListFragment
-import com.moa.rxdemo.base.ui.adapter.ViewHolder
 import com.moa.rxdemo.mvp.bean.SwipeItem
 import com.moa.rxdemo.mvp.contract.SwipeContract
 import com.moa.rxdemo.mvp.model.SwipeModelImpl
 import com.moa.rxdemo.mvp.presenter.SwipePresenter
-import com.moa.rxdemo.view.swipetoloadlayou.OnLoadMoreListener
-import com.moa.rxdemo.view.swipetoloadlayou.OnRefreshListener
-import com.moa.rxdemo.view.swipetoloadlayou.SwipeToLoadLayout
 
 /**
  * SwipeRefresh view 使用demo
@@ -43,13 +43,13 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         super.initView(view)
         presenter = SwipePresenter(this, SwipeModelImpl())
 
-        view?.let {
+        view.let {
             swipeLoadLayout = it.findViewById(R.id.swipe_layout)
             // 设置上拉下拉监听器
             swipeLoadLayout.setOnRefreshListener(this)
             swipeLoadLayout.setOnLoadMoreListener(this)
 
-            gridView = it.findViewById(R.id.swipe_target)
+            gridView = it.findViewById(R.id.tt_swipe_target)
             bindAdapter(gridView)
         }
     }

@@ -1,0 +1,26 @@
+<resources>
+
+    <!--网络异常-->
+    <string name="tt_error_net">Eet error</string>
+    <string name="tt_error_parse">Data parse error</string>
+    <string name="tt_error_connect">Connect fail</string>
+    <string name="tt_error_ssl">Certification error</string>
+    <string name="tt_error_data_error">Data error</string>
+    <string name="tt_error_unknow">UnKnown error</string>
+
+    <!--格式化时间-->
+    <string name="tt_date_format_y_m_d_H_M_en">yyyy/MM/dd  HH:mm</string>
+    <string name="tt_date_format_y_m_d_H_M">yyyy/MM/dd HH:mm</string>
+    <string name="tt_date_format_m_d">MM/dd</string>
+    <string name="tt_date_format_H_M">HH:mm</string>
+    <string name="tt_date_format_torr">tomorrow</string>
+    <string name="tt_date_format_yest">yesterday</string>
+
+    <!--下拉刷新使用-->
+    <string name="tt_swipe_pull_to_refresh">Pull to refresh</string>
+    <string name="tt_swipe_release_to_refresh">Loose to refresh</string>
+    <string name="tt_swipe_refreshing">Refreshing…</string>
+    <string name="tt_swipe_refresh_complete">This is the latest version</string>
+    <string name="tt_swipe_onload_data_hint">Loading&#8230;</string>
+
+</resources>

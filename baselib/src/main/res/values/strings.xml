@@ -1,0 +1,26 @@
+<resources>
+
+    <!--网络异常-->
+    <string name="tt_error_net">网络错误</string>
+    <string name="tt_error_parse">数据异常，解析错误</string>
+    <string name="tt_error_connect">网络连接失败</string>
+    <string name="tt_error_ssl">证书验证失败</string>
+    <string name="tt_error_data_error">数据异常</string>
+    <string name="tt_error_unknow">未知错误</string>
+
+    <!--格式化时间-->
+    <string name="tt_date_format_y_m_d_H_M_en">yyyy/MM/dd  HH:mm</string>
+    <string name="tt_date_format_y_m_d_H_M">yyyy年MM月dd日 HH:mm</string>
+    <string name="tt_date_format_m_d">MM月dd日</string>
+    <string name="tt_date_format_H_M">HH:mm</string>
+    <string name="tt_date_format_torr">明天</string>
+    <string name="tt_date_format_yest">昨天</string>
+
+    <!--下拉刷新使用-->
+    <string name="tt_swipe_pull_to_refresh">下拉刷新</string>
+    <string name="tt_swipe_release_to_refresh">松开刷新</string>
+    <string name="tt_swipe_refreshing">刷新中…</string>
+    <string name="tt_swipe_refresh_complete">已经是最新了</string>
+    <string name="tt_swipe_onload_data_hint">正在加载数据&#8230;</string>
+
+</resources>

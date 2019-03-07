@@ -12,10 +12,10 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.moa.baselib.base.ui.BaseFragment;
+import com.moa.baselib.utils.ScreenUtils;
+import com.moa.baselib.view.pager.ScrollerViewPager;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.base.ui.BaseFragment;
-import com.moa.rxdemo.utils.ScreenUtils;
-import com.moa.rxdemo.view.pager.ScrollerViewPager;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

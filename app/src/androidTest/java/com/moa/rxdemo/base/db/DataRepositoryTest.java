@@ -2,9 +2,11 @@ package com.moa.rxdemo.base.db;
 
 
 import com.moa.rxdemo.App;
-import com.moa.rxdemo.base.db.entity.Book;
-import com.moa.rxdemo.base.db.entity.User;
-import com.moa.rxdemo.base.db.entity.UserAndBook;
+import com.moa.rxdemo.db.DataRepository;
+import com.moa.rxdemo.db.TestData;
+import com.moa.rxdemo.db.entity.Book;
+import com.moa.rxdemo.db.entity.User;
+import com.moa.rxdemo.db.entity.UserAndBook;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,14 +46,14 @@ public class DataRepositoryTest {
     
     @Test
     public void insertUser() {
-        repository.insertUser(TestData.INSTANCE.getUser());
+        repository.insertUser(TestData.getUser());
     }
     
     @Test
     public void insertBooks() {
         // 需要先执行insertUser
         for (UserAndBook userAndBook : userAndBooks) {
-            repository.insertBooks(TestData.INSTANCE.getBooks(userAndBook.user.id));
+            repository.insertBooks(TestData.getBooks(userAndBook.user.id));
         }
     }
     

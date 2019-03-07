@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.moa.baselib.view.swipetoloadlayou.header.TaskRefreshHeaderView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/onload_hint_text"
+        style="@style/tt_onload_hint_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="24dp"
+        android:text="@string/tt_swipe_onload_data_hint" />
+</com.moa.baselib.view.swipetoloadlayou.header.TaskRefreshHeaderView>

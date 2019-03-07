@@ -8,22 +8,21 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 
-import com.moa.rxdemo.base.net.ApiService;
-import com.moa.rxdemo.base.net.Apis;
-import com.moa.rxdemo.base.net.BaseResponse;
-import com.moa.rxdemo.base.net.exception.ExceptionHandle;
-import com.moa.rxdemo.base.net.exception.ResponeException;
-import com.moa.rxdemo.base.net.exception.ServerException;
-import com.moa.rxdemo.utils.LogUtils;
+import com.moa.baselib.base.net.BaseResponse;
+import com.moa.baselib.base.net.exception.ExceptionHandle;
+import com.moa.baselib.base.net.exception.ResponeException;
+import com.moa.baselib.base.net.exception.ServerException;
+import com.moa.baselib.utils.LogUtils;
 
-import static com.moa.rxdemo.mvvm.base.LoadState.STATE_FAIL;
-import static com.moa.rxdemo.mvvm.base.LoadState.STATE_LOADING;
-import static com.moa.rxdemo.mvvm.base.LoadState.STATE_SUCCESS;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DefaultObserver;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.moa.rxdemo.mvvm.base.LoadState.STATE_FAIL;
+import static com.moa.rxdemo.mvvm.base.LoadState.STATE_LOADING;
+import static com.moa.rxdemo.mvvm.base.LoadState.STATE_SUCCESS;
 
 
 /**
@@ -38,27 +37,25 @@ public abstract class BaseViewModel<Response> extends ViewModel {
      */
     private static final int SUCCESS_CODE = 200;
     
-    protected Apis apis;
-    
     // 响应数据
     private LiveData<ResponseData<Response>> mResponseLiveData;
     // 请求数据
     private MutableLiveData<Object> mRequestLiveData;
     
     public BaseViewModel() {
-        // 获取api
-        this.apis = ApiService.getApis();
-        
         // 设置请求参数
         this.mRequestLiveData = new MutableLiveData<>();
         
         // 设置响应
-        this.mResponseLiveData = Transformations.switchMap(mRequestLiveData, requestParams -> {
-            if (getRequest(requestParams) != null) {
-                return request(requestParams, getRequest(requestParams));
-            }
-            else {
-                return new MutableLiveData<>();
+        this.mResponseLiveData = Transformations.switchMap(mRequestLiveData, new android.arch.core.util.Function<Object, LiveData<ResponseData<Response>>>() {
+            @Override
+            public LiveData<ResponseData<Response>> apply(Object requestParams) {
+                if (getRequest(requestParams) != null) {
+                    return request(requestParams, getRequest(requestParams));
+                }
+                else {
+                    return new MutableLiveData<>();
+                }
             }
         });
     }
@@ -99,15 +96,15 @@ public abstract class BaseViewModel<Response> extends ViewModel {
                                                               Observable<BaseResponse<Response>> observable) {
         
         // 封装响应数据
-        MutableLiveData<ResponseData<Response>> dataMutableLiveData = new MutableLiveData<>();
+        final MutableLiveData<ResponseData<Response>> dataMutableLiveData = new MutableLiveData<>();
         
-        ResponseData responseData = new ResponseData();
+        final ResponseData<Response> responseData = new ResponseData<Response>();
         // 带回请求参数，如同一个ViewModel中多个请求，可在响应中做response区分
         responseData.request = request;
         
         observable.subscribeOn(Schedulers.io())//
             .observeOn(AndroidSchedulers.mainThread())//
-            .map(new ResultFilter<>())//
+            .map(new ResultFilter<Response>())//
             .subscribe(new DefaultObserver<Response>() {
                 
                 @Override

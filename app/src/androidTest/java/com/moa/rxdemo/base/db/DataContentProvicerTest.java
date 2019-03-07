@@ -11,8 +11,10 @@ import android.net.Uri;
 import android.os.RemoteException;
 import android.support.test.InstrumentationRegistry;
 
-import com.moa.rxdemo.base.db.entity.Student;
-import com.moa.rxdemo.utils.Randoms;
+import com.moa.baselib.utils.Randoms;
+import com.moa.rxdemo.db.DataContentProvicer;
+import com.moa.rxdemo.db.TestData;
+import com.moa.rxdemo.db.entity.Student;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -55,7 +57,7 @@ public class DataContentProvicerTest {
     
     @Test
     public void delete() {
-        Student student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        Student student = TestData.getStudent(Randoms.randomInt() + "");
         Uri uri = contentResolver.insert(DataContentProvicer.URI_STUDENT, Student.toContentValues(student));
         int id2 = contentResolver.delete(uri, null, null);
         assertEquals(id2, 1);
@@ -63,7 +65,7 @@ public class DataContentProvicerTest {
     
     @Test
     public void update() {
-        Student student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        Student student = TestData.getStudent(Randoms.randomInt() + "");
         Uri uri = contentResolver.insert(DataContentProvicer.URI_STUDENT, Student.toContentValues(student));
         
         // Uri uriUpdate = Uri.withAppendedPath(DataContentProvicer.URI_STUDENT, student.bookid);
@@ -77,7 +79,7 @@ public class DataContentProvicerTest {
     @Test
     public void insert() {
         
-        Student student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        Student student = TestData.getStudent(Randoms.randomInt() + "");
         Uri uri = contentResolver.insert(DataContentProvicer.URI_STUDENT, Student.toContentValues(student));
         long id = ContentUris.parseId(uri);
         
@@ -92,7 +94,7 @@ public class DataContentProvicerTest {
         ContentValues[] values = new ContentValues[10];
         
         for (int i = 0; i < 10; i++) {
-            Student student = TestData.INSTANCE.getStudent(Randoms.randomInt() + i + "");
+            Student student = TestData.getStudent(Randoms.randomInt() + i + "");
             values[i] = Student.toContentValues(student);
         }
         
@@ -107,17 +109,17 @@ public class DataContentProvicerTest {
         
         // 测试批量操作
         ArrayList<ContentProviderOperation> operations = new ArrayList<>();
-        Student student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        Student student = TestData.getStudent(Randoms.randomInt() + "");
         // 1插入操作
         operations.add(ContentProviderOperation.newInsert(DataContentProvicer.URI_STUDENT)
             .withValues(Student.toContentValues(student)).build());
         
-        student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        student = TestData.getStudent(Randoms.randomInt() + "");
         // 2插入操作
         operations.add(ContentProviderOperation.newInsert(DataContentProvicer.URI_STUDENT)
             .withValues(Student.toContentValues(student)).build());
     
-        student = TestData.INSTANCE.getStudent(Randoms.randomInt() + "");
+        student = TestData.getStudent(Randoms.randomInt() + "");
         // 3插入操作
         operations.add(ContentProviderOperation.newInsert(DataContentProvicer.URI_STUDENT)
             .withValues(Student.toContentValues(student)).build());

@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.moa.baselib.base.ui.BaseListFragment
+import com.moa.baselib.base.ui.H5Activity
+import com.moa.baselib.base.ui.adapter.ViewHolder
+import com.moa.baselib.utils.PermissionHelper
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseListFragment
-import com.moa.rxdemo.base.ui.H5Activity
-import com.moa.rxdemo.base.ui.adapter.ViewHolder
 import com.moa.rxdemo.mvp.view.demons.recycler.RecyclerViewManagerFragment
 import com.moa.rxdemo.mvp.view.demons.recycler.RefreshRecyclerFragment
 import com.moa.rxdemo.mvvm.view.ViewModeFragment
-import com.moa.rxdemo.utils.PermissionHelper
 
 /**
  * 类或文件描述
@@ -33,7 +33,7 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
 
     override fun initView(view: View) {
         super.initView(view)
-        listView = view?.findViewById<ListView>(R.id.lv_list) as ListView;
+        listView = view.findViewById<ListView>(R.id.lv_list) as ListView;
         bindAdapter(listView)
 
         listView.setOnItemClickListener { parent, view, position, id ->

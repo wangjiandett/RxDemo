@@ -1,20 +1,26 @@
 package com.moa.rxdemo.mvvm.view;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.moa.baselib.base.ui.BaseListFragment;
+import com.moa.baselib.base.ui.adapter.ViewHolder;
+import com.moa.baselib.utils.LogUtils;
+import com.moa.baselib.utils.ToastUtils;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.base.ui.BaseListFragment;
-import com.moa.rxdemo.base.ui.adapter.ViewHolder;
 import com.moa.rxdemo.mvp.bean.SwipeItem;
 import com.moa.rxdemo.mvvm.base.LoadState;
+import com.moa.rxdemo.mvvm.base.ResponseData;
 import com.moa.rxdemo.mvvm.viewmodel.SwipeViewModel;
-import com.moa.rxdemo.utils.LogUtils;
-import com.moa.rxdemo.utils.ToastUtils;
+
+import java.util.List;
 
 /**
  * mvvm方式调用接口,实现数据回调
@@ -41,14 +47,14 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
     @Override
     protected void initData() {
         // mvvm 加载方式
-        SwipeViewModel swipeViewModel = ViewModelProviders.of(this).get(SwipeViewModel.class);
+        final SwipeViewModel swipeViewModel = ViewModelProviders.of(this).get(SwipeViewModel.class);
         
         // 1。监听数据变化
-        swipeViewModel.getResponse().observe(this, swipeItems -> {
-            
-            LogUtils.d("request:" + swipeItems.request);
-            
-            if (swipeItems != null) {
+        swipeViewModel.getResponse().observe(this, new Observer<ResponseData<List<SwipeItem>>>() {
+            @Override
+            public void onChanged(@Nullable ResponseData<List<SwipeItem>> swipeItems) {
+                LogUtils.d("request:" + swipeItems.request);
+
                 // 加载状态回调
                 // 可在此处控制加载框的显示隐藏
                 switch (swipeItems.loadStatus.status) {
@@ -77,8 +83,11 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
         // 2。加载数据
         swipeViewModel.sendRequest(null);
         
-        listView.setOnItemClickListener((parent, view1, position, id) -> {
-            swipeViewModel.sendRequest(position + 1);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                swipeViewModel.sendRequest(position + 1);
+            }
         });
     }
     

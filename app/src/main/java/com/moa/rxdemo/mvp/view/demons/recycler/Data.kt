@@ -1,6 +1,6 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
-import com.moa.rxdemo.view.recycler.IData
+import com.moa.baselib.view.recycler.IData
 
 class Data(var data: String) : IData {
 

@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="b_AppTheme" parent="tt_BaseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/tt_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/tt_colorPrimaryDark</item>
+        <item name="colorAccent">@color/tt_colorAccent</item>
+    </style>
+
+</resources>

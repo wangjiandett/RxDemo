@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="tt_BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--toobar 弹出框样式-->
+    <style name="tt_PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!--弹出框字体颜色-->
+        <item name="android:textColorPrimary">?attr/colorPrimary</item>
+        <!--弹出框背景颜色-->
+        <item name="android:colorBackground">@color/tt_white</item>
+        <!--设置Menu菜单的背景色 -->
+        <item name="android:itemBackground">@color/tt_white</item>
+        <!--用于控制menu显示-->
+        <item name="actionOverflowMenuStyle">@style/tt_OverflowMenuStyle</item>
+    </style>
+
+    <!--上拉加载更多字体样式-->
+    <style name="tt_onload_hint_text">
+        <item name="android:textColor">@color/tt_font_hint</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!--toobar样式-->
+    <style name="tt_AppBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/tt_title_bar_size</item>
+    </style>
+
+    <style name="tt_OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!--把该属性改为false即可使menu位置位于toolbar之下-->
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <!--加载中对话窗提示-->
+    <style name="tt_progressDialog" parent="@style/tt_CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--dialog样式-->
+    <style name="tt_CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <!--底部显示隐藏动画-->
+    <style name="tt_AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/tt_push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/tt_push_bottom_out</item>
+    </style>
+
+
+</resources>

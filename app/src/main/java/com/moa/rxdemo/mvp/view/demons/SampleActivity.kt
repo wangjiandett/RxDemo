@@ -3,15 +3,15 @@ package com.moa.rxdemo.mvp.view.demons
 import android.content.Context
 import android.content.Intent
 import androidx.navigation.Navigation
+import com.moa.baselib.base.ui.BaseActivity
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseActiivty
 
 /**
  * 类或文件描述
  *
  * Created by：wangjian on 2018/12/24 14:23
  */
-class SampleActivity : BaseActiivty() {
+class SampleActivity : BaseActivity() {
 
     override fun getLayoutId(): Int {
         return R.layout.tt_activity_samples

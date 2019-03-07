@@ -1,15 +1,15 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.*
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.moa.baselib.base.ui.BaseFragment
+import com.moa.baselib.utils.AppUtils
+import com.moa.baselib.utils.Randoms
+import com.moa.baselib.view.recycler.GridDividerItemDecoration
+import com.moa.baselib.view.recycler.Status
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.utils.AppUtils
-import com.moa.rxdemo.utils.Randoms
-import com.moa.rxdemo.view.recycler.GridDividerItemDecoration
-import com.moa.rxdemo.view.recycler.LinearDividerItemDecoration
-import com.moa.rxdemo.view.recycler.Status
 
 /**
  * 类或文件描述
@@ -47,7 +47,7 @@ class RefreshRecyclerFragment : BaseFragment() {
         divider.setDrawable(AppUtils.getDrawable(context, R.drawable.tt_recycler_divider))
 
 
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = layoutManager as RecyclerView.LayoutManager?
         // 由于adapter中onAttachedToRecyclerView和onViewAttachedToWindow需要获取manager所以要放到
         // 设置manager后面执行，才能获取到
         recyclerView.adapter = adapter
@@ -82,7 +82,7 @@ class RefreshRecyclerFragment : BaseFragment() {
             refresh()
         }
 
-        adapter.setOnItemClickListener {view, postion, data->
+        adapter.setOnItemClickListener { _, _, _ ->
             adapter.clear()
         }
     }

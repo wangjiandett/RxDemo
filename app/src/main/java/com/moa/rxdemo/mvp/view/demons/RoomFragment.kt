@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
+import com.moa.baselib.base.ui.BaseFragment
+import com.moa.baselib.base.ui.adapter.HolderAdapter
+import com.moa.baselib.base.ui.adapter.ViewHolder
 import com.moa.rxdemo.App
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.db.TestData
-import com.moa.rxdemo.base.db.entity.Student
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.base.ui.adapter.HolderAdapter
-import com.moa.rxdemo.base.ui.adapter.ViewHolder
+import com.moa.rxdemo.db.TestData
+import com.moa.rxdemo.db.entity.Student
 
 /**
  * 数据库操作实例
@@ -33,7 +33,7 @@ class RoomFragment: BaseFragment(){
     override fun initView(view: View) {
         super.initView(view)
 
-        listView = view!!.findViewById<ListView>(R.id.lv_list);
+        listView = view.findViewById<ListView>(R.id.lv_list);
         samplesAdapter = SamplesAdapter(activity as Context?);
         listView.adapter = samplesAdapter;
 

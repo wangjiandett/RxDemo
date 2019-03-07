@@ -44,7 +44,7 @@
             android:launchMode="singleTask"/>
 
         <activity
-            android:name=".base.ui.H5Activity"
+            android:name="com.moa.baselib.base.ui.H5Activity"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -67,8 +67,8 @@
         </service>
 
         <provider
+            android:name=".db.DataContentProvicer"
             android:authorities="con.moa.rxdemo.DataContentProvider"
-            android:name=".base.db.DataContentProvicer"
             android:exported="false"/>
 
         <!--用作文件分享使用，兼容7.0-->

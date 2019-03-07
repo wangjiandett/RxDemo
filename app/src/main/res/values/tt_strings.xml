@@ -8,29 +8,6 @@
 
     <string name="back">返回</string>
 
-
-    <!--网络异常-->
-    <string name="error_net">网络错误</string>
-    <string name="error_parse">数据异常，解析错误</string>
-    <string name="error_connect">网络连接失败</string>
-    <string name="error_ssl">证书验证失败</string>
-    <string name="error_data_error">数据异常</string>
-    <string name="error_unknow">未知错误</string>
-
-    <string name="date_format_y_m_d_H_M_en">yyyy/MM/dd  HH:mm</string>
-    <string name="date_format_y_m_d_H_M">yyyy年MM月dd日 HH:mm</string>
-    <string name="date_format_m_d">MM月dd日</string>
-    <string name="date_format_H_M">HH:mm</string>
-    <string name="date_format_torr">明天</string>
-    <string name="date_format_yest">昨天</string>
-
-    <!--下拉刷新使用-->
-    <string name="swipe_pull_to_refresh">下拉刷新</string>
-    <string name="swipe_release_to_refresh">松开刷新</string>
-    <string name="swipe_refreshing">刷新中…</string>
-    <string name="swipe_refresh_complete">已经是最新了</string>
-    <string name="swipe_onload_data_hint">正在加载数据&#8230;</string>
-
     <!--多语言-->
     <string name="multi_language">设置系统语言</string>
 

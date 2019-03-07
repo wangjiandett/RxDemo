@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def dep = rootProject.ext.dependencies
+    def testDep = rootProject.ext.testDependencies
+
+    // test
+    testImplementation testDep["junit"]
+    androidTestImplementation testDep["test-runner"]
+    androidTestImplementation testDep["espresso-core"]
+
+    //ARouter
+    api dep["arouter"]
+
+    //android support
+    api dep["support-appcompat-v7"]
+    api dep["support-v4"]
+    api dep["support-design"]
+    api dep["support-preference-v7"]
+    api dep["support-constraint-layout"]
+
+    //Retrofit
+    api dep["retrofit2"]
+    //Gson converter
+    api dep["converter-gson"]
+    //Okhttp
+    api dep["okhttp3"]
+    //Okhttp logging
+    api dep["okhttp3-logging"]
+    //RxJava　adapter
+    api dep["retrofit2-rxjava2-adapter"]
+    // rxandroid
+    api dep["rxAndroid"]
+
+    // badgeview
+    api dep["badgeview"]
+
+    // image selector
+    // https://github.com/zhihu/Matisse
+    api dep["matisse"]
+    api dep["glide"]
+
+    // zxing
+    // https://github.com/bingoogolapple/BGAQRCode-Android
+    api dep["zxing"]
+    api dep["qrcode-core"]
+}

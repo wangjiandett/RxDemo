@@ -1,8 +1,8 @@
 package com.moa.rxdemo.mvp.view.demons
 
 import android.view.View
+import com.moa.baselib.base.ui.BaseFragment
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
 import com.moa.rxdemo.mvp.view.demons.pager.PagersFragment
 
 /**

@@ -1,6 +1,6 @@
 package com.moa.rxdemo.mvp.model;
 
-import com.moa.rxdemo.base.net.ValueCallback;
+import com.moa.baselib.base.net.ValueCallback;
 import com.moa.rxdemo.mvp.bean.SwipeItem;
 
 import java.util.List;

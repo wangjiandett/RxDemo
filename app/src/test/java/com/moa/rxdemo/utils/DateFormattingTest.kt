@@ -2,7 +2,8 @@ package com.moa.rxdemo.utils
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.moa.rxdemo.base.db.entity.Book
+import com.moa.baselib.utils.DateFormatting
+import com.moa.rxdemo.db.entity.Book
 import org.junit.Test
 import java.util.*
 

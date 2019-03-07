@@ -1,0 +1,2 @@
+plugin messenger的作用：
+用作滴滴plugindemo和宿主app之间的通讯使用

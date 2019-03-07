@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="@string/app_name"
+        android:text="@string/a_app_name"
         android:textSize="40dp"/>
 
 </RelativeLayout>

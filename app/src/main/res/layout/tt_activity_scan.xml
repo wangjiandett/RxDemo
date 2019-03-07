@@ -9,7 +9,7 @@
 
     <include layout="@layout/tt_toolbar"/>
 
-    <com.moa.rxdemo.utils.zxing.ZXingView
+    <com.moa.baselib.utils.zxing.ZXingView
         android:id="@+id/mZXingView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,7 +19,7 @@
         app:qrcv_barcodeRectHeight="120dp"
         app:qrcv_borderColor="@android:color/white"
         app:qrcv_borderSize="1dp"
-        app:qrcv_cornerColor="@color/colorPrimaryDark"
+        app:qrcv_cornerColor="@color/tt_colorPrimaryDark"
         app:qrcv_cornerDisplayType="center"
         app:qrcv_cornerLength="20dp"
         app:qrcv_cornerSize="3dp"
@@ -37,7 +37,7 @@
         app:qrcv_maskColor="#33FFFFFF"
         app:qrcv_qrCodeTipText="将二维码/条码放入框内，即可自动扫描"
         app:qrcv_rectWidth="200dp"
-        app:qrcv_scanLineColor="@color/colorPrimaryDark"
+        app:qrcv_scanLineColor="@color/tt_colorPrimaryDark"
         app:qrcv_scanLineMargin="0dp"
         app:qrcv_scanLineSize="0.5dp"
         app:qrcv_tipTextColor="@android:color/white"
@@ -50,7 +50,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/list_divider"
+        android:background="@color/tt_list_divider"
         android:orientation="horizontal">
 
         <TextView

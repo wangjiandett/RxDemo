@@ -1,15 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppTheme" parent="tt_BaseTheme">
         <!--titlebar color-->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/tt_colorPrimary</item>
         <!--statebar color-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/tt_colorPrimaryDark</item>
+        <item name="colorAccent">@color/tt_colorAccent</item>
 
     </style>
 
@@ -20,7 +17,7 @@
 
     <!--toobar样式-->
     <style name="AppTheme.AppBar" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:textSize">@dimen/title_bar_size</item>
+        <item name="android:textSize">@dimen/tt_title_bar_size</item>
     </style>
 
     <!--欢迎页面样式，防止图片拉伸-->
@@ -31,68 +28,14 @@
         <item name="android:windowIsTranslucent">false</item>
     </style>
 
-    <!--toobar 弹出框样式-->
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-        <!--弹出框字体颜色-->
-        <item name="android:textColorPrimary">?attr/colorPrimary</item>
-        <!--弹出框背景颜色-->
-        <item name="android:colorBackground">@color/white</item>
-        <!--设置Menu菜单的背景色 -->
-        <item name="android:itemBackground">@color/white</item>
-        <!--用于控制menu显示-->
-        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
-    </style>
-
-    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
-        <!--把该属性改为false即可使menu位置位于toolbar之下-->
-        <item name="overlapAnchor">false</item>
-    </style>
-
-    <!--加载中对话窗提示-->
-    <style name="MoaProgressDialog" parent="@style/CustomDialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
-
-    <!--dialog样式-->
-    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-    </style>
-
-    <!--底部显示隐藏动画-->
-    <style name="AnimBottom" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/tt_action_push_bottom_in</item>
-        <item name="android:windowExitAnimation">@anim/tt_action_push_bottom_out</item>
-    </style>
-
-    <style name="onload_hint_text">
-        <item name="android:textColor">@color/font_hint</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
-
     <style name="bottom_normal_text">
-        <item name="android:textColor">@color/font_hint</item>
+        <item name="android:textColor">@color/tt_font_hint</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="bottom_selected_text">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/tt_colorPrimary</item>
         <item name="android:textSize">14sp</item>
     </style>
-
-    <!-- 自定义圆角button -->
-    <declare-styleable name="RoundButton">
-        <attr name="android:radius"/>
-        <attr name="bordersWidth" format="reference|dimension"/>
-        <attr name="bordersColor" format="reference|color"/>
-        <!--<attr name="pressedBgColor" format="reference|color"/>-->
-        <!--<attr name="checkedBgColor" format="reference|color"/>-->
-        <!--<attr name="selectedBgColor" format="reference|color"/>-->
-    </declare-styleable>
 
 </resources>

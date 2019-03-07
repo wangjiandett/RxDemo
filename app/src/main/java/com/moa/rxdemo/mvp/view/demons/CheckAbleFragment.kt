@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
+import com.moa.baselib.base.ui.BaseListFragment
+import com.moa.baselib.base.ui.adapter.ViewHolder
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseListFragment
-import com.moa.rxdemo.base.ui.adapter.ViewHolder
 import java.util.*
 
 /**
@@ -27,15 +27,15 @@ class CheckAbleFragment : BaseListFragment<String>() {
 
     override fun initView(view: View) {
         super.initView(view)
-        listView = view?.findViewById(R.id.lv_list) as ListView;
+        listView = view.findViewById(R.id.lv_list) as ListView;
         bindAdapter(listView)
 
         // ListView.CHOICE_MODE_SINGLE 此处使用多选或单选模式都可以
         listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
-        listView.setOnItemClickListener({ parent, view, position, id ->
+        listView.setOnItemClickListener { parent, view, position, id ->
             getCheckItems();
-        })
+        }
     }
 
     override fun initData() {

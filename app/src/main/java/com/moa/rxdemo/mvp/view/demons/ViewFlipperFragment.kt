@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.AdapterViewFlipper
 import android.widget.TextView
 import android.widget.ViewFlipper
+import com.moa.baselib.base.ui.BaseFragment
+import com.moa.baselib.base.ui.adapter.HolderAdapter
+import com.moa.baselib.base.ui.adapter.ViewHolder
+import com.moa.baselib.utils.Randoms
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.base.ui.adapter.HolderAdapter
-import com.moa.rxdemo.base.ui.adapter.ViewHolder
-import com.moa.rxdemo.utils.Randoms
 
 class ViewFlipperFragment : BaseFragment() {
 

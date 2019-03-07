@@ -1,8 +1,9 @@
 package com.moa.rxdemo.mvp.model;
 
 
-import com.moa.rxdemo.base.net.BaseModel;
-import com.moa.rxdemo.base.net.ValueCallback;
+import com.moa.baselib.base.net.BaseModel;
+import com.moa.baselib.base.net.ValueCallback;
+import com.moa.rxdemo.App;
 import com.moa.rxdemo.mvp.bean.SwipeItem;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class SwipeModelImpl extends BaseModel<List<SwipeItem>> implements ISwipe
     @Override
     public void loadSwipeList(int page, ValueCallback<List<SwipeItem>> callback) {
         this.mCallback = callback;
-        request(apis.getSwipeList(page));
+        request(App.getInterfaces().getSwipeList(page));
     }
     @Override
     protected void onShowProgress() {// optional

@@ -2,6 +2,7 @@ package com.moa.rxdemo.mvp.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -11,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.moa.baselib.RoutePath;
+import com.moa.baselib.base.ui.BaseActivity;
+import com.moa.baselib.utils.PermissionHelper;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.base.ui.BaseActiivty;
-import com.moa.rxdemo.utils.PermissionHelper;
 
 import java.util.HashMap;
 
@@ -25,7 +28,8 @@ import q.rorbin.badgeview.QBadgeView;
  * <p>
  * Created by：wangjian on 2017/12/20 16:25
  */
-public class MainActivity extends BaseActiivty {
+@Route(path = RoutePath.MODULE_APP_ENTER_ACTIVITY)
+public class MainActivity extends BaseActivity {
     
     public static final String FRAG_TAG_HOME = "fragment.home";
     public static final String FRAG_TAG_BOARD = "fragment.board";
@@ -63,22 +67,25 @@ public class MainActivity extends BaseActiivty {
         // 早期版本需要自行设置参考https://blog.csdn.net/qq_19973845/article/details/82151204
         // app:labelVisibilityMode="labeled"
         // bottomNavigationView.setLabelVisibilityMode(1);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    switchFragment(FRAG_TAG_HOME);
-                    return true;
-                case R.id.navigation_dashboard:
-                    switchFragment(FRAG_TAG_BOARD);
-                    return true;
-                case R.id.navigation_demos:
-                    switchFragment(FRAG_TAG_NOTICE);
-                    return true;
-                case R.id.navigation_settings:
-                    switchFragment(FRAG_TAG_SETTING);
-                    return true;
-                default:
-                    return false;
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        switchFragment(FRAG_TAG_HOME);
+                        return true;
+                    case R.id.navigation_dashboard:
+                        switchFragment(FRAG_TAG_BOARD);
+                        return true;
+                    case R.id.navigation_demos:
+                        switchFragment(FRAG_TAG_NOTICE);
+                        return true;
+                    case R.id.navigation_settings:
+                        switchFragment(FRAG_TAG_SETTING);
+                        return true;
+                    default:
+                        return false;
+                }
             }
         });
         

@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
+import com.moa.baselib.base.ui.BaseFragment;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.base.ui.BaseFragment;
 
 public class PageItemFragment extends BaseFragment {
 
@@ -33,7 +33,7 @@ public class PageItemFragment extends BaseFragment {
 
         Bundle bundle = getArguments();
         if(bundle != null){
-            String index = bundle.getString(EXTRA_DATA);
+            final String index = bundle.getString(EXTRA_DATA);
             int [] colors = new int[]{Color.LTGRAY, Color.DKGRAY, Color.GRAY, Color.YELLOW, Color.CYAN};
             view.setBackgroundColor(colors[Integer.parseInt(index)]);
 

@@ -1,0 +1,65 @@
+if (isLibrary.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                // ARouter 使用的配置
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isLibrary.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/app/AndroidManifest.xml'
+            }
+        }
+    }
+
+    // 此处定义资源前缀，每个资源都要做相应修改，防止多module之间出现资源冲突
+    resourcePrefix "a_"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dep = rootProject.ext.dependencies
+    def testDep = rootProject.ext.testDependencies
+    // test
+    testImplementation testDep["junit"]
+    androidTestImplementation testDep["test-runner"]
+    androidTestImplementation testDep["espresso-core"]
+
+    // 基础项目library
+    implementation project(':baselib')
+
+    //ARouter compiler
+    annotationProcessor dep["arouter-compiler"]
+}

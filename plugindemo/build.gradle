@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.moa.plugindemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("keystore/test.keystore")
+            storePassword "test123456"
+            keyAlias "test"
+            keyPassword "test123456"
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            // 混淆时，可keep plugin messenger中的实体类防止无法识别
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def dep = rootProject.ext.dependencies
+    def testDep = rootProject.ext.testDependencies
+
+    // test
+    testImplementation testDep["junit"]
+    androidTestImplementation testDep["test-runner"]
+    androidTestImplementation testDep["espresso-core"]
+
+    //android support
+    implementation dep["support-appcompat-v7"]
+    implementation dep["support-constraint-layout"]
+
+    // 滴滴插件组件通讯lib
+    implementation project(":plugin_messenger")
+//    implementation(name: 'lib2', ext: 'aar')
+}
+
+
+apply plugin: 'com.didi.virtualapk.plugin'
+
+virtualApk {
+    // Attention:::packageId 范围 0x02 - 0x7E
+    packageId = 0x6f // the package id of Resources.  // 插件资源id，避免资源id冲突
+    targetHost = '../app' // the path of application module in host project. // 宿主工程的路径
+    applyHostMapping = true //optional, default value: true. // 插件编译时是否启用应用宿主的apply mapping
+}

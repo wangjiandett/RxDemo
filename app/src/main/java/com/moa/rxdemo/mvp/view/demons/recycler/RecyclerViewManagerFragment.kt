@@ -1,13 +1,16 @@
 package com.moa.rxdemo.mvp.view.demons.recycler
 
-import android.support.v7.widget.*
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import com.moa.baselib.base.ui.BaseFragment
+import com.moa.baselib.utils.AppUtils
+import com.moa.baselib.utils.Randoms
+import com.moa.baselib.view.recycler.GridDividerItemDecoration
+import com.moa.baselib.view.recycler.LinearDividerItemDecoration
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseFragment
-import com.moa.rxdemo.view.recycler.GridDividerItemDecoration
-import com.moa.rxdemo.utils.AppUtils
-import com.moa.rxdemo.utils.Randoms
-import com.moa.rxdemo.view.recycler.LinearDividerItemDecoration
 
 /**
  * 类或文件描述

@@ -2,10 +2,9 @@ package com.moa.rxdemo.mvp.view.demons.recycler
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.moa.baselib.view.recycler.HFRecyclerAdapter
+import com.moa.baselib.view.recycler.RecyclerHolder
 import com.moa.rxdemo.R
-import com.moa.rxdemo.view.recycler.HFRecyclerAdapter
-import com.moa.rxdemo.view.recycler.RecyclerAdapter
-import com.moa.rxdemo.view.recycler.RecyclerHolder
 
 class MyHFRecyclerAdapter(recyclerView: RecyclerView, var fragment: RefreshRecyclerFragment) : HFRecyclerAdapter<Data>(recyclerView) {
 

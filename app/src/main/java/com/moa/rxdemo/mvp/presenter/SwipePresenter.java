@@ -1,6 +1,6 @@
 package com.moa.rxdemo.mvp.presenter;
 
-import com.moa.rxdemo.base.net.SimpleValueCallback;
+import com.moa.baselib.base.net.SimpleValueCallback;
 import com.moa.rxdemo.mvp.bean.SwipeItem;
 import com.moa.rxdemo.mvp.contract.SwipeContract;
 import com.moa.rxdemo.mvp.model.ISwipeModel;

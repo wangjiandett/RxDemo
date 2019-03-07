@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.moa.module_a" >
+
+    <application>
+
+        <!--module a 中的application，需要在此处注册之后，才能自动在应用的application中同步初始化-->
+        <meta-data android:name="com.moa.module_a.AApplication" android:value="COMPONENT_APPLICATION"/>
+
+        <activity android:name=".MainActivity"/>
+
+    </application>
+
+</manifest>

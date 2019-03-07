@@ -139,7 +139,7 @@
 
     <activity
         android:id="@+id/h5_activity"
-        android:name="com.moa.rxdemo.base.ui.H5Activity"
+        android:name="com.moa.baselib.base.ui.H5Activity"
         />
 
 </navigation>

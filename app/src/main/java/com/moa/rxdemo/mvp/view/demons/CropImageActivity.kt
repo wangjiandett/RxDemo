@@ -6,13 +6,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
+import com.moa.baselib.base.ui.BaseActivity
+import com.moa.baselib.utils.AppUtils
+import com.moa.baselib.utils.Files
+import com.moa.baselib.utils.PermissionHelper
+import com.moa.baselib.utils.matisse.GifSizeFilter
+import com.moa.baselib.utils.matisse.Glide4Engine
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.ui.BaseActiivty
-import com.moa.rxdemo.utils.AppUtils
-import com.moa.rxdemo.utils.Files
-import com.moa.rxdemo.utils.PermissionHelper
-import com.moa.rxdemo.utils.matisse.GifSizeFilter
-import com.moa.rxdemo.utils.matisse.Glide4Engine
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.filter.Filter
@@ -26,7 +26,8 @@ import java.io.IOException
  *
  * Created by：wangjian on 2019/1/2 17:05
  */
-class CropImageActivity : BaseActiivty() {
+class CropImageActivity : BaseActivity() {
+
 
     private val CROP_REQUEST_CODE: Int = 1
     private val SELECT_REQUEST_CODE: Int = 2

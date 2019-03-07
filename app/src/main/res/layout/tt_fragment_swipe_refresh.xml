@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.moa.rxdemo.view.swipetoloadlayou.SwipeToLoadLayout
+    <com.moa.baselib.view.swipetoloadlayou.SwipeToLoadLayout
         android:id="@+id/swipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +16,7 @@
             android:id="@+id/swipe_refresh_header"
             layout="@layout/tt_layout_swipe_twitter_header"/>
 
-        <com.moa.rxdemo.view.ShowDividerGridView
+        <com.moa.baselib.view.ShowDividerGridView
             android:id="@+id/swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -27,6 +27,6 @@
             android:id="@+id/swipe_load_more_footer"
             layout="@layout/tt_layout_swipe_refresh_footer"/>
 
-    </com.moa.rxdemo.view.swipetoloadlayou.SwipeToLoadLayout>
+    </com.moa.baselib.view.swipetoloadlayou.SwipeToLoadLayout>
 
 </LinearLayout>

@@ -3,12 +3,9 @@ package com.moa.rxdemo.mvp.view.demons.recycler
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.moa.baselib.view.recycler.RecyclerHolder
+import com.moa.baselib.view.recycler.Status
 import com.moa.rxdemo.R
-import com.moa.rxdemo.utils.ToastUtils
-import com.moa.rxdemo.view.recycler.IData
-import com.moa.rxdemo.view.recycler.RecyclerAdapter
-import com.moa.rxdemo.view.recycler.RecyclerHolder
-import com.moa.rxdemo.view.recycler.Status
 
 /**
  * 类或文件描述

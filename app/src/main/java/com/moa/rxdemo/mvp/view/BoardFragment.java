@@ -14,8 +14,8 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 
+import com.moa.baselib.base.ui.BaseFragment;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.base.ui.BaseFragment;
 import com.moa.rxdemo.mvp.view.service.MyService;
 
 import static android.content.Context.BIND_AUTO_CREATE;

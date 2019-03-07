@@ -1,9 +1,9 @@
 package com.moa.rxdemo.mvp.view.demons
 
 import android.view.View
+import com.moa.baselib.base.dispatcher.Runtimes
+import com.moa.baselib.base.ui.BaseFragment
 import com.moa.rxdemo.R
-import com.moa.rxdemo.base.dispatcher.Runtimes
-import com.moa.rxdemo.base.ui.BaseFragment
 
 /**
  * dispatcher 使用demo
@@ -18,7 +18,7 @@ class DispatcherFragment : BaseFragment() {
 
     override fun initView(view: View) {
         super.initView(view)
-        view?.let {
+        view.let {
             // handler异步执行
             it.findViewById<View>(R.id.btn_sync_event).setOnClickListener {
                 Runtimes.dispatchNow {
