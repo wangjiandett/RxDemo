@@ -37,23 +37,24 @@ android app快速开发，只需在此基础上做相应功能修改即可快速
 ## 组件化需要解决的4类问题
 
 1. 组件之间的的交互问题
-**解决：**
-这里使用的是ARouter实现
+
+    **解决：**
+    这里使用的是ARouter实现
 
 2. 组件中要引用在application中初始化
 
-**解决：**
-这里使用在manifest中注册ComponentApplication的子类，之后在app中对manifest中的ComponentApplication子类进行过滤，统一进行回调对应的函数 
+    **解决：**
+    这里使用在manifest中注册ComponentApplication的子类，之后在app中对manifest中的ComponentApplication子类进行过滤，统一进行回调对应的函数 
 
 3. 组件之间的的资源引用冲突
 
-**解决：**
-在组件的build.gradle中添加resourcePrefix前缀，进行强制检测每个资源的加前缀特殊命名，防止资源冲突
+    **解决：**
+    在组件的build.gradle中添加resourcePrefix前缀，进行强制检测每个资源的加前缀特殊命名，防止资源冲突
 
 4. 重复引用库
 
-**解决：**
-如果module和app引用相同的库，在module中使用compileOnly或provided在app中使用implementation
+    **解决：**
+    如果module和app引用相同的库，在module中使用compileOnly或provided在app中使用implementation
 
 ### 三.baselib作为插件开发和组件开发的公共引用库，里面封装了常用的开发工具和功能
 大致功能介绍：
