@@ -1,11 +1,9 @@
 package com.moa.rxdemo.mvp.presenter;
 
-import com.moa.baselib.base.net.SimpleValueCallback;
-import com.moa.rxdemo.mvp.bean.SwipeItem;
+import com.moa.baselib.base.net.mvp.SimpleValueCallback;
+import com.moa.rxdemo.mvp.bean.ForecastBean;
 import com.moa.rxdemo.mvp.contract.SwipeContract;
 import com.moa.rxdemo.mvp.model.ISwipeModel;
-
-import java.util.List;
 
 /**
  * 类或文件描述
@@ -24,14 +22,14 @@ public class SwipePresenter implements SwipeContract.ISwipePresenter {
     }
     
     @Override
-    public void getSwipeList(int page) {
-        iSwipeModel.loadSwipeList(page, new SimpleValueCallback<List<SwipeItem>>(){
+    public void getSwipeList(int cityId) {
+        iSwipeModel.loadSwipeList(cityId, new SimpleValueCallback<ForecastBean.Data>(){
             @Override
-            public void onSuccess(List<SwipeItem> value) {
+            public void onSuccess(ForecastBean.Data value) {
                 super.onSuccess(value);
-                iSwipeView.onSuccess(value);
+                iSwipeView.onSuccess(value.forecast);
             }
-    
+
             @Override
             public void onFail(String msg) {
                 super.onFail(msg);

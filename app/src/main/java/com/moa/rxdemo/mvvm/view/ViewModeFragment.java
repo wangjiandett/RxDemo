@@ -1,9 +1,7 @@
 package com.moa.rxdemo.mvvm.view;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,22 +10,19 @@ import android.widget.TextView;
 
 import com.moa.baselib.base.ui.BaseListFragment;
 import com.moa.baselib.base.ui.adapter.ViewHolder;
+import com.moa.baselib.utils.GsonHelper;
 import com.moa.baselib.utils.LogUtils;
-import com.moa.baselib.utils.ToastUtils;
 import com.moa.rxdemo.R;
-import com.moa.rxdemo.mvp.bean.SwipeItem;
-import com.moa.rxdemo.mvvm.base.LoadState;
-import com.moa.rxdemo.mvvm.base.ResponseData;
-import com.moa.rxdemo.mvvm.viewmodel.SwipeViewModel;
-
-import java.util.List;
+import com.moa.rxdemo.mvp.bean.ForecastBean;
+import com.moa.baselib.base.net.mvvm.SimpleCallback;
+import com.moa.rxdemo.mvvm.viewmodel.SwipeModel;
 
 /**
  * mvvm方式调用接口,实现数据回调
  * <p>
  * Created by：wangjian on 2017/12/22 14:40
  */
-public class ViewModeFragment extends BaseListFragment<SwipeItem> {
+public class ViewModeFragment extends BaseListFragment<ForecastBean.Forecast> {
     
     private ListView listView;
     
@@ -47,69 +42,44 @@ public class ViewModeFragment extends BaseListFragment<SwipeItem> {
     @Override
     protected void initData() {
         // mvvm 加载方式
-        final SwipeViewModel swipeViewModel = ViewModelProviders.of(this).get(SwipeViewModel.class);
+        final SwipeModel swipeViewModel = ViewModelProviders.of(this).get(SwipeModel.class);
         
         // 1。监听数据变化
-        swipeViewModel.getResponse().observe(this, new Observer<ResponseData<List<SwipeItem>>>() {
+        swipeViewModel.getSwipeList(101220101).observe(this, new SimpleCallback<ForecastBean.Data>(this){
             @Override
-            public void onChanged(@Nullable ResponseData<List<SwipeItem>> swipeItems) {
-                LogUtils.d("request:" + swipeItems.request);
-
-                // 加载状态回调
-                // 可在此处控制加载框的显示隐藏
-                switch (swipeItems.loadStatus.status) {
-                    case LoadState.LOADED:
-                        // 隐藏载框  加载完成
-                        LogUtils.d("mvvm LOADED:");
-                        break;
-                    case LoadState.LOADING:
-                        // 显示加载框  加载中...
-                        LogUtils.d("mvvm LOADING:");
-                        break;
-                    case LoadState.LOADING_FAIL:
-                        // 加载失败
-                        ToastUtils.showToast(getActivity(), swipeItems.loadStatus.tipMsg);
-                        LogUtils.d("mvvm LOADING_FAIL:");
-                        break;
-                    case LoadState.LOADING_SUCCESS:
-                        // 加载成功
-                        LogUtils.d("mvvm LOADING_SUCCESS:");
-                        mHolderAdapter.setListAndNotify(swipeItems.response);
-                        break;
-                }
+            public void onSuccess(Object request, ForecastBean.Data data) {
+                LogUtils.d(GsonHelper.toJson(data));
+                mHolderAdapter.setListAndNotify(data.forecast);
             }
         });
-        
-        // 2。加载数据
-        swipeViewModel.sendRequest(null);
         
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                swipeViewModel.sendRequest(position + 1);
+                swipeViewModel.getSwipeList(101220101);
             }
         });
     }
     
     @Override
-    protected ViewHolder<SwipeItem> getViewHolder() {
+    protected ViewHolder<ForecastBean.Forecast> getViewHolder() {
         return new MyHolder();
     }
     
-    class MyHolder extends ViewHolder<SwipeItem> {
+    static class MyHolder extends ViewHolder<ForecastBean.Forecast> {
         
         private TextView tvText;
         
         @Override
-        public View init(SwipeItem data, ViewGroup viewGroup, Context context) {
+        public View init(ForecastBean.Forecast data, ViewGroup viewGroup, Context context) {
             View view = View.inflate(context, android.R.layout.simple_list_item_1, null);
             tvText = (TextView) view;
             return view;
         }
         
         @Override
-        public void bind(SwipeItem data, int position, Context context) {
-            tvText.setText(data.publishedAt);
+        public void bind(ForecastBean.Forecast data, int position, Context context) {
+            tvText.setText(data.week);
         }
     }
 }

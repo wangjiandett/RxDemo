@@ -1,6 +1,7 @@
 package com.moa.baselib.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -11,15 +12,18 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Process;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 
 import com.moa.baselib.base.Config;
 
 import java.io.File;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -159,4 +163,49 @@ public class AppUtils {
     public static Drawable getDrawable(Context context, int resid){
         return ContextCompat.getDrawable(context, resid);
     }
+
+    /**
+     * 判断是否主进程
+     * @param context 上下文
+     * @return true是主进程
+     */
+    public static boolean isMainProcess(Context context){
+       return isSameProcess(context, Process.myPid(), getMainProcessName(context));
+    }
+
+    /**
+     * 获取主进程名
+     * @param context 上下文
+     * @return 主进程名
+     */
+    public static String getMainProcessName(Context context){
+        try {
+            return context.getPackageManager().getApplicationInfo(context.getPackageName(), 0).processName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    /**
+     * 是否是相同进程
+     *
+     * @param context 上下文
+     * @param pid 进程id
+     * @param processName 进程名
+     * @return 是否是相同进程
+     */
+    public static boolean isSameProcess(Context context, int pid, String processName){
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> infos = manager.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo info : infos){
+            if(pid == info.pid && TextUtils.equals(info.processName, processName)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

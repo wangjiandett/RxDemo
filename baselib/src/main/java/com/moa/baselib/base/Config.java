@@ -15,7 +15,7 @@ public class Config {
 
     private static final String SP_KEY_MULTI_LANGUAGE = "sp_key_multi_language";
 
-    private static Config defaultInstance;
+    private static volatile Config defaultInstance;
     // 保存系统语言
     private Locale mSystemLocale = Locale.getDefault();
     // 当前语言

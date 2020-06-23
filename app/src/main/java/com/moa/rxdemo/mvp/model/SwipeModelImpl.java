@@ -1,12 +1,10 @@
 package com.moa.rxdemo.mvp.model;
 
 
-import com.moa.baselib.base.net.BaseModel;
-import com.moa.baselib.base.net.ValueCallback;
-import com.moa.rxdemo.App;
-import com.moa.rxdemo.mvp.bean.SwipeItem;
-
-import java.util.List;
+import com.moa.baselib.base.net.mvp.BaseModel;
+import com.moa.baselib.base.net.mvp.ValueCallback;
+import com.moa.rxdemo.mvp.bean.ForecastBean;
+import com.moa.rxdemo.net.ApiCreator;
 
 /**
  * load swipe list
@@ -14,12 +12,12 @@ import java.util.List;
  * <p>
  * Created by：wangjian on 2017/12/21 11:00
  */
-public class SwipeModelImpl extends BaseModel<List<SwipeItem>> implements ISwipeModel {
+public class SwipeModelImpl extends BaseModel<ForecastBean.Data> implements ISwipeModel {
     
     @Override
-    public void loadSwipeList(int page, ValueCallback<List<SwipeItem>> callback) {
+    public void loadSwipeList(int cityId, ValueCallback<ForecastBean.Data> callback) {
         this.mCallback = callback;
-        request(App.getInterfaces().getSwipeList(page));
+        request(ApiCreator.swipeInterfaces.getSwipeList(cityId));
     }
     @Override
     protected void onShowProgress() {// optional
@@ -32,7 +30,7 @@ public class SwipeModelImpl extends BaseModel<List<SwipeItem>> implements ISwipe
     }
     
     @Override
-    protected void onSuccess(List<SwipeItem> value) {
+    protected void onSuccess(ForecastBean.Data value) {
         mCallback.onSuccess(value);
     }
     

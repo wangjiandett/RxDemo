@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 格式化时间
@@ -25,6 +26,8 @@ public class DateFormatting {
     private static ThreadLocal<SimpleDateFormat> DATE_FORMATTER = new ThreadLocal<>();
     private static ThreadLocal<SimpleDateFormat> MONTH_FORMATTER = new ThreadLocal<>();
     private static ThreadLocal<Calendar> CALENDAR = new ThreadLocal<>();
+
+    private static Locale mLocale = Locale.getDefault();
     
     /**
      * 全格式化样式如：2018-12-18 11:11:41
@@ -94,12 +97,12 @@ public class DateFormatting {
         if (time == Long.MAX_VALUE) {
             return context.getString(R.string.tt_date_format_y_m_d_H_M);
         }
-        SimpleDateFormat sf = new SimpleDateFormat(ymdHM);
+        SimpleDateFormat sf = null;
         long differTime = new Date().getTime() - time;
         
         long d = differTime / (1000 * 60 * 60 * 24);// 天
         if (d <= -2) {// 具体时间
-            sf = new SimpleDateFormat(ymdHM);
+            sf = new SimpleDateFormat(ymdHM, mLocale);
             return sf.format(time);
         }
         else if (d == -1) {// 明天
@@ -107,14 +110,14 @@ public class DateFormatting {
             return context.getString(R.string.tt_date_format_torr);
         }
         else if (d == 0) {// 今天
-            sf = new SimpleDateFormat(HOUR_AND_MINUTE);
+            sf = new SimpleDateFormat(HOUR_AND_MINUTE, mLocale);
             return sf.format(new Date(time));
         }
         else if (d == 1) {// 昨天
             return context.getString(R.string.tt_date_format_yest);
         }
         else {// 具体时间
-            sf = new SimpleDateFormat(MONTH_AND_DAY);
+            sf = new SimpleDateFormat(MONTH_AND_DAY, mLocale);
             return sf.format(time);
         }
     }
@@ -140,7 +143,7 @@ public class DateFormatting {
     private static SimpleDateFormat getFullFormatter() {
         SimpleDateFormat res = FULL_FORMATTER.get();
         if (res == null) {
-            res = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            res = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", mLocale);
             FULL_FORMATTER.set(res);
         }
         return res;
@@ -149,7 +152,7 @@ public class DateFormatting {
     private static SimpleDateFormat getDateYearFormatter() {
         SimpleDateFormat res = DATE_YEAR_FORMATTER.get();
         if (res == null) {
-            res = new SimpleDateFormat("dd '%s' ''yy");
+            res = new SimpleDateFormat("dd '%s' ''yy", mLocale);
             DATE_YEAR_FORMATTER.set(res);
         }
         return res;
@@ -158,7 +161,7 @@ public class DateFormatting {
     private static SimpleDateFormat getMonthFormatter() {
         SimpleDateFormat res = MONTH_FORMATTER.get();
         if (res == null) {
-            res = new SimpleDateFormat("MMMM");
+            res = new SimpleDateFormat("MMMM", mLocale);
             MONTH_FORMATTER.set(res);
         }
         return res;
@@ -167,7 +170,7 @@ public class DateFormatting {
     private static SimpleDateFormat getDateFormatter() {
         SimpleDateFormat res = DATE_FORMATTER.get();
         if (res == null) {
-            res = new SimpleDateFormat("dd '%s'");
+            res = new SimpleDateFormat("dd '%s'", mLocale);
             DATE_FORMATTER.set(res);
         }
         return res;

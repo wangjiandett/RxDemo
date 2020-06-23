@@ -12,7 +12,7 @@ import cn.bingoogolapple.qrcode.core.QRCodeView
 import com.moa.baselib.base.ui.BaseActivity
 import com.moa.baselib.base.ui.H5Activity
 import com.moa.baselib.utils.LogUtils
-import com.moa.baselib.utils.ScreenUtils
+import com.moa.baselib.utils.DisplayUtils
 import com.moa.baselib.utils.matisse.GifSizeFilter
 import com.moa.baselib.utils.matisse.Glide4Engine
 import com.moa.rxdemo.R
@@ -66,7 +66,7 @@ class ScanActivity : BaseActivity(), QRCodeView.Delegate {
                             CaptureStrategy(true, "$packageName.android7.FileProvider"))
                     .maxSelectable(1)
                     .addFilter(GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-                    .gridExpectedSize(ScreenUtils.dp(120F))
+                    .gridExpectedSize(DisplayUtils.dip2px(120F))
                     .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
                     .thumbnailScale(0.85f)
                     // .imageEngine(new GlideEngine())  // for glide-V3

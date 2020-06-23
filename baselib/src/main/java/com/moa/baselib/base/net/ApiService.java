@@ -1,8 +1,8 @@
 package com.moa.baselib.base.net;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.moa.baselib.utils.GsonHelper;
 import com.moa.baselib.utils.LogUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -19,24 +19,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * <p>
  * Created by：wangjian on 2017/12/20 15:42
  */
-public class ApiService <T>{
+public class ApiService {
     
     
     private static final String TAG = "ApiService";
     // 请求超时时间20s
     private static final int DEFAULT_TIMEOUT = 20 * 1000;
-    private static final String DATA_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    
-    private T apiInterface;
+    private Retrofit mRetrofit;
 
-    public ApiService(Apis<T> apis) {
+    public ApiService(String baseUrl) {
 
         // 1 print log
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
                 try {
-                    String text = URLDecoder.decode(message, "utf-8");
+                    // 防止出现%号，解析异常
+                    String text = URLDecoder.decode(message.replaceAll("%(?![0-9a-fA-F]{2})", "%25") ,"UTF-8");
                     LogUtils.d(TAG, text);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
@@ -55,29 +54,29 @@ public class ApiService <T>{
             .readTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)//
             .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)//
             .addInterceptor(interceptor)//
-            //.addNetworkInterceptor(new HttpCacheInterceptor())//
-            //.cache(cache)//
+//            .addNetworkInterceptor(new HttpCacheInterceptor())//
+//            .cache(cache)//
             .build();
         
         // 4 gson
-        Gson gson = new GsonBuilder().setDateFormat(DATA_FORMAT).serializeNulls().create();
+        Gson gson = GsonHelper.gson;
         
-        Retrofit retrofit = new Retrofit.Builder()//
+        mRetrofit = new Retrofit.Builder()//
             .client(okHttpClient)//
             .addConverterFactory(GsonConverterFactory.create(gson))//
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//
-            .baseUrl(apis.getUrl())// url
+            .baseUrl(baseUrl)// base url
             .build();
-
-        this.apiInterface = retrofit.create(apis.getApiClass());
     }
 
     /**
-     * api接口实例
+     * 获取接口封装类
      *
-     * @return
+     * @param serviceClass 接口类
+     * @param <T> 封装类型
+     * @return 封装接口类型
      */
-    public T getApis() {
-        return apiInterface;
+    public <T> T getApis(Class<T> serviceClass) {
+        return mRetrofit.create(serviceClass);
     }
 }

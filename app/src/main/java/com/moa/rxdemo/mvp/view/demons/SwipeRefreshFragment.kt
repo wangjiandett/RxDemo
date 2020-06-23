@@ -11,7 +11,7 @@ import com.moa.baselib.view.swipetoloadlayou.OnLoadMoreListener
 import com.moa.baselib.view.swipetoloadlayou.OnRefreshListener
 import com.moa.baselib.view.swipetoloadlayou.SwipeToLoadLayout
 import com.moa.rxdemo.R
-import com.moa.rxdemo.mvp.bean.SwipeItem
+import com.moa.rxdemo.mvp.bean.ForecastBean
 import com.moa.rxdemo.mvp.contract.SwipeContract
 import com.moa.rxdemo.mvp.model.SwipeModelImpl
 import com.moa.rxdemo.mvp.presenter.SwipePresenter
@@ -21,7 +21,7 @@ import com.moa.rxdemo.mvp.presenter.SwipePresenter
  *
  * Created by：wangjian on 2018/12/22 13:14
  */
-class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipeView, OnRefreshListener, OnLoadMoreListener {
+class SwipeRefreshFragment : BaseListFragment<ForecastBean.Forecast>(), SwipeContract.ISwipeView, OnRefreshListener, OnLoadMoreListener {
 
     private lateinit var swipeLoadLayout: SwipeToLoadLayout
     private lateinit var gridView: GridView
@@ -60,7 +60,7 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
     }
 
     private fun loadSwipeList() {
-        presenter.getSwipeList(currentPage)
+        presenter.getSwipeList(101220101)
     }
 
     /**
@@ -81,7 +81,7 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         loadSwipeList()
     }
 
-    override fun onSuccess(itemList: MutableList<SwipeItem>?) {
+    override fun onSuccess(itemList: MutableList<ForecastBean.Forecast>?) {
         itemList?.let {
             if (currentPage == 1) {
                 swipeLoadLayout.isRefreshing = false
@@ -126,22 +126,22 @@ class SwipeRefreshFragment : BaseListFragment<SwipeItem>(), SwipeContract.ISwipe
         finishRefresh()
     }
 
-    override fun getViewHolder(): ViewHolder<SwipeItem> {
+    override fun getViewHolder(): ViewHolder<ForecastBean.Forecast> {
         return SamplesHolder()
     }
 
-    private class SamplesHolder : ViewHolder<SwipeItem>() {
+    private class SamplesHolder : ViewHolder<ForecastBean.Forecast>() {
 
         lateinit var tvText: TextView
 
-        override fun init(data: SwipeItem?, viewGroup: ViewGroup?, context: Context?): View {
+        override fun init(data: ForecastBean.Forecast?, viewGroup: ViewGroup?, context: Context?): View {
             val view = View.inflate(context, android.R.layout.simple_list_item_1, null)
             tvText = view as TextView
             return view
         }
 
-        override fun bind(data: SwipeItem?, position: Int, context: Context?) {
-            tvText.text = data!!.createdAt
+        override fun bind(data: ForecastBean.Forecast?, position: Int, context: Context?) {
+            tvText.text = data!!.week
         }
     }
 }

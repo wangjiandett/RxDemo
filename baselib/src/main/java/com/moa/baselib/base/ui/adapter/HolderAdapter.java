@@ -13,7 +13,9 @@ import java.util.List;
 /**
  * HodlderAdapter 实现ViewHolder复用
  *
- * @param <V>
+ * @param <V> 数据泛型
+ * <p>
+ * Created by：wangjian on 2017/12/22 13:55
  */
 public abstract class HolderAdapter<V> extends BaseAdapter {
     private HashSet<ViewHolder<V>> holders = new HashSet<ViewHolder<V>>();
@@ -24,48 +26,49 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
     protected HolderAdapter(Context context) {
         this.context = context;
     }
-    
+
     public void setList(List<V> list) {
         this.mList = list;
     }
-    
-    public void setListAndNotify(List<V> list){
+
+    public void setListAndNotify(List<V> list) {
         setList(list);
         notifyDataSetChanged();
     }
-    
+
     public List<V> getList() {
         return mList;
     }
-    
+
     @Override
     public int getCount() {
         return mList.size();
     }
-    
+
     @Override
-    public V getItem(int position){
+    public V getItem(int position) {
         return mList.get(position);
     }
-    
+
     @Override
     public long getItemId(int position) {
         return position;
     }
-    
+
     /**
      * ListView 或 GridView 调用<br/>
      * setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE)<br/>
      * setChoiceMode(AbsListView.CHOICE_MODE_SINGLE)<br/>
      * 时使用,({@link ListAdapter#hasStableIds()} == {@code true})<br/>
      * 重写此方法使getCheckedItemIds()有效
+     *
      * @return
      */
     @Override
     public boolean hasStableIds() {
         return true;
     }
-    
+
     @Override
     public final View getView(int position, View convertView, ViewGroup parent) {
 
@@ -99,7 +102,7 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
             holder.unbind(true);
         }
     }
-    
+
     protected void onBindViewHolder(ViewHolder<V> holder, V obj, int position, Context context) {
         holder.bind(obj, position, context);
     }

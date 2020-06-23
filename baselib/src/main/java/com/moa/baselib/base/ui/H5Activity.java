@@ -31,7 +31,6 @@ import java.io.Serializable;
  */
 public class H5Activity extends BaseActivity implements View.OnClickListener {
     
-    public static final String EXTRA_DATA = "EXTRA_DATA";
     private static String TAG = H5Activity.class.getSimpleName();
     
     public static final String EXTRA_TITLE = "title";

@@ -2,7 +2,6 @@ package com.moa.baselib.view.swipetoloadlayou;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -942,10 +941,10 @@ public class SwipeToLoadLayout extends ViewGroup {
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                         .getTop() < absListView.getPaddingTop());
             } else {
-                return ViewCompat.canScrollVertically(mTargetView, -1) || mTargetView.getScrollY() > 0;
+                return mTargetView.canScrollVertically( -1) || mTargetView.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mTargetListView, -1);
+            return mTargetListView.canScrollVertically( -1);
         }
     }
 
@@ -963,10 +962,10 @@ public class SwipeToLoadLayout extends ViewGroup {
                         && (absListView.getLastVisiblePosition() < absListView.getChildCount() - 1
                         || absListView.getChildAt(absListView.getChildCount() - 1).getBottom() > absListView.getPaddingBottom());
             } else {
-                return ViewCompat.canScrollVertically(mTargetView, 1) || mTargetView.getScrollY() < 0;
+                return mTargetView.canScrollVertically( 1) || mTargetView.getScrollY() < 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mTargetListView, 1);
+            return mTargetListView.canScrollVertically( 1);
         }
     }
 

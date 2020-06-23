@@ -30,12 +30,12 @@ public class ExceptionHandle {
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int GATEWAY_TIMEOUT = 504;
     
-    public static ResponeException handleException(Throwable e) {
-        ResponeException ex;
+    public static ResponseException handleException(Throwable e) {
+        ResponseException ex;
         Context context = BaseApp.getAppContext();
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
-            ex = new ResponeException(e, Error.HTTP_ERROR);
+            ex = new ResponseException(e, Error.HTTP_ERROR);
             switch (httpException.code()) {
                 case UNAUTHORIZED:
                 case FORBIDDEN:
@@ -53,32 +53,32 @@ public class ExceptionHandle {
         }
         else if (e instanceof ServerException) {
             ServerException resultException = (ServerException) e;
-            ex = new ResponeException(resultException, resultException.code);
+            ex = new ResponseException(resultException, resultException.code);
             ex.message = resultException.getMessage();
             return ex;
         }
         else if (e instanceof JsonParseException || e instanceof JSONException || e instanceof ParseException) {
-            ex = new ResponeException(e, Error.PARSE_ERROR);
+            ex = new ResponseException(e, Error.PARSE_ERROR);
             ex.message = context.getString(R.string.tt_error_parse);
             return ex;
         }
         else if (e instanceof ConnectException || e instanceof SocketTimeoutException || e instanceof UnknownHostException) {
-            ex = new ResponeException(e, Error.NETWORK_ERROR);
+            ex = new ResponseException(e, Error.NETWORK_ERROR);
             ex.message = context.getString(R.string.tt_error_connect);
             return ex;
         }
         else if (e instanceof javax.net.ssl.SSLHandshakeException) {
-            ex = new ResponeException(e, Error.SSL_ERROR);
+            ex = new ResponseException(e, Error.SSL_ERROR);
             ex.message = context.getString(R.string.tt_error_ssl);
             return ex;
         }
         else if (e instanceof IllegalArgumentException) {
-            ex = new ResponeException(e, Error.DATA_ERROR);
+            ex = new ResponseException(e, Error.DATA_ERROR);
             ex.message = context.getString(R.string.tt_error_data_error);
             return ex;
         }
         else {
-            ex = new ResponeException(e, Error.UNKNOWN);
+            ex = new ResponseException(e, Error.UNKNOWN);
             ex.message = context.getString(R.string.tt_error_unknow);
             return ex;
         }
@@ -88,7 +88,7 @@ public class ExceptionHandle {
     /**
      * 约定异常
      */
-    class Error {
+    static class Error {
         /**
          * 未知错误
          */

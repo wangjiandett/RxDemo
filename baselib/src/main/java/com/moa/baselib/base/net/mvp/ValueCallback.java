@@ -1,4 +1,4 @@
-package com.moa.baselib.base.net;
+package com.moa.baselib.base.net.mvp;
 
 /**
  * value call back

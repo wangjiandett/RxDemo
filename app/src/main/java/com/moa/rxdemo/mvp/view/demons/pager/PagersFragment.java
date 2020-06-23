@@ -13,7 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.moa.baselib.base.ui.BaseFragment;
-import com.moa.baselib.utils.ScreenUtils;
+import com.moa.baselib.utils.DisplayUtils;
 import com.moa.baselib.view.pager.ScrollerViewPager;
 import com.moa.rxdemo.R;
 
@@ -265,9 +265,9 @@ public class PagersFragment extends BaseFragment {
         radioGroup.removeAllViews();
         // 需要去除第一个和最后一个重复的item
         int count = adapter.getCount() - 2;
-        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(ScreenUtils.dp(10), ScreenUtils.dp(10));
-        params.leftMargin = ScreenUtils.dp(3);
-        params.rightMargin = ScreenUtils.dp(3);
+        RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(DisplayUtils.dip2px(10), DisplayUtils.dip2px(10));
+        params.leftMargin = DisplayUtils.dip2px(3);
+        params.rightMargin = DisplayUtils.dip2px(3);
 
         for (int i = 0; i < count; i++) {
             View view = View.inflate(getActivity(), R.layout.tt_item_radio, null);

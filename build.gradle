@@ -7,9 +7,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.5.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$rootProject.kotlin_version"
-        classpath 'com.didi.virtualapk:gradle:0.9.8.6'
+        //classpath 'com.didi.virtualapk:gradle:0.9.8.6'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -23,8 +23,14 @@ allprojects {
 //        maven{
 //            url "http://192.168.0.107:8082/repository/rxdemos_group/"
 //        }
-        google()
+        google()// 修改google的maven仓库位置，防止annotation库文件无法加载
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 

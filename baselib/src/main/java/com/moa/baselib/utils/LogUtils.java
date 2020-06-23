@@ -13,14 +13,16 @@ import java.util.Locale;
 
 /**
  * 日志管理文件
+ * <p>
+ * Created by：wangjian on 2017/12/22 14:40
  */
 public class LogUtils {
-    
+
     private static final String TAG = "LogUtils";
     private static Locale mLogLocale = Locale.CHINA;
-    
+
     private static final String WRITE_LOG_ENABLE = "write_log_enable";
-    
+
     /**
      * 日志文件生成日期
      */
@@ -29,7 +31,7 @@ public class LogUtils {
      * 日志文件写入时间
      */
     private static SimpleDateFormat LOGTIME = new SimpleDateFormat("HH:mm:ss ", mLogLocale);
-    
+
     /**
      * 默认可打印日志，后期根据是否release版本控制是否打印日志
      *
@@ -38,7 +40,7 @@ public class LogUtils {
     public static boolean isLoggable() {
         return true;
     }
-    
+
     /**
      * 是否可将日志写入文件
      *
@@ -47,7 +49,7 @@ public class LogUtils {
     public static boolean isWriteLogsEnable() {
         return SharePreUtils.getBoolean(BaseApp.getAppContext(), WRITE_LOG_ENABLE, false);
     }
-    
+
     /**
      * 日志写入文件开关
      *
@@ -56,8 +58,8 @@ public class LogUtils {
     public static void setWriteLogsEnable(boolean writeLogsEnable) {
         SharePreUtils.saveBoolean(BaseApp.getAppContext(), WRITE_LOG_ENABLE, writeLogsEnable);
     }
-    
-    
+
+
     /**
      * 拼接日志内容
      *
@@ -65,148 +67,142 @@ public class LogUtils {
      * @return
      */
     private static String getLog(String msg) {
-        return " [" + getFileLineMethod() + "] " + msg;
+        return getFileLineMethod() + msg;
     }
-    
+
     public static void v(String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
-            Log.v(getFileName(), log);
-            
+            Log.v(TAG, log);
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void v(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.v(tag, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void d(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.d(tag, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
-        
+
     }
-    
+
     public static void d(String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
-            Log.d(getFileName(), log);
-            
+            Log.d(TAG, log);
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void i(String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
-            Log.i(getFileName(), log);
-            
+            Log.i(TAG, log);
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void i(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.i(tag, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void w(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.w(tag, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
+
     public static void w(String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
-            Log.w(getFileName(), log);
-            
+            Log.w(TAG, log);
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(log, log);
             }
         }
     }
-    
-    
+
+
     public static void e(String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.e(TAG, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(TAG, log);
             }
         }
     }
-    
+
     public static void e(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);
             Log.e(tag, log);
-            
+
             if (isWriteLogsEnable()) {
                 writeLogMessage(tag, log);
             }
         }
     }
-    
+
     private static String getFileLineMethod() {
-        StackTraceElement traceElement = ((new Exception()).getStackTrace())[2];
-        StringBuffer toStringBuffer = new StringBuffer("[")//
-            .append(traceElement.getFileName())//
-            .append(" | ")//
-            .append(traceElement.getLineNumber())//
-            .append(" | ")//
-            .append(traceElement.getMethodName())//
-            .append("]");
-        
-        return toStringBuffer.toString();
-    }
-    
-    private static String getFileName() {
-        StackTraceElement traceElement = ((new Exception()).getStackTrace())[2];
-        String fileName = traceElement.getFileName();
-        int start = fileName.indexOf(".java");
-        if (start >= 0) {
-            fileName = fileName.substring(0, start);
+        StackTraceElement[] traceElements = ((new Exception()).getStackTrace());
+        String method = "";
+        if(traceElements.length > 4){
+            StackTraceElement traceElement = traceElements[4];
+            method = "[" +//
+                    traceElement.getFileName() +//
+                    " | " +//
+                    traceElement.getLineNumber() +//
+                    " | " +//
+                    traceElement.getMethodName() +//
+                    "] ";
         }
-        return fileName;
+
+        return method;
     }
-    
+
     public static void writeLogMessage(String tag, String msg) {
         writeLogMessage(null, tag, msg);
     }
-    
+
     /**
      * 打开日志文件并写入日志，此方法会绕过日志开关直接写文件
      *
@@ -218,27 +214,26 @@ public class LogUtils {
         Date date = new Date();
         String logDate = LOGFILE.format(date);
         String logMsg = //
-            logDate + " "//
-                + LOGTIME.format(date)//
-                + "[" + AppUtils.getVersion(BaseApp.getAppContext())//
-                + "] "//
-                + tag//
-                + " msg:\n\n"//
-                + msg;
-        
+                logDate + " "//
+                        + LOGTIME.format(date)//
+                        + "[" + AppUtils.getVersion(BaseApp.getAppContext()) + "] "//
+                        + tag//
+                        + " msg:\n\n"//
+                        + msg;
+
         // 拼接文件名
         fileName = TextUtils.isEmpty(fileName) ? "log" : fileName + "-" + logDate + ".txt";
-        
+
         // 写入文件
         FileUtil.writeMsg2File(logMsg, fileName, true);
     }
-    
+
     /**
      * 保存手机信息到日志中
      * 此方法在app打开的时候写入一次即可
      */
     public static void writePhoneInfo2File() {
-        
+
         String phoneInfo = "\n==============System Info==============\n" + "\n Product: " + Build.PRODUCT;
         phoneInfo += "\n CPU_ABI: " + Build.CPU_ABI;
         phoneInfo += "\n TAGS: " + Build.TAGS;
@@ -255,11 +250,11 @@ public class LogUtils {
         phoneInfo += "\n MANUFACTURER: " + Build.MANUFACTURER;
         phoneInfo += "\n USER: " + Build.USER;
         phoneInfo += "\n 手机当前系统语言: " + Locale.getDefault().getLanguage();
-        
-        
+
+
         FileUtil.writeMsg2File(phoneInfo, "system_info.txt", false);
         Log.d(TAG, phoneInfo);
     }
-    
-    
+
+
 }

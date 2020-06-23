@@ -1,10 +1,11 @@
 /*
  * Copyright (c) 2018.  For more infomation visit https://github.com/wangjiandett/RxDemo
  */
-package com.moa.baselib.base.net;
+package com.moa.baselib.base.net.mvp;
 
+import com.moa.baselib.base.net.BaseResponse;
 import com.moa.baselib.base.net.exception.ExceptionHandle;
-import com.moa.baselib.base.net.exception.ResponeException;
+import com.moa.baselib.base.net.exception.ResponseException;
 import com.moa.baselib.base.net.exception.ServerException;
 import com.moa.baselib.utils.LogUtils;
 import io.reactivex.Observable;
@@ -24,15 +25,19 @@ import io.reactivex.schedulers.Schedulers;
 public abstract class BaseModel<T> {
     
     /**
-     * the success code, need diy
+     * the success code
      */
-    private static final int SUCCESS_CODE = 200;
+    protected int SUCCESS_CODE = 200;
     
     protected ValueCallback<T> mCallback;
     
     public BaseModel() {
     }
-    
+
+    public BaseModel(int SUCCESS_CODE) {
+        this.SUCCESS_CODE = SUCCESS_CODE;
+    }
+
     /**
      * send request and parse data
      *
@@ -41,7 +46,7 @@ public abstract class BaseModel<T> {
     protected void request(Observable<BaseResponse<T>> observable) {
         observable.subscribeOn(Schedulers.io())//
             .observeOn(AndroidSchedulers.mainThread())//
-            .map(new ResultFilter<T>())//
+            .map(new ResultFilter<T>(SUCCESS_CODE))//
             .subscribe(new DefaultObserver<T>() {
                 
                 @Override
@@ -72,8 +77,14 @@ public abstract class BaseModel<T> {
             });
     }
     
-    private class ResultFilter<T> implements Function<BaseResponse<T>, T> {
-        
+    private static class ResultFilter<T> implements Function<BaseResponse<T>, T> {
+
+        private int SUCCESS_CODE;
+
+        public ResultFilter(int SUCCESS_CODE) {
+            this.SUCCESS_CODE = SUCCESS_CODE;
+        }
+
         @Override
         public T apply(BaseResponse<T> baseResponse) throws Exception {
             // when status equals success code
@@ -91,7 +102,7 @@ public abstract class BaseModel<T> {
      * @param e the exception
      */
     protected void dealError(Throwable e) {
-        ResponeException throwable = ExceptionHandle.handleException(e);
+        ResponseException throwable = ExceptionHandle.handleException(e);
         onFail(throwable.message);
     }
     

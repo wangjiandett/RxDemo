@@ -67,11 +67,11 @@ dependencies {
 }
 
 
-apply plugin: 'com.didi.virtualapk.plugin'
+//apply plugin: 'com.didi.virtualapk.plugin'
 
-virtualApk {
-    // Attention:::packageId 范围 0x02 - 0x7E
-    packageId = 0x6f // the package id of Resources.  // 插件资源id，避免资源id冲突
-    targetHost = '../app' // the path of application module in host project. // 宿主工程的路径
-    applyHostMapping = true //optional, default value: true. // 插件编译时是否启用应用宿主的apply mapping
-}
+//virtualApk {
+//    // Attention:::packageId 范围 0x02 - 0x7E
+//    packageId = 0x6f // the package id of Resources.  // 插件资源id，避免资源id冲突
+//    targetHost = '../app' // the path of application module in host project. // 宿主工程的路径
+//    applyHostMapping = true //optional, default value: true. // 插件编译时是否启用应用宿主的apply mapping
+//}

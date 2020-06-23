@@ -1,9 +1,7 @@
 package com.moa.rxdemo.mvp.model;
 
-import com.moa.baselib.base.net.ValueCallback;
-import com.moa.rxdemo.mvp.bean.SwipeItem;
-
-import java.util.List;
+import com.moa.baselib.base.net.mvp.ValueCallback;
+import com.moa.rxdemo.mvp.bean.ForecastBean;
 
 /**
  * 类或文件描述
@@ -12,5 +10,5 @@ import java.util.List;
  */
 public interface ISwipeModel {
     
-    void loadSwipeList(int page, ValueCallback<List<SwipeItem>> callback);
+    void loadSwipeList(int cityId, ValueCallback<ForecastBean.Data> callback);
 }

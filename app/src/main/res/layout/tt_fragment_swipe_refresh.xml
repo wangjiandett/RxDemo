@@ -13,18 +13,18 @@
         android:layout_height="match_parent">
 
         <include
-            android:id="@+id/swipe_refresh_header"
+            android:id="@+id/tt_swipe_refresh_header"
             layout="@layout/tt_layout_swipe_twitter_header"/>
 
         <com.moa.baselib.view.ShowDividerGridView
-            android:id="@+id/swipe_target"
+            android:id="@+id/tt_swipe_target"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:numColumns="3"
             />
 
         <include
-            android:id="@+id/swipe_load_more_footer"
+            android:id="@+id/tt_swipe_load_more_footer"
             layout="@layout/tt_layout_swipe_refresh_footer"/>
 
     </com.moa.baselib.view.swipetoloadlayou.SwipeToLoadLayout>

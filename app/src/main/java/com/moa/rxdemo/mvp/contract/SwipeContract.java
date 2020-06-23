@@ -1,7 +1,7 @@
 package com.moa.rxdemo.mvp.contract;
 
 
-import com.moa.rxdemo.mvp.bean.SwipeItem;
+import com.moa.rxdemo.mvp.bean.ForecastBean;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import java.util.List;
 public interface SwipeContract {
     
     interface ISwipePresenter{
-        void getSwipeList(int page);
+        void getSwipeList(int cityId);
     }
     
     interface ISwipeView{
-        void onSuccess(List<SwipeItem> itemList);
+        void onSuccess(List<ForecastBean.Forecast> itemList);
         void onFail(String msg);
     }
     

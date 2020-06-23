@@ -27,6 +27,7 @@ import com.moa.baselib.utils.ToastUtils;
  * Created by：wangjian on 2017/12/22 11:32
  */
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String EXTRA_DATA = "EXTRA_DATA";
 
     protected SystemBarTintManager mTintManager;
     protected Toolbar mToolbar;
