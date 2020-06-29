@@ -92,6 +92,10 @@ public class LogUtils {
         }
     }
 
+    public static void d(Object msg){
+        d(GsonHelper.toJson(msg));
+    }
+
     public static void d(String tag, String msg) {
         if (isLoggable()) {
             String log = getLog(msg);

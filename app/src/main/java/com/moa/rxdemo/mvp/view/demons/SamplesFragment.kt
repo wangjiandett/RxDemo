@@ -76,6 +76,7 @@ class SamplesFragment : BaseListFragment<SamplesFragment.SampleItem>() {
                 SampleItem(RefreshRecyclerFragment::class.java.simpleName, R.id.action_2_recycler_refresh),
                 SampleItem(ViewPagerFragment::class.java.simpleName, R.id.action_2_view_pager),
                 SampleItem(ViewFlipperFragment::class.java.simpleName, R.id.action_2_view_flipper),
+                SampleItem(UploadFragment::class.java.simpleName, R.id.action_2_upload),
 
                 // activity
                 SampleItem(CropImageActivity::class.java.simpleName, R.id.action_2_crop),

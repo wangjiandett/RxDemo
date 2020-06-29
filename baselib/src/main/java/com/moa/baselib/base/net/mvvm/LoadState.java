@@ -17,7 +17,7 @@ public enum  LoadState {
     /**
      * load fail
      */
-    FAIL(-1, "LOADING_FAIL");
+    FAIL(-1, "FAIL");
     
 
     private String tipMsg;

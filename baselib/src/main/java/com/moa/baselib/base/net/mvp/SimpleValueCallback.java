@@ -27,4 +27,9 @@ public class SimpleValueCallback<T> implements ValueCallback<T> {
     public void onFail(String msg) {
     
     }
+
+    @Override
+    public void onProgressChange(int percent) {
+
+    }
 }

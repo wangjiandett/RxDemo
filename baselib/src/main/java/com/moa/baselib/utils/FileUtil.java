@@ -56,7 +56,7 @@ public class FileUtil {
             BufferedInputStream bis = new BufferedInputStream(is);
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
             //We create an array of bytes
-            byte[] data = new byte[1024];
+            byte[] data = new byte[4096];
             int current = 0;
             try {
                 while ((current = bis.read(data, 0, data.length)) != -1) {
@@ -182,7 +182,7 @@ public class FileUtil {
         InputStream in = new FileInputStream(src);
         OutputStream out = new FileOutputStream(dst);
         
-        byte[] buf = new byte[1024];
+        byte[] buf = new byte[4096];
         int len;
         while ((len = in.read(buf)) > 0) {
             out.write(buf, 0, len);
@@ -250,20 +250,27 @@ public class FileUtil {
     }
     
     
-    public static boolean writeInputStream2File(InputStream is, String path) {
+    public static boolean writeInputStream2File(InputStream inputStream, String path) {
         boolean result = true;
-        File file = new File(path);
+        BufferedInputStream bufferedInputStream = null;
+        FileOutputStream fileOutputStream = null;
+        BufferedOutputStream bufferedOutputStream = null;
+
         try {
-            FileOutputStream out = new FileOutputStream(file);
-            byte[] data = new byte[1024];
-            int num = 0;
-            while ((num = is.read(data, 0, data.length)) != -1) {
-                out.write(data, 0, num);
+            bufferedInputStream = new BufferedInputStream(inputStream);
+            fileOutputStream = new FileOutputStream(new File(path));
+            bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+
+            byte[] buffer = new byte[4096 * 2];
+            int bytesRead = 0;
+            while ((bytesRead = bufferedInputStream.read(buffer, 0, buffer.length)) != -1) {
+                bufferedOutputStream.write(buffer, 0, bytesRead);
             }
-            out.close();
-            data = null;
+            bufferedOutputStream.flush();
         } catch (Exception e) {
             result = false;
+        } finally {
+            CloseUtils.closeIO(bufferedInputStream, inputStream, fileOutputStream, bufferedOutputStream);
         }
         return result;
     }
@@ -287,22 +294,8 @@ public class FileUtil {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (bos != null) {
-                try {
-                    bos.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
+            CloseUtils.closeIO(bos, fos);
         }
-        return;
     }
     
     /**

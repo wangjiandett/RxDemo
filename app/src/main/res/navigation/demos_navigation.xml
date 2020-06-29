@@ -74,6 +74,11 @@
             android:id="@+id/action_2_view_flipper"
             app:destination="@+id/view_flipper_fragment"
             />
+
+        <action
+            android:id="@+id/action_2_upload"
+            app:destination="@+id/view_upload_fragment"
+            />
     </fragment>
 
     <fragment
@@ -120,6 +125,11 @@
         android:id="@+id/view_flipper_fragment"
         android:name="com.moa.rxdemo.mvp.view.demons.ViewFlipperFragment"
         tools:layout="@layout/tt_fragment_view_flipper"/>
+
+    <fragment
+        android:id="@+id/view_upload_fragment"
+        android:name="com.moa.rxdemo.mvp.view.demons.UploadFragment"
+        tools:layout="@layout/tt_fragment_upload"/>
 
     <!--此处测试mvvm中的加载方式-->
     <fragment
