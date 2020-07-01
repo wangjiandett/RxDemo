@@ -68,13 +68,15 @@ class ViewFlipperFragment : BaseFragment() {
 
         private lateinit var textView: TextView
 
-        override fun init(data: String?, viewGroup: ViewGroup?, context: Context?): View {
-            val view = getLayout(context, R.layout.tt_item_flipper)
-            textView = view.findViewById<TextView>(R.id.tv_text)
-            return view
+        override fun getLayoutId(): Int {
+            return R.layout.tt_item_flipper
         }
 
-        override fun bind(data: String?, position: Int, context: Context?) {
+        override fun initView(itemView: View?, data: String?, context: Context?) {
+            textView = findView<TextView>(R.id.tv_text)
+        }
+
+        override fun bindData(data: String?, position: Int, context: Context?) {
             textView.text = data
         }
     }

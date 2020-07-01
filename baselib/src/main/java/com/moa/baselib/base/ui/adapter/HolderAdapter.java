@@ -20,11 +20,11 @@ import java.util.List;
 public abstract class HolderAdapter<V> extends BaseAdapter {
     private HashSet<ViewHolder<V>> holders = new HashSet<ViewHolder<V>>();
 
-    private Context context;
+    private Context mContext;
     private List<V> mList = new ArrayList<>();
 
-    protected HolderAdapter(Context context) {
-        this.context = context;
+    protected HolderAdapter(Context mContext) {
+        this.mContext = mContext;
     }
 
     public void setList(List<V> list) {
@@ -78,7 +78,7 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
         View view;
         if (convertView == null || convertView.getTag() == null) {
             holder = createHolder(position, obj);
-            view = holder.init(obj, parent, context);
+            view = holder.init(obj, parent, mContext);
             view.setTag(holder);
             holders.add(holder);
         } else {
@@ -86,25 +86,25 @@ public abstract class HolderAdapter<V> extends BaseAdapter {
             view = convertView;
         }
 
-        onBindViewHolder(holder, obj, position, context);
+        onBindViewHolder(holder, obj, position, mContext);
 
         return view;
     }
 
     public void onMovedToScrapHeap(View view) {
         if (view.getTag() instanceof ViewHolder) {
-            ((ViewHolder) view.getTag()).unbind(false);
+            ((ViewHolder<V>) view.getTag()).unbind(false);
         }
     }
 
     public void dispose() {
-        for (ViewHolder holder : holders) {
+        for (ViewHolder<V> holder : holders) {
             holder.unbind(true);
         }
     }
 
     protected void onBindViewHolder(ViewHolder<V> holder, V obj, int position, Context context) {
-        holder.bind(obj, position, context);
+        holder.bindData(obj, position, context);
     }
 
     protected abstract ViewHolder<V> createHolder(int position, V obj);

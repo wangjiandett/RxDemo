@@ -73,14 +73,16 @@ class CheckAbleFragment : BaseListFragment<String>() {
 
         lateinit var tvText: TextView;
 
-        override fun init(data: String?, viewGroup: ViewGroup?, context: Context?): View {
-            val view = View.inflate(context, R.layout.tt_item_checkable, null)
-            tvText = view.findViewById(R.id.tv_title);
-            return view;
+        override fun getLayoutId(): Int {
+           return R.layout.tt_item_checkable
         }
 
-        override fun bind(data: String?, position: Int, context: Context?) {
-            tvText.setText(data)
+        override fun initView(itemView: View, data: String?, context: Context?) {
+            tvText = itemView.findViewById(R.id.tv_title);
+        }
+
+        override fun bindData(data: String?, position: Int, context: Context?) {
+            tvText.text = data
         }
     }
 }

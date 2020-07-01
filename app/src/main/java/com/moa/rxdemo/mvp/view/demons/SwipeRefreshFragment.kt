@@ -134,13 +134,15 @@ class SwipeRefreshFragment : BaseListFragment<ForecastBean.Forecast>(), SwipeCon
 
         lateinit var tvText: TextView
 
-        override fun init(data: ForecastBean.Forecast?, viewGroup: ViewGroup?, context: Context?): View {
-            val view = View.inflate(context, android.R.layout.simple_list_item_1, null)
-            tvText = view as TextView
-            return view
+        override fun getLayoutId(): Int {
+            return android.R.layout.simple_list_item_1
         }
 
-        override fun bind(data: ForecastBean.Forecast?, position: Int, context: Context?) {
+        override fun initView(itemView: View?, data: ForecastBean.Forecast?, context: Context?) {
+            tvText = findView(android.R.id.text1)
+        }
+
+        override fun bindData(data: ForecastBean.Forecast?, position: Int, context: Context?) {
             tvText.text = data!!.week
         }
     }

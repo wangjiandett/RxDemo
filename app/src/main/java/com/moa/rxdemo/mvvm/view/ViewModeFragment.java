@@ -3,18 +3,17 @@ package com.moa.rxdemo.mvvm.view;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.moa.baselib.base.net.mvvm.SimpleCallback;
 import com.moa.baselib.base.ui.BaseListFragment;
 import com.moa.baselib.base.ui.adapter.ViewHolder;
 import com.moa.baselib.utils.GsonHelper;
 import com.moa.baselib.utils.LogUtils;
 import com.moa.rxdemo.R;
 import com.moa.rxdemo.mvp.bean.ForecastBean;
-import com.moa.baselib.base.net.mvvm.SimpleCallback;
 import com.moa.rxdemo.mvvm.viewmodel.SwipeModel;
 
 /**
@@ -69,16 +68,19 @@ public class ViewModeFragment extends BaseListFragment<ForecastBean.Forecast> {
     static class MyHolder extends ViewHolder<ForecastBean.Forecast> {
         
         private TextView tvText;
-        
+
         @Override
-        public View init(ForecastBean.Forecast data, ViewGroup viewGroup, Context context) {
-            View view = View.inflate(context, android.R.layout.simple_list_item_1, null);
-            tvText = (TextView) view;
-            return view;
+        public int getLayoutId() {
+            return android.R.layout.simple_list_item_1;
         }
-        
+
         @Override
-        public void bind(ForecastBean.Forecast data, int position, Context context) {
+        public void initView(View itemView, ForecastBean.Forecast data, Context context) {
+            tvText = findView(android.R.id.text1);
+        }
+
+        @Override
+        public void bindData(ForecastBean.Forecast data, int position, Context context) {
             tvText.setText(data.week);
         }
     }
